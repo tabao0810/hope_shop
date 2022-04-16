@@ -1,0 +1,49 @@
+<template>
+  <section class="sale-list">
+    <div class="row">
+      <h6 class="container text-sale-list mt-3 col-xs-12 col-sm-12 col-12">
+        FREE SHIPPING WORLDWIDE. NO MINIMUM OURCHASE REQUIRED
+      </h6>
+      <div class="col-xs-12 col-sm-12 col-12">
+        <div class="pro-list row">
+          <div
+            class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12"
+            v-for="sale in saleList"
+            :key="sale.id"
+          >
+            <sale-item :saleItem="sale" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+import SaleItem from "./SaleItem.vue";
+import { createNamespacedHelpers } from "vuex";
+const { mapState } = createNamespacedHelpers("sales");
+
+export default {
+  components: {
+    SaleItem,
+  },
+  computed: {
+    ...mapState({
+      saleList: (state) => state.saleList,
+    }),
+  },
+};
+</script>
+
+<style>
+@media (max-width: 580px) {
+  .sale-list {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .text-center > p {
+    font-size: 18px;
+  }
+}
+</style>
