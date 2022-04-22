@@ -77,12 +77,14 @@ import { reactive } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { useLoading } from "vue-loading-overlay";
+import { useToast } from "vue-toastification";
 
 export default {
   setup() {
     const $loading = useLoading();
     const router = useRouter();
     const store = useStore();
+    const toast = useToast();
 
     const userResgister = reactive({
       firstName: "",
@@ -116,15 +118,15 @@ export default {
               store.dispatch("user/SignInAction", { data, router });
             }, 2000);
           } else {
-            alert("Mời bạn nhập lại mật khẩu");
+            toast.error("Mời bạn nhập lại mật khẩu");
           }
         } else {
-          alert(
+          toast.error(
             "Mật khẩu yếu (mời bạn nhập lại mật khẩu có độ dài lơn hơn 7 kí tự)"
           );
         }
       } else {
-        alert("Họ tên hoặc email không được để trống!!");
+        toast.error("Họ tên hoặc email không được để trống!!");
       }
     };
     return {

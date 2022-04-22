@@ -16,7 +16,7 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide v-for="blog in blogList" :key="blog.id">
+      <swiper-slide v-for="blog in blogList" :key="blog._id">
         <blog-item :blogList="blog" />
       </swiper-slide>
     </swiper>
@@ -42,7 +42,7 @@ import { Pagination, Navigation } from "swiper";
 
 import BlogItem from "./BlogItem.vue";
 import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("blogs");
+const { mapState, mapActions } = createNamespacedHelpers("blogs");
 export default {
   data() {
     return {
@@ -87,6 +87,14 @@ export default {
       }
       return y;
     },
+  },
+  methods: {
+    ...mapActions({
+      getAllBlog: "getAllBlogAction",
+    }),
+  },
+  created() {
+    this.getAllBlog();
   },
 };
 </script>

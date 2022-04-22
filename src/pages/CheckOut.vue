@@ -14,10 +14,6 @@
       <div class="col-lg-6 user-information">
         <h3 class="user-infor-heading">Shipping address</h3>
         <form action="" class="mt-3 mb-4">
-          <!-- <div class="input-field">
-            <input type="text" id="name" required class="fullName-input" />
-            <label for="name" class="fullName-label">Họ:</label>
-          </div> -->
           <div class="input-field mt-2">
             <input
               type="text"
@@ -132,7 +128,7 @@
       <div class="col-lg-6 product-information">
         <div
           class="product-infor-item mt-3"
-          v-for="cart in cartList"
+          v-for="cart in order.carts"
           :key="cart.id"
         >
           <div class="product-infor-image">
@@ -171,10 +167,14 @@
 <script>
 import { reactive } from "@vue/reactivity";
 import { createNamespacedHelpers, useStore } from "vuex";
+import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 const { mapState } = createNamespacedHelpers("user");
 export default {
   setup() {
     const store = useStore();
+    const router = useRouter();
+    const toast = useToast();
     const order = reactive({
       fullName: "",
       email: "",
@@ -185,8 +185,38 @@ export default {
       address: "",
       shipcod: "20000",
       carts: store.state.user.userCarts,
+      userId: store.state.user.userInfo._id,
     });
-    return { order: order };
+    const handleToPayment = () => {
+      if (order.fullName.length !== 0) {
+        if (order.email.length !== 0) {
+          if (order.phoneNumber.length !== 0) {
+            const data = {
+              fullName: order.fullName,
+              email: order.email,
+              phoneNumber: order.phoneNumber,
+              city: order.city,
+              district: order.district,
+              commune: order.commune,
+              address: order.address,
+              shipcod: order.shipcod,
+              carts: order.carts,
+              userId: order.userId,
+            };
+            store.dispatch("order/createOrderAction", { data, router });
+            store.dispatch("user/removeAllCartActions");
+            toast.success("Đặt hàng thành công");
+          } else {
+            toast.error("Bạn chưa điền số điện thoại");
+          }
+        } else {
+          toast.error("Bạn chưa điền địa chỉ gmail");
+        }
+      } else {
+        toast.error("Bạn chưa điền họ và tên");
+      }
+    };
+    return { order: order, handleToPayment };
   },
   computed: {
     ...mapState({
@@ -255,9 +285,6 @@ export default {
         behavior: "smooth",
       });
     },
-    handleToPayment(a) {
-      console.log(a);
-    },
   },
 };
 </script>
@@ -319,7 +346,7 @@ export default {
 }
 .fullName-input:focus ~ .fullName-label,
 .fullName-input:valid ~ .fullName-label {
-  font-size: 14px;
+  font-size: 12px;
   top: -5px;
   color: #555;
   font-weight: 300;

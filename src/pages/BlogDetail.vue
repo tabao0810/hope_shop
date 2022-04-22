@@ -20,11 +20,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
-          <img
-            :src="blogList[$route.params.blogId - 1].image"
-            alt=""
-            class="blog__router-detail"         
-          />
+          <img :src="blogDetail.image" alt="" class="blog__router-detail" />
           <div class="blog-router-detail">
             <i class="fa fa-picture-o"></i>
             <div class="blog_details_list">
@@ -37,7 +33,7 @@
                 <a href=""><span>salim</span></a>
                 <i class="fa fa-user px-1 ml-2"></i>Boot Experts
                 <i class="fa fa-clock-o px-1 ml-1"></i>
-                {{ blogList[$route.params.blogId - 1].date }}
+                {{ formatDateDetail(blogDetail.createdAt) }}
               </div>
             </div>
             <div class="blog_info_details">
@@ -45,40 +41,48 @@
                 <a
                   class="blog_info_heading"
                   href="/blogs/news/127241219-praesent-ornare-tortor"
-                  >{{ blogList[$route.params.blogId - 1].description }}</a
+                  >{{ blogDetail.description }}</a
                 >
               </h2>
 
               <p class="blog_info_text-detail">
-                {{ blogList[$route.params.blogId - 1].text }}
+                {{ blogDetail.text }}
               </p>
             </div>
           </div>
           <hr />
-          <div class="blog__detail-btn">
-            <a href=""><i class="fa fa-chevron-left mr-1"></i>Older Post</a>
-            <a href="">Newer Post<i class="fa fa-chevron-right ml-1"></i></a>
-          </div>
-          <hr />
           <div class="blog__detail-cmt-heading">
-            <h2>0 comments</h2>
+            <h2>
+              <span>{{ blogDetail.comments.length }}</span> comments
+            </h2>
           </div>
           <hr />
+          <div v-for="(cmt, index) in blogDetail.comments" :key="index">
+            <div class="listComment mt-3">
+              <div class="commentImg">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwbGozsS9QP10p16rZiCrQD0koXVkI4c7LwUHab9dkmFRcN0VqCkB37f2y0EnySItwykg&usqp=CAU"
+                  alt=""
+                  class="commentImg_image"
+                />
+              </div>
+              <div class="commentContent">
+                <div class="commentContent_list">
+                  <p class="commentContent_name">{{ cmt.name }}</p>
+                  <p class="commentContent_cnt">{{ cmt.content }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="blog__detail-cmt">
             <h5>Add comment</h5>
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-12">
                 <input
                   type="text"
                   placeholder="Name"
                   class="blog__detail-text"
-                />
-              </div>
-              <div class="col-lg-6">
-                <input
-                  type="text"
-                  placeholder="Email"
-                  class="blog__detail-text"
+                  v-model="cmt.name"
                 />
               </div>
               <div class="col-lg-12">
@@ -88,11 +92,12 @@
                   class="blog__detail-text blog__detail-text-2 mt-2"
                   rows="4"
                   cols="50"
+                  v-model="cmt.content"
                 />
               </div>
             </div>
             <div class="blog__detail-link">
-              <a href="">Post comment</a>
+              <a href="" @click.prevent="postComment(cmt)">Post comment</a>
             </div>
           </div>
         </div>
@@ -277,12 +282,36 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("blogs");
+import { useRoute } from "vue-router";
+import { createNamespacedHelpers, useStore } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("blogs");
 export default {
+  data() {
+    return {
+      cmt: {
+        name: "",
+        content: "",
+      },
+    };
+  },
+  setup() {
+    const store = useStore();
+    const route = useRoute();
+
+    store.dispatch("blogs/getSingleBlogAction", route.params.blogId);
+  },
+  methods: {
+    ...mapActions({
+      postComment: "addCommentAction",
+    }),
+    formatDateDetail(a) {
+      const time = new Date(a);
+      return time.toDateString().slice(3);
+    },
+  },
   computed: {
     ...mapState({
-      blogList: (state) => state.blogList,
+      blogDetail: (state) => state.blogDetail,
     }),
   },
 };
@@ -371,5 +400,41 @@ export default {
 <style scoped>
 .blog__detail-btn > a > .fa {
   color: #ff343b;
+}
+.listComment {
+  display: flex;
+  align-items: center;
+}
+.commentImg {
+  min-width: 45px;
+  height: 45px;
+}
+.commentImg_image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.commentContent {
+  margin-left: 10px;
+  background-color: #e9e9e9;
+  border-radius: 16px;
+  flex-grow: inherit;
+}
+.commentContent_list > p {
+  margin: 0;
+  line-height: 18px;
+  text-align: left;
+}
+.commentContent_list > p:first-child {
+  text-transform: capitalize;
+  font-weight: 550;
+}
+.commentContent_list > p:last-child {
+  width: 100%;
+  word-break: break-word;
+  margin-top: 4px;
+}
+.commentContent_list {
+  padding: 4px 20px;
 }
 </style>

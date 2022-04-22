@@ -90,20 +90,25 @@
             <div v-else></div>
           </div>
           <div class="product-detail">
-            <div v-if="productDetail.color" class="selectSize">
-              <p>Color:</p>
-              <div v-for="(color, index) in productDetail.colors" :key="index">
-                <input
-                  class="checkbox-tools"
-                  type="radio"
-                  name="color"
-                  :id="color"
-                  :value="color"
-                  v-model="productDetail.color"
-                />
-                <label class="for-checkbox-tools" :for="color">
-                  {{ color }}
-                </label>
+            <div v-if="productDetail.color" class="selectColor">
+              <p style="margin: 0; font-size: 20px; font-weight: 500">Color:</p>
+              <div class="selectColor-pick">
+                <div
+                  v-for="(color, index) in productDetail.colors"
+                  :key="index"
+                >
+                  <input
+                    class="pickColor"
+                    type="radio"
+                    name="color"
+                    :id="color"
+                    :value="color"
+                    v-model="productDetail.color"
+                  />
+                  <label class="pickColorLabel" :for="color"
+                    ><span :class="color"></span
+                  ></label>
+                </div>
               </div>
             </div>
             <div v-else></div>
@@ -115,6 +120,7 @@
               type="number"
               style="outline: none; padding: 4px 10px"
               v-model="productDetail.amount"
+              min="1"
             />
           </div>
           <div class="product-detail-button">
@@ -141,9 +147,9 @@
           <div class="tab-pane">
             <table width="100%">
               <tr>
-                <td align="left">productId</td>
+                <td align="left">Tên sản phẩm</td>
                 <td align="left">
-                  {{ productDetail._id }}
+                  {{ productDetail.name }}
                 </td>
               </tr>
               <tr>
@@ -311,6 +317,39 @@
       </div>
     </div>
   </div>
+  <div class="about">
+    <h1>This is an about page</h1>
+    <h1>Radio Color Picker</h1>
+    <input type="radio" name="color" id="red" value="red" />
+    <label for="red"><span class="red"></span></label>
+
+    <input type="radio" name="color" id="green" />
+    <label for="green"><span class="green"></span></label>
+
+    <input type="radio" name="color" id="yellow" />
+    <label for="yellow"><span class="yellow"></span></label>
+
+    <input type="radio" name="color" id="olive" />
+    <label for="olive"><span class="olive"></span></label>
+
+    <input type="radio" name="color" id="orange" />
+    <label for="orange"><span class="orange"></span></label>
+
+    <input type="radio" name="color" id="teal" />
+    <label for="teal"><span class="teal"></span></label>
+
+    <input type="radio" name="color" id="blue" />
+    <label for="blue"><span class="blue"></span></label>
+
+    <input type="radio" name="color" id="violet" />
+    <label for="violet"><span class="violet"></span></label>
+
+    <input type="radio" name="color" id="purple" />
+    <label for="purple"><span class="purple"></span></label>
+
+    <input type="radio" name="color" id="pink" />
+    <label for="pink"><span class="pink"></span></label>
+  </div>
 </template>
 
 <script>
@@ -326,6 +365,7 @@ import { Pagination, Navigation } from "swiper";
 import RelatedProduct from "../components/RelatedProduct.vue";
 import { createNamespacedHelpers, useStore } from "vuex";
 import { useRoute } from "vue-router";
+
 const { mapState, mapGetters } = createNamespacedHelpers("products");
 const { mapActions } = createNamespacedHelpers("user");
 
@@ -339,6 +379,7 @@ export default {
   setup() {
     const route = useRoute();
     const store = useStore();
+
     store.dispatch("products/getSingleProductsAction", route.params.productId);
     store.dispatch("products/getAllProductsAction");
     return {
@@ -399,9 +440,12 @@ export default {
       this.selected = tab;
     },
     ...mapActions({
-      handleBuy: "addCartAction",
       handleWishList: "addWishListAction",
     }),
+    handleBuy(pro) {
+      this.$store.dispatch("user/addCartAction", pro);
+      this.$router.push("/my-cart");
+    },
     handleToDetail(a) {
       this.$router.push(`/product-detail/${a}`);
       window.scrollTo({
@@ -673,5 +717,63 @@ export default {
   border-radius: 4px;
   background-image: linear-gradient(90deg, #f86983, var(--red));
   z-index: -1;
+}
+.selectColor {
+  display: flex;
+  align-items: center;
+}
+.selectColor-pick {
+  display: flex;
+  margin-left: 10px;
+}
+</style>
+<style lang="scss" scoped>
+$colors: (
+  red: #ff343b,
+  blue: #2185d0,
+  pink: #e03997,
+  black: black,
+  gray: gray,
+  white: white,
+);
+
+.pickColor {
+  display: none;
+  &:checked + label {
+    span {
+      transform: scale(1.25);
+    }
+    @each $name, $value in $colors {
+      .#{$name} {
+        border: 2px solid darken($value, 100%);
+      }
+    }
+  }
+}
+
+.pickColorLabel {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+
+  margin-right: 10px;
+  cursor: pointer;
+  &:hover {
+    span {
+      transform: scale(1.25);
+    }
+  }
+  span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+    @each $name, $value in $colors {
+      &.#{$name} {
+        background: $value;
+      }
+    }
+  }
 }
 </style>

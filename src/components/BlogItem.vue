@@ -6,21 +6,23 @@
           class="card-img-top blog-img"
           :src="blogList.image"
           alt=""
-          @click="handleBlogDetail(blogList.id)"
+          @click="handleBlogDetail(blogList._id)"
         />
       </div>
       <div class="cardBody m-3">
         <h5
           class="card-title cart-to-detail"
-          @click="handleBlogDetail(blogList.id)"
+          @click="handleBlogDetail(blogList._id)"
         >
           {{ blogList.description }}
         </h5>
         <p class="card-text">{{ blogList.text }}</p>
-        <p class="small">
-          {{ blogList.date }}
+        <p class="blogText">
+          {{ formatDateBlog(blogList.createdAt) }}
           <a class="text-cmt" href=""
-            ><i class="fa fa-comments mr-1 ml-2"></i>COMMENTS</a
+            ><i class="fa fa-comments mr-1 ml-2"></i
+            ><span class="mr-1">{{ blogList.comments.length }}</span
+            >COMMENTS</a
           >
         </p>
       </div>
@@ -48,6 +50,10 @@ export default {
         left: 100,
         behavior: "smooth",
       });
+    },
+    formatDateBlog(a) {
+      const time = new Date(a);
+      return time.toDateString().slice(3);
     },
   },
 };
@@ -150,5 +156,7 @@ export default {
 .cart-to-detail:hover {
   color: #ff343b;
   transition: all linear 0.3s;
+}
+.formatDateBlog {
 }
 </style>

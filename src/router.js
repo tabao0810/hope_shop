@@ -14,7 +14,13 @@ import ProductDetail from './pages/ProductDetail.vue'
 import CheckOut from './pages/CheckOut.vue'
 import SearchProduct from './pages/SearchProduct.vue'
 import TheTutorial from './pages/TheTutorial.vue'
+import PaymentSuccess from './pages/PaymentSuccess.vue'
+
 import {createRouter,createWebHistory} from 'vue-router'
+
+function lazyLoad(view){
+  return() => import(`@/pages/${view}.vue`)
+}
 
 const routes = [
     {
@@ -65,6 +71,12 @@ const routes = [
     },
     {
         path:'/tutorial',component:TheTutorial,
+    },
+    {
+        path:'/history',component:lazyLoad('HistoryOrder')
+    },
+    {
+        path:'/success',component:PaymentSuccess
     }
     
 

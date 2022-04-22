@@ -9,12 +9,17 @@ import router from './router';
 import store from './store';
 import VueLoading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
-
+import Toast,{POSITION} from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 import AppModal from './components/AppModal.vue'
 const app =createApp(App);
 app.use(router)
 app.use(store)
 app.use(VueLoading)
+app.use(Toast,{
+    // Setting the global default position
+    position: POSITION.TOP_LEFT
+})
 app.component("app-modal",AppModal)
 app.mount("#app");

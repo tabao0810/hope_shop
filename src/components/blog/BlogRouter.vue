@@ -171,9 +171,9 @@
           </div>
         </div>
         <div class="col-lg-9">
-          <div v-for="blog in getItems" :key="blog.id" class="single-blog">
+          <div v-for="blog in getItems" :key="blog._id" class="single-blog">
             <div class="">
-              <a href="" @click="handleBlogDetail(blog.id)">
+              <a href="" @click="handleBlogDetail(blog._id)">
                 <img :src="blog.image" class="blog_router-img" alt="" />
               </a>
             </div>
@@ -188,7 +188,8 @@
                   >,
                   <a href=""><span>salim</span></a>
                   <i class="fa fa-user px-1 ml-2"></i>Boot Experts
-                  <i class="fa fa-clock-o px-1 ml-1"></i> {{ blog.date }}
+                  <i class="fa fa-clock-o px-1 ml-1"></i>
+                  {{ formatBlogRouterDate(blog.createdAt) }}
                 </div>
               </div>
               <div class="blog_info_details">
@@ -196,7 +197,7 @@
                   <a
                     class="blog_info_heading"
                     href=""
-                    @click="handleBlogDetail(blog.id)"
+                    @click="handleBlogDetail(blog._id)"
                     >{{ blog.description }}</a
                   >
                 </h2>
@@ -208,13 +209,15 @@
                 <div class="blog-router-btn">
                   <a
                     class="readmore_link"
-                    @click="handleBlogDetail(blog.id)"
+                    @click="handleBlogDetail(blog._id)"
                     href="#"
                     title="Images"
                     >Read more</a
                   >
 
-                  <a class="comments_link" href=""> 0 comments </a>
+                  <a class="comments_link" href="">
+                    <span>{{ blog.comments.length }}</span> comments
+                  </a>
                 </div>
               </div>
             </div>
@@ -267,7 +270,7 @@
 <script>
 import Paginate from "vuejs-paginate-next";
 import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("blogs");
+const { mapState, mapActions } = createNamespacedHelpers("blogs");
 export default {
   data() {
     return {
@@ -293,6 +296,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      getAllBlog: "getAllBlogAction",
+    }),
     handleBlogDetail(a) {
       this.$router.push(`/blog-detail/${a}`);
       window.scrollTo({
@@ -309,11 +315,16 @@ export default {
         behavior: "smooth",
       });
     },
+    formatBlogRouterDate(a) {
+      const time = new Date(a);
+      return time.toDateString().slice(3);
+    },
   },
   created() {
     this.blogList.map((item) => {
       this.items.push(item);
     });
+    this.getAllBlog();
   },
 };
 </script>

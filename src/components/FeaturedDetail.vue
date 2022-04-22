@@ -9,36 +9,11 @@
       <h2 class="text-danger" v-else>
         {{ formatOldPrice }}<span class="oldPrice ml-1">{{ formatPrice }}</span>
       </h2>
-      <p><a href="">See all feature</a></p>
-      <div v-if="featuredDetail.sizesClothing.length > 0" class="selectSize">
-        <p>Màu sắc:</p>
-        <div
-          v-for="(sizeClothing, index) in featuredDetail.sizesClothing"
-          :key="index"
+      <p>
+        <a href="" @click.prevent="handleToDetail(featuredDetail._id)"
+          >Xem chi tiết sản phẩm</a
         >
-          <input
-            class="checkbox-tools"
-            type="radio"
-            name="tools"
-            :id="sizeClothing"
-            :value="sizeClothing"
-            v-model="size"
-          />
-          <label class="for-checkbox-tools" :for="sizeClothing">
-            {{ sizeClothing }}
-          </label>
-        </div>
-      </div>
-
-      <div v-else></div>
-      <input type="number" class="quantity mr-2" value="1" />
-      <button
-        type="button"
-        class="btn btn-danger font-weight-bold px-5"
-        @click="handleBuy(featuredDetail)"
-      >
-        ADD TO CART
-      </button>
+      </p>
       <hr />
       <h6>{{ featuredDetail.description }}</h6>
       <hr />
@@ -65,22 +40,27 @@ export default {
   computed: {
     formatPrice() {
       let x = this.featuredDetail.price;
-      return (x = x.toLocaleString("en-US", {
+      return (x = x.toLocaleString("vi", {
         style: "currency",
-        currency: "USD",
+        currency: "VND",
       }));
     },
     formatOldPrice() {
       let x = this.featuredDetail.price * (this.featuredDetail.sale / 100);
-      return (x = x.toLocaleString("en-US", {
+      return (x = x.toLocaleString("vi", {
         style: "currency",
-        currency: "USD",
+        currency: "VND",
       }));
     },
   },
   methods: {
-    handleBuy(a) {
-      console.log(a);
+    handleToDetail(a) {
+      this.$router.push(`/product-detail/${a}`);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
     },
   },
 };

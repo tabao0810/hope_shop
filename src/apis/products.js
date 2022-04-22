@@ -14,3 +14,4 @@ export const getSingleProductsApi = async(productId) => {
     });
     return res.data.Product;
 }
+

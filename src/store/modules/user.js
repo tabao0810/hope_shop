@@ -42,8 +42,10 @@ const mutations={
         try{
         const index = state.userInfo.carts.findIndex((cart) => cart._id === payload._id)
         const size = state.userInfo.carts.findIndex((cart) => cart.sizeClothing === payload.sizeClothing)
+        const sizeShoe = state.userInfo.carts.findIndex((cart) => cart.sizeShoe === payload.sizeShoe)
         const color = state.userInfo.carts.findIndex((cart) => cart.color === payload.color)
-        if(index !== -1 && size !== -1 && color!==-1)        {
+       
+        if(index !== -1 && size !== -1 && color!==-1 && sizeShoe !== -1)        {
             state.userInfo.carts[index].amount += 1;                      
         }else{
             state.userInfo.carts.push(payload);                                   
@@ -115,6 +117,10 @@ const mutations={
     },
     orderMutation(state){
         return state.userCarts
+    },
+    removeAllCartMutation(state){
+        state.userInfo.carts = [],
+        state.userCarts = []
     }
    
 
@@ -166,8 +172,8 @@ const actions={
     // Thêm sản phẩm vào giỏ hàng
      addCartAction(context,payload){
         // const newCart = {...payload, amount:1}        
-        context.commit("addCartMutation",payload); 
-       context.dispatch("updateUser") 
+        context.commit("addCartMutation",payload);
+       context.dispatch("updateUser");       
                
     },
 
@@ -208,6 +214,10 @@ const actions={
 
     orderActions(context){
        context.commit('orderMutation')
+    },
+    removeAllCartActions(context){
+        context.commit('removeAllCartMutation')
+        context.dispatch("updateUser")
     }
         
 

@@ -29,25 +29,27 @@
                   <div class="account_single_item">
                     <h2>setting</h2>
                     <ul class="account_single_nav_3">
-                      <li>
-                        <a href="">my account</a>
+                      <li v-if="userInfo._id">
+                        <a href="">Thông tin cá nhân</a>
                       </li>
-                      <li>
-                        <router-link href="" to="my-cart">my cart</router-link>
+                      <li v-if="userInfo._id">
+                        <router-link href="" to="my-cart">giỏ hàng</router-link>
                       </li>
-                      <li>
-                        <router-link href="" to="/blognew"> blog</router-link>
-                      </li>
-                      <li>
-                        <router-link href="" to="/my-wishlist"
-                          >my wishlist</router-link
+                      <li v-if="userInfo._id">
+                        <router-link href="" to="/history"
+                          >Đơn hàng</router-link
                         >
                       </li>
                       <li v-if="userInfo._id">
-                        <a href="" @click="LogoutPage">Logout</a>
+                        <router-link href="" to="/my-wishlist"
+                          >danh sách yêu thích</router-link
+                        >
+                      </li>
+                      <li v-if="userInfo._id">
+                        <a href="" @click="LogoutPage">Đăng xuất</a>
                       </li>
                       <li v-else>
-                        <router-link to="/login">Login</router-link>
+                        <router-link to="/login">Đăng nhập</router-link>
                       </li>
                     </ul>
                   </div>
@@ -64,7 +66,7 @@
                 </router-link>
                 <div class="cart_down_area">
                   <div class="cart_single" v-if="sumCart === 0">
-                    Your cart is currently empty.
+                    Hiện chưa có sản phẩm nào trong giỏ hàng
                   </div>
                   <div
                     class="cart_single"
@@ -102,160 +104,16 @@
                     <router-link to="/thehome" class="navbar-item-link"
                       ><span>Trang chủ</span></router-link
                     >
-                    <!-- <div class="mega_menu_list drown_menu">
-                      <a href="">home version 1</a>
-                      <a href="">home version 2</a>
-                      <a href="">home version 3</a>
-                    </div> -->
                   </li>
                   <li class="navbar-item">
                     <router-link to="/shop" class="navbar-item-link"
                       ><span>Sale</span></router-link
                     >
-                    <!-- <div class="mega_menu_list drown_menu mega-menu-new">
-                      <div class="single_megamenu">
-                        <h2><a href="#">learning</a></h2>
-
-                        <div class="items_list">
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>Devenport</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>door bazar</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>digital
-                            software</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>dentale
-                            care</a
-                          >
-                        </div>
-                      </div>
-
-                      <div class="single_megamenu">
-                        <h2><a href="#">lighting</a></h2>
-
-                        <div class="items_list">
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>Devenport</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>door bazar</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>digital
-                            software</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>dentale
-                            care</a
-                          >
-                        </div>
-                      </div>
-
-                      <div class="single_megamenu">
-                        <h2><a href="#">living room</a></h2>
-
-                        <div class="items_list">
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>Devenport</a
-                          >
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>door bazar</a
-                          >
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>digital
-                            software</a
-                          >
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>dentale
-                            care</a
-                          >
-                        </div>
-                      </div>
-                      <div class="single_megamenu">
-                        <h2><a href="#">lamp style</a></h2>
-
-                        <div class="items_list">
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>lamp style
-                            1</a
-                          >
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>lamp style
-                            2</a
-                          >
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>lamp style
-                            3</a
-                          >
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>lamp style
-                            4</a
-                          >
-                        </div>
-                      </div>
-                    </div> -->
                   </li>
                   <li class="navbar-item">
                     <router-link to="/lookbook" class="navbar-item-link"
                       ><span>Sản phẩm</span></router-link
                     >
-                    <!-- <div class="mega_menu_list drown_menu mega-menu-new">
-                      <div class="single_megamenu">
-                        <h2><a href="#">Devenport</a></h2>
-
-                        <div class="items_list">
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>gold ring</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>games &amp;
-                            software</a
-                          >
-                        </div>
-                      </div>
-
-                      <div class="single_megamenu">
-                        <h2><a href="#">digital software</a></h2>
-
-                        <div class="items_list">
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>apps bazar</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>softwre
-                            market</a
-                          >
-                        </div>
-                      </div>
-
-                      <div class="single_megamenu">
-                        <h2><a href="#">patwary style</a></h2>
-
-                        <div class="items_list">
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>patwary style
-                            1</a
-                          >
-
-                          <a href="#"
-                            ><i class="fa fa-angle-right mr-1"></i>patwary style
-                            2</a
-                          >
-                        </div>
-                      </div>
-                    </div> -->
                   </li>
                   <li class="navbar-item">
                     <router-link to="/tutorial" href="" class="navbar-item-link"
@@ -266,28 +124,11 @@
                     <router-link to="/blognew" class="navbar-item-link"
                       ><span>Tin tức</span></router-link
                     >
-                    <!-- <div class="mega_menu_list drown_menu">
-                      <router-link href="" to="/blognew"
-                        >blog sidebar</router-link
-                      >
-                      <router-link href="" to="/blog-detail/1"
-                        >blog details</router-link
-                      >
-                    </div> -->
                   </li>
                   <li class="navbar-item">
                     <router-link to="/aboutus" href="" class="navbar-item-link"
                       ><span>Về Hope</span></router-link
                     >
-                    <!-- <div class="mega_menu_list drown_menu">
-                      <router-link to="/aboutus">about us</router-link>
-                      <a href="">Contact us</a>
-                      <router-link to="/lookbook">shop grid</router-link>
-                      <router-link to="/bookdetail">shop list</router-link>
-                      <a href="">product details</a>
-                      <a href="">wishlist</a>
-                      <router-link to="/pageerror">404</router-link>
-                    </div> -->
                   </li>
                 </ul>
               </div>
@@ -373,10 +214,10 @@ export default {
         }));
       } else {
         let x = cartItem.price;
-        return (x = x.toLocaleString("vi", {
+        return x.toLocaleString("vi", {
           style: "currency",
           currency: "VND",
-        }));
+        });
       }
     },
   },
