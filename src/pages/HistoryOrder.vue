@@ -5,16 +5,18 @@
       <table border="1" cellpadding="20">
         <thead>
           <tr style="background: #ccc; font-weight: bolder">
+            <td>Mã đơn hàng</td>
             <td>Họ và tên</td>
             <td>Số điện thoại</td>
             <td>Địa chỉ</td>
-            <td width="30%">Sản phẩm</td>
+            <td width="60%">Sản phẩm</td>
             <td>Phí vận chuyển</td>
             <td>Tổng tiền</td>
             <td>Thời gian đặt</td>
             <td>Tình trạng</td>
           </tr>
           <tr v-for="order in getOrders" :key="order._id">
+            <td>{{ order._id }}</td>
             <td>{{ order.fullName }}</td>
             <td>{{ order.phoneNumber }}</td>
             <td>

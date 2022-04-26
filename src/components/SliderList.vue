@@ -26,7 +26,7 @@
     :modules="modules"
     class="mySwiper"
   >
-    <swiper-slide v-for="(image, index) in images" :key="index"
+    <swiper-slide v-for="image in listBanner" :key="image._id"
       ><slide-item :img="image"
     /></swiper-slide>
     <div class="navigation-btn">
@@ -57,14 +57,14 @@ import "swiper/css/effect-creative";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("slides");
+const { mapState, mapActions } = createNamespacedHelpers("banners");
 export default {
   data() {
     return {};
   },
   computed: {
     ...mapState({
-      images: (state) => state.images,
+      listBanner: (state) => state.listBanner,
     }),
     setNavigation() {
       let x = screen.width;
@@ -84,11 +84,19 @@ export default {
     SwiperSlide,
     SlideItem,
   },
+  methods: {
+    ...mapActions({
+      getAllBanner: "getAllBannerAction",
+    }),
+  },
+  created() {
+    this.getAllBanner();
+  },
   setup() {
     return {
       modules: [Autoplay, Pagination, Navigation, EffectCreative],
     };
-  }, 
+  },
 };
 </script>
 <style scoped>

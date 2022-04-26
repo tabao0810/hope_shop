@@ -118,9 +118,10 @@
             <label for="">Quantity</label>
             <input
               type="number"
-              style="outline: none; padding: 4px 10px"
+              style="outline: none; padding: 4px 10px; width: 200px"
               v-model="productDetail.amount"
               min="1"
+              :max="productDetail.quantity"
             />
           </div>
           <div class="product-detail-button">
@@ -316,39 +317,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <h1>Radio Color Picker</h1>
-    <input type="radio" name="color" id="red" value="red" />
-    <label for="red"><span class="red"></span></label>
-
-    <input type="radio" name="color" id="green" />
-    <label for="green"><span class="green"></span></label>
-
-    <input type="radio" name="color" id="yellow" />
-    <label for="yellow"><span class="yellow"></span></label>
-
-    <input type="radio" name="color" id="olive" />
-    <label for="olive"><span class="olive"></span></label>
-
-    <input type="radio" name="color" id="orange" />
-    <label for="orange"><span class="orange"></span></label>
-
-    <input type="radio" name="color" id="teal" />
-    <label for="teal"><span class="teal"></span></label>
-
-    <input type="radio" name="color" id="blue" />
-    <label for="blue"><span class="blue"></span></label>
-
-    <input type="radio" name="color" id="violet" />
-    <label for="violet"><span class="violet"></span></label>
-
-    <input type="radio" name="color" id="purple" />
-    <label for="purple"><span class="purple"></span></label>
-
-    <input type="radio" name="color" id="pink" />
-    <label for="pink"><span class="pink"></span></label>
   </div>
 </template>
 

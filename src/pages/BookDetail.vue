@@ -122,18 +122,12 @@
                 </span>
               </button>
             </div>
-
             <div class="form-horizontal">
-              <label class="hidden-xs mr-1" for="SortBy">Sort by:</label>
-              <select name="SortBy" id="SortBy">
-                <option value="manual">Featured</option>
-                <option value="best-selling">Best Selling</option>
-                <option value="title-ascending">Alphabetically, A-Z</option>
-                <option value="title-descending">Alphabetically, Z-A</option>
-                <option value="price-ascending">Price, low to high</option>
-                <option value="price-descending">Price, high to low</option>
-                <option value="created-descending">Date, new to old</option>
-                <option value="created-ascending">Date, old to new</option>
+              <label class="hidden-xs mr-1" for="SortBy">Sắp xếp:</label>
+              <select name="SortBy" id="SortBy" v-model="priceSort">
+                <option value="" disabled>Giá</option>
+                <option value="price-ascending">Tăng dần</option>
+                <option value="price-descending">Giảm dần</option>
               </select>
             </div>
           </div>
@@ -316,16 +310,11 @@
             </div>
 
             <div class="form-horizontal">
-              <label class="hidden-xs mr-1" for="SortBy">Sort by:</label>
-              <select name="SortBy" id="SortBy">
-                <option value="manual">Featured</option>
-                <option value="best-selling">Best Selling</option>
-                <option value="title-ascending">Alphabetically, A-Z</option>
-                <option value="title-descending">Alphabetically, Z-A</option>
-                <option value="price-ascending">Price, low to high</option>
-                <option value="price-descending">Price, high to low</option>
-                <option value="created-descending">Date, new to old</option>
-                <option value="created-ascending">Date, old to new</option>
+              <label class="hidden-xs mr-1" for="SortBy">Sắp xếp:</label>
+              <select name="SortBy" id="SortBy" v-model="priceSortAccessory">
+                <option value="" disabled>Giá</option>
+                <option value="price-ascending">Tăng dần</option>
+                <option value="price-descending">Giảm dần</option>
               </select>
             </div>
           </div>
@@ -508,16 +497,11 @@
             </div>
 
             <div class="form-horizontal">
-              <label class="hidden-xs mr-1" for="SortBy">Sort by:</label>
-              <select name="SortBy" id="SortBy">
-                <option value="manual">Featured</option>
-                <option value="best-selling">Best Selling</option>
-                <option value="title-ascending">Alphabetically, A-Z</option>
-                <option value="title-descending">Alphabetically, Z-A</option>
-                <option value="price-ascending">Price, low to high</option>
-                <option value="price-descending">Price, high to low</option>
-                <option value="created-descending">Date, new to old</option>
-                <option value="created-ascending">Date, old to new</option>
+              <label class="hidden-xs mr-1" for="SortBy">Sắp xếp:</label>
+              <select name="SortBy" id="SortBy" v-model="priceSortBag">
+                <option value="" disabled>Giá</option>
+                <option value="price-ascending">Tăng dần</option>
+                <option value="price-descending">Giảm dần</option>
               </select>
             </div>
           </div>
@@ -700,16 +684,11 @@
             </div>
 
             <div class="form-horizontal">
-              <label class="hidden-xs mr-1" for="SortBy">Sort by:</label>
-              <select name="SortBy" id="SortBy">
-                <option value="manual">Featured</option>
-                <option value="best-selling">Best Selling</option>
-                <option value="title-ascending">Alphabetically, A-Z</option>
-                <option value="title-descending">Alphabetically, Z-A</option>
-                <option value="price-ascending">Price, low to high</option>
-                <option value="price-descending">Price, high to low</option>
-                <option value="created-descending">Date, new to old</option>
-                <option value="created-ascending">Date, old to new</option>
+              <label class="hidden-xs mr-1" for="SortBy">Sắp xếp:</label>
+              <select name="SortBy" id="SortBy" v-model="priceSortShoe">
+                <option value="" disabled>Giá</option>
+                <option value="price-ascending">Tăng dần</option>
+                <option value="price-descending">Giảm dần</option>
               </select>
             </div>
           </div>
@@ -863,6 +842,10 @@ export default {
       currentPageShoe: 1,
       perPage: 5,
       selected: "Quần áo",
+      priceSort: "",
+      priceSortAccessory: "",
+      priceSortBag: "",
+      priceSortShoe: "",
     };
   },
   components: {
@@ -879,26 +862,59 @@ export default {
       productListAccessory: "productListAccessory",
       productListBag: "productListBag",
       productListShoe: "productListShoe",
+      productListClothingSortAsc: "productListClothingSortAsc",
+      productListClothingSortDesc: "productListClothingSortDesc",
+      productListAccessorySortAsc: "productListAccessorySortAsc",
+      productListAccessorySortDesc: "productListAccessorySortDesc",
+      productListBagSortAsc: "productListBagSortAsc",
+      productListBagSortDesc: "productListBagSortDesc",
+      productListShoeSortAsc: "productListShoeSortAsc",
+      productListShoeSortDesc: "productListShoeSortDesc",
     }),
     getClothings() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
-      return this.productListClothing.slice(start, end);
+      if (this.priceSort === "price-ascending") {
+        return this.productListClothingSortAsc.slice(start, end);
+      } else if (this.priceSort === "price-descending") {
+        return this.productListClothingSortDesc.slice(start, end);
+      } else {
+        return this.productListClothing.slice(start, end);
+      }
     },
     getAccessory() {
       let start = (this.currentPageAcc - 1) * this.perPage;
       let end = this.currentPageAcc * this.perPage;
-      return this.productListAccessory.slice(start, end);
+      if (this.priceSortAccessory === "price-ascending") {
+        return this.productListAccessorySortAsc.slice(start, end);
+      } else if (this.priceSortAccessory === "price-descending") {
+        return this.productListAccessorySortDesc.slice(start, end);
+      } else {
+        return this.productListAccessory.slice(start, end);
+      }
     },
     getBag() {
       let start = (this.currentPageBag - 1) * this.perPage;
       let end = this.currentPageBag * this.perPage;
-      return this.productListBag.slice(start, end);
+      if (this.priceSortBag === "price-ascending") {
+        return this.productListBagSortAsc.slice(start, end);
+      } else if (this.priceSortBag === "price-descending") {
+        return this.productListBagSortDesc.slice(start, end);
+      } else {
+        return this.productListBag.slice(start, end);
+      }
     },
+
     getShoe() {
       let start = (this.currentPageShoe - 1) * this.perPage;
       let end = this.currentPageShoe * this.perPage;
-      return this.productListShoe.slice(start, end);
+      if (this.priceSortShoe === "price-ascending") {
+        return this.productListShoeSortAsc.slice(start, end);
+      } else if (this.priceSortShoe === "price-descending") {
+        return this.productListShoeSortDesc.slice(start, end);
+      } else {
+        return this.productListShoe.slice(start, end);
+      }
     },
     getPaginationCountClothing() {
       return Math.ceil(this.productListClothing.length / this.perPage);

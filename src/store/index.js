@@ -1,21 +1,22 @@
 import {createStore} from 'vuex'
 import blogs from './modules/blogs';
-import slides from './modules/slides'
+import banners from './modules/banners'
 import brands from './modules/brands';
 import sales from './modules/sales';
 import user from './modules/user';
 import order from './modules/order'
 import products from './modules/products';
 
+
 const store = createStore({
     modules:{
         blogs,
-        slides,
+        banners,
         brands,
         sales,
         user,
         products,
-        order
+        order,        
     }
 });
 export default store

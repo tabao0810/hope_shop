@@ -188,9 +188,9 @@ export default {
       userId: store.state.user.userInfo._id,
     });
     const handleToPayment = () => {
-      if (order.fullName.length !== 0) {
-        if (order.email.length !== 0) {
-          if (order.phoneNumber.length !== 0) {
+      if (order.fullName.length >= 10) {
+        if (order.email.length !== 0 && order.email.includes("@")) {
+          if (order.phoneNumber.length > 9 && order.phoneNumber.length < 13) {
             const data = {
               fullName: order.fullName,
               email: order.email,
@@ -207,13 +207,13 @@ export default {
             store.dispatch("user/removeAllCartActions");
             toast.success("Đặt hàng thành công");
           } else {
-            toast.error("Bạn chưa điền số điện thoại");
+            toast.error("Số điện thoại không hợp lệ");
           }
         } else {
-          toast.error("Bạn chưa điền địa chỉ gmail");
+          toast.error("Địa chỉ gmail không hợp lệ");
         }
       } else {
-        toast.error("Bạn chưa điền họ và tên");
+        toast.error("Họ và tên phải có từ 10 kí tự trở lên");
       }
     };
     return { order: order, handleToPayment };

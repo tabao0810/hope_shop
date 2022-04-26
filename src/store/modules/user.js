@@ -165,7 +165,7 @@ const actions={
         const userLogout = JSON.parse(localStorage.getItem('userLogin'));        
          if(localStorage.getItem('userLogin')){
             await LogoutPageApi(userLogout)
-           localStorage.removeItem('userLogin')
+            localStorage.removeItem('userLogin')
         }
     },
 

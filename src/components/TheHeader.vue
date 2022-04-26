@@ -237,6 +237,7 @@ export default {
     store.dispatch("user/loadUserLoginFromLocalStorage");
     const LogoutPage = () => {
       store.dispatch("user/logoutUser");
+      router.push("/");
     };
 
     const handleClickSearch = () => {

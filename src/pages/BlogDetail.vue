@@ -97,7 +97,7 @@
               </div>
             </div>
             <div class="blog__detail-link">
-              <a href="" @click.prevent="postComment(cmt)">Post comment</a>
+              <a href="" @click="postComment(cmt)">Post comment</a>
             </div>
           </div>
         </div>
@@ -284,11 +284,12 @@
 <script>
 import { useRoute } from "vue-router";
 import { createNamespacedHelpers, useStore } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("blogs");
+const { mapState } = createNamespacedHelpers("blogs");
 export default {
   data() {
     return {
       cmt: {
+        id: Math.floor(Math.random() * 10000),
         name: "",
         content: "",
       },
@@ -301,9 +302,14 @@ export default {
     store.dispatch("blogs/getSingleBlogAction", route.params.blogId);
   },
   methods: {
-    ...mapActions({
-      postComment: "addCommentAction",
-    }),
+    postComment(cmt) {
+      window.scrollTo({
+        bottom: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+      this.$store.dispatch("blogs/addCommentAction", cmt);
+    },
     formatDateDetail(a) {
       const time = new Date(a);
       return time.toDateString().slice(3);

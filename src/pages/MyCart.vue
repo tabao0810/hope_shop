@@ -128,10 +128,6 @@
                     class="cart_table-btn cart_table-margin"
                     >continue shopping</router-link
                   >
-                  <a href="" @click="ClearTable" class="cart_table-btn"
-                    >clear shopping cart</a
-                  >
-                  <a href="" class="cart_table-btn">update shopping cart</a>
                 </td>
               </tr>
             </table>

@@ -302,8 +302,8 @@ export default {
     handleBlogDetail(a) {
       this.$router.push(`/blog-detail/${a}`);
       window.scrollTo({
-        top: 0,
-        left: 0,
+        top: 100,
+        left: 100,
         behavior: "smooth",
       });
     },

@@ -17,7 +17,7 @@
       class="mySwiper"
     >
       <swiper-slide v-for="(img, index) in listBrand" :key="index">
-        <img :src="img.brand" alt="" />
+        <img :src="img.image" alt="" />
       </swiper-slide>
     </swiper>
     <div class="brand-btn">
@@ -44,7 +44,7 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 
 import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("brands");
+const { mapState, mapActions } = createNamespacedHelpers("brands");
 
 export default {
   components: {
@@ -84,6 +84,14 @@ export default {
       }
       return y;
     },
+  },
+  methods: {
+    ...mapActions({
+      getAllBrand: "getAllBrandAction",
+    }),
+  },
+  created() {
+    this.getAllBrand();
   },
 };
 </script>

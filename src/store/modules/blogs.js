@@ -19,7 +19,7 @@ const mutations={
     state.blogDetail = payload
   },
   setCommetMutation(state,payload){
-      state.blogDetail.comments.push(payload)
+      state.blogDetail.comments.unshift(payload)
   }
 
 }
