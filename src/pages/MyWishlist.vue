@@ -84,7 +84,8 @@
                       </p>
                       <a
                         class="learn_more"
-                        href="/collections/all/products/lorem-ipsum-dolor-1"
+                        href=""
+                        @click.prevent="handleToDetail(featured._id)"
                         >Learn More</a
                       >
                     </div>
@@ -101,15 +102,6 @@
                       >
                         Add to cart
                       </button>
-                    </div>
-                    <div class="cart_details">
-                      <a
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#lorem-ipsum-dolor-1"
-                        title="Quick view"
-                        ><i class="fa fa-eye"> </i
-                      ></a>
                     </div>
                     <div class="cart_details">
                       <a @click="handleDeleteWish(featured._id)"

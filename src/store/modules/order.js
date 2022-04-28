@@ -1,5 +1,7 @@
 import {createOrderApi, getAllOrdersApi} from "../../apis/order";
 import {  GetUserApi } from "@/apis/user";
+import { getAllProductsApi,getSingleProductsApi,updateProductApi } from "@/apis/products";
+
 const state= ()=>{
     return{
         Orders:[
@@ -26,7 +28,18 @@ const mutations={
 
 const actions ={
     async createOrderAction(context,{data,router}){
-        // console.log(data);
+        const arrayData = data.carts.map((pro)=>pro._id);
+        const payload = await getAllProductsApi();
+        const arrayPro = payload.map((pro)=>pro._id)
+        for(let i=0;i<arrayData.length;i++){
+            for(let j=i+1;j<arrayPro.length;j++){
+                if( arrayData[i] == arrayPro[j] ){                    
+                    const productDetail =  await getSingleProductsApi(arrayData[i]); 
+                    productDetail.quantity = productDetail.quantity - data.carts[i].amount
+                    await updateProductApi(productDetail)
+                }
+            }
+        }        
         await createOrderApi(data);   
         router.push('/success');     
     },

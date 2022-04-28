@@ -2,18 +2,18 @@
   <h2 class="mt-5">Lịch sử mua hàng</h2>
   <div class="container mt-3">
     <div class="table-responsive">
-      <table border="1" cellpadding="20">
+      <table border="1" cellpadding="20" width="2000">
         <thead>
           <tr style="background: #ccc; font-weight: bolder">
-            <td>Mã đơn hàng</td>
-            <td>Họ và tên</td>
-            <td>Số điện thoại</td>
-            <td>Địa chỉ</td>
-            <td width="60%">Sản phẩm</td>
-            <td>Phí vận chuyển</td>
-            <td>Tổng tiền</td>
-            <td>Thời gian đặt</td>
-            <td>Tình trạng</td>
+            <td width="10%">Mã đơn hàng</td>
+            <td width="10%">Họ và tên</td>
+            <td width="10%">Số điện thoại</td>
+            <td width="10%">Địa chỉ</td>
+            <td width="20%">Sản phẩm</td>
+            <td width="10%">Phí vận chuyển</td>
+            <td width="10%">Tổng tiền</td>
+            <td width="10%">Thời gian đặt</td>
+            <td width="10%">Tình trạng</td>
           </tr>
           <tr v-for="order in getOrders" :key="order._id">
             <td>{{ order._id }}</td>
@@ -64,7 +64,7 @@
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2mPt0BAlaPbvs_RmkaMWWUcvVXI1KcSa4qcy6xAXqdeJGFoixxAPVmBxUYj83-eh-oIM&usqp=CAU"
                   alt=""
                   style="width: 50px"
-                />{{ order.mess }}
+                /><br />{{ order.mess }}
               </span>
               <span v-else
                 ><img

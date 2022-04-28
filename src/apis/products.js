@@ -14,4 +14,12 @@ export const getSingleProductsApi = async(productId) => {
     });
     return res.data.Product;
 }
+export const updateProductApi  = async (product) =>{
+    const res = await axios({
+        method: "PUT",
+         url:`http://localhost:5035/api/product/${product._id}`,  
+         data: product      
+    });
+    return res;
+}
 

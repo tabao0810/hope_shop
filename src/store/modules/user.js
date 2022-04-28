@@ -46,9 +46,11 @@ const mutations={
         const color = state.userInfo.carts.findIndex((cart) => cart.color === payload.color)
        
         if(index !== -1 && size !== -1 && color!==-1 && sizeShoe !== -1)        {
-            state.userInfo.carts[index].amount += 1;                      
+            state.userInfo.carts[index].amount += 1;
+            payload.quantity -=payload.amount;                     
         }else{
-            state.userInfo.carts.push(payload);                                   
+            state.userInfo.carts.push(payload);   
+            payload.quantity -=payload.amount;                                 
         } 
         
         }catch(err){
@@ -63,6 +65,7 @@ const mutations={
         const color = state.userInfo.carts.findIndex((cart) => cart.color === payload.color)
         if(index !== -1 && size !== -1 && color!==-1) {
             state.userInfo.carts.splice(index, 1);
+            payload.quantity += payload.amount;
         }else{
             alert("Loi")
         }
@@ -74,6 +77,8 @@ const mutations={
             alert("Sản phẩm đã có trong danh sách yêu thích!!!!")
         }else{
             state.userInfo.wishes.push(payload);
+            alert("Sản phẩm được thêm trong danh sách yêu thích!!!!")
+            
         }
     },
 
@@ -93,6 +98,7 @@ const mutations={
         const color = state.userInfo.carts.findIndex((cart) => cart.color === payload.color)
         if(index !== -1 && size !== -1 && color!==-1) {
             state.userInfo.carts[index].amount -= 1;
+            payload.quantity +=1; 
             if(state.userInfo.carts[index].amount === 0){
                 if(confirm('Bạn có chắc chắn xóa sản phẩm này không?') == true){
                     state.userInfo.carts.splice(index, 1);
@@ -111,6 +117,7 @@ const mutations={
         const color = state.userInfo.carts.findIndex((cart) => cart.color === payload.color)
         if(index !== -1 && size !== -1 && color!==-1) {
             state.userInfo.carts[index].amount += 1;
+            payload.quantity -=1; 
         }else{
             alert('loi')
         }
@@ -218,8 +225,7 @@ const actions={
     removeAllCartActions(context){
         context.commit('removeAllCartMutation')
         context.dispatch("updateUser")
-    }
-        
+    }      
 
 }
 

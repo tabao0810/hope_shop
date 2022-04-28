@@ -27,7 +27,7 @@
         </p>
       </div>
     </div>
-    <a @click="handleBlogDetail(blogList.id)">
+    <a @click.prevent="handleBlogDetail(blogList._id)">
       <div class="link-blog">
         <i class="fa fa-angle-right link-icon"></i>
       </div>

@@ -170,22 +170,34 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav">
             <li class="navbar-item">
-              <a href="" class="navbar-item-link"><span>Home</span></a>
+              <router-link to="/thehone" class="navbar-item-link"
+                ><span>Trang chủ</span></router-link
+              >
             </li>
             <li class="navbar-item">
-              <a href="" class="navbar-item-link"><span>Shop</span></a>
+              <router-link to="/shop" class="navbar-item-link"
+                ><span>Sale</span></router-link
+              >
             </li>
             <li class="navbar-item">
-              <a href="" class="navbar-item-link"><span>Lookbook</span></a>
+              <router-link to="/lookbook" class="navbar-item-link"
+                ><span>Sản phẩm</span></router-link
+              >
             </li>
             <li class="navbar-item">
-              <a href="" class="navbar-item-link"><span>Clothing</span></a>
+              <router-link to="/tutorial" class="navbar-item-link"
+                ><span>Chọn size</span></router-link
+              >
             </li>
             <li class="navbar-item">
-              <a href="" class="navbar-item-link"><span>Blog</span></a>
+              <router-link to="/blognew" class="navbar-item-link"
+                ><span>Tin tức</span></router-link
+              >
             </li>
             <li class="navbar-item">
-              <a href="" class="navbar-item-link"><span>Pages</span></a>
+              <router-link to="/aboutus" class="navbar-item-link"
+                ><span>Về HOPE</span></router-link
+              >
             </li>
           </ul>
         </div>

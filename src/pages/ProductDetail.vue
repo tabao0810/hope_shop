@@ -24,10 +24,14 @@
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
-          <span style="color: black"> No reviews</span>
+          <span style="color: black"> Đánh giá</span>
         </h6>
         <hr />
-        <h6>Availability:<span style="color: red">In Stock</span></h6>
+        <h6>
+          Tình trạng:<span style="color: red" v-if="productDetail.quantity > 0"
+            >Còn hàng ({{ productDetail.quantity }} sản phẩm)</span
+          ><span style="color: red" v-else>Hết hàng</span>
+        </h6>
         <div class="">
           <p class="product-detail-price">
             {{ formatPriceDetailNew(productDetail) }}
@@ -137,7 +141,7 @@
     </div>
 
     <div class="row mt-5">
-      <div class="col-lg-12">
+      <div class="col-lg-12 col-md-12 col-sm-12">
         <tab-nav
           :tabs="['data shet', 'product description', 'reviews']"
           :selected="selected"
@@ -483,8 +487,9 @@ export default {
 .tablist li {
   margin-left: 4px;
   list-style: none;
-  display: inline-block;
+  display: inline-flex;
   color: #ccc;
+  margin-top: 4px;
 }
 .tablist li a {
   text-transform: uppercase;

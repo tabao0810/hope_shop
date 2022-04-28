@@ -16,7 +16,12 @@
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="product-image-search">
-              <a href=""><img :src="featured.image" :alt="featured.name" /></a>
+              <a href=""
+                ><img
+                  :src="featured.image"
+                  :alt="featured.name"
+                  @click.prevent="handleToDetail(featured._id)"
+              /></a>
             </div>
           </div>
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -77,34 +82,12 @@
                   <p class="blog_texts">
                     {{ featured.description }}
                   </p>
-                  <a class="learn_more" href="">Learn More</a>
-                </div>
-              </div>
-              <div class="product_button">
-                <div class="cart_details">
-                  <button
-                    title="Add to cart"
-                    class="add_cart"
-                    type="submit"
-                    name="add"
-                    value=""
-                  >
-                    Add to cart
-                  </button>
-                </div>
-                <div class="cart_details">
                   <a
-                    href="#"
-                    data-toggle="modal"
-                    data-target="#lorem-ipsum-dolor-1"
-                    title="Quick view"
-                    ><i class="fa fa-eye"> </i
-                  ></a>
-                </div>
-                <div class="cart_details">
-                  <a @click="handleDeleteWish(featured._id)"
-                    ><i class="fa fa-trash"></i
-                  ></a>
+                    class="learn_more"
+                    href=""
+                    @click.prevent="handleToDetail(featured._id)"
+                    >Learn More</a
+                  >
                 </div>
               </div>
             </div>

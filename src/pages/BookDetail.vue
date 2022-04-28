@@ -218,21 +218,15 @@
                         type="submit"
                         name="add"
                         value=""
+                        @click.prevent="addToCart(featured)"
                       >
                         Add to cart
                       </button>
                     </div>
                     <div class="cart_details">
-                      <a
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#lorem-ipsum-dolor-1"
-                        title="Quick view"
-                        ><i class="fa fa-eye"> </i
+                      <a href="" @click.prevent="addToWishList(featured)"
+                        ><i class="fa fa-heart-o"></i
                       ></a>
-                    </div>
-                    <div class="cart_details">
-                      <a href="/account/login"><i class="fa fa-heart-o"></i></a>
                     </div>
                   </div>
                 </div>
@@ -405,21 +399,16 @@
                         type="submit"
                         name="add"
                         value=""
+                        @click.prevent="addToCart(featured)"
                       >
                         Add to cart
                       </button>
                     </div>
+
                     <div class="cart_details">
-                      <a
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#lorem-ipsum-dolor-1"
-                        title="Quick view"
-                        ><i class="fa fa-eye"> </i
+                      <a href="" @click.prevent="addToWishList(featured)"
+                        ><i class="fa fa-heart-o"></i
                       ></a>
-                    </div>
-                    <div class="cart_details">
-                      <a href="/account/login"><i class="fa fa-heart-o"></i></a>
                     </div>
                   </div>
                 </div>
@@ -592,21 +581,16 @@
                         type="submit"
                         name="add"
                         value=""
+                        @click.prevent="addToCart(featured)"
                       >
                         Add to cart
                       </button>
                     </div>
+
                     <div class="cart_details">
-                      <a
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#lorem-ipsum-dolor-1"
-                        title="Quick view"
-                        ><i class="fa fa-eye"> </i
+                      <a href="" @click.prevent="addToWishList(featured)"
+                        ><i class="fa fa-heart-o"></i
                       ></a>
-                    </div>
-                    <div class="cart_details">
-                      <a href="/account/login"><i class="fa fa-heart-o"></i></a>
                     </div>
                   </div>
                 </div>
@@ -779,21 +763,15 @@
                         type="submit"
                         name="add"
                         value=""
+                        @click.prevent="addToCart(featured)"
                       >
                         Add to cart
                       </button>
                     </div>
                     <div class="cart_details">
-                      <a
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#lorem-ipsum-dolor-1"
-                        title="Quick view"
-                        ><i class="fa fa-eye"> </i
+                      <a href="" @click.prevent="addToWishList(featured)"
+                        ><i class="fa fa-heart-o"></i
                       ></a>
-                    </div>
-                    <div class="cart_details">
-                      <a href="/account/login"><i class="fa fa-heart-o"></i></a>
                     </div>
                   </div>
                 </div>
@@ -832,6 +810,7 @@ import Paginate from "vuejs-paginate-next";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions, mapGetters } =
   createNamespacedHelpers("products");
+const userAction = createNamespacedHelpers("user");
 export default {
   data() {
     return {
@@ -947,6 +926,10 @@ export default {
   methods: {
     ...mapActions({
       getAllProduct: "getAllProductsAction",
+    }),
+    ...userAction.mapActions({
+      addToWishList: "addWishListAction",
+      addToCart: "addCartAction",
     }),
     FormatSale(featured) {
       if (featured.isSale === true) {
