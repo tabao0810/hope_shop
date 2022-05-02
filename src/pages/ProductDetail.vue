@@ -129,7 +129,10 @@
             />
           </div>
           <div class="product-detail-button">
-            <button @click="handleBuy(productDetail)">
+            <button
+              @click="handleBuy(productDetail)"
+              :disabled="productDetail.quantity === 0"
+            >
               <span style="font-size: 14px">ADD TO CART</span>
             </button>
             <button @click="handleWishList(productDetail)">

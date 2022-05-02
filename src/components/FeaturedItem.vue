@@ -45,7 +45,11 @@
           <i class="fa fa-star"></i>
         </h6>
         <p class="card-text feature-cart">
-          <button class="btn mx-1 feature-btn" @click="handleBuy(featuredItem)">
+          <button
+            class="btn mx-1 feature-btn"
+            @click="handleBuy(featuredItem)"
+            :disabled="featuredItem.quantity === 0"
+          >
             ADD TO CART
           </button>
           <button class="btn feature-btn" @click="handleOpenDetail">

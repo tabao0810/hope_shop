@@ -116,11 +116,12 @@ const actions={
         const payload = await getAllProductsApi();
         context.commit("setProductsMutation",payload)
     },
-
+    // Lấy 1 sản phẩm
     async getSingleProductsAction(context,payload){   
        const productDetail =  await getSingleProductsApi(payload);      
        context.commit("setProductDetailMutation",productDetail)
     },
+    // Tìm kiếm sản phẩm
     searchNameAction(context,{data,router}){        
         context.commit("searchNameMutation",data)
         router.push('/search')

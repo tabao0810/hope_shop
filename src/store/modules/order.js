@@ -27,6 +27,7 @@ const mutations={
 }
 
 const actions ={
+    // Tạo đơn hàng
     async createOrderAction(context,{data,router}){
         const arrayData = data.carts.map((pro)=>pro._id);
         const payload = await getAllProductsApi();
@@ -43,11 +44,13 @@ const actions ={
         await createOrderApi(data);   
         router.push('/success');     
     },
+    // Lấy tất cả đơn hàng
     async getAllOrdersActions(context){
         const payload = await getAllOrdersApi();
         context.commit('setAllOrder',payload)
         context.dispatch("loadUserLoginFromLocalStorage")
     },
+    
     async loadUserLoginFromLocalStorage(context){
         let userLoginToken = null;
         if(localStorage.getItem('userLogin')){

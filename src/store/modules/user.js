@@ -47,10 +47,9 @@ const mutations={
        
         if(index !== -1 && size !== -1 && color!==-1 && sizeShoe !== -1)        {
             state.userInfo.carts[index].amount += 1;
-            payload.quantity -=payload.amount;                     
+                               
         }else{
-            state.userInfo.carts.push(payload);   
-            payload.quantity -=payload.amount;                                 
+            state.userInfo.carts.push(payload);  
         } 
         
         }catch(err){
@@ -65,7 +64,6 @@ const mutations={
         const color = state.userInfo.carts.findIndex((cart) => cart.color === payload.color)
         if(index !== -1 && size !== -1 && color!==-1) {
             state.userInfo.carts.splice(index, 1);
-            payload.quantity += payload.amount;
         }else{
             alert("Loi")
         }
@@ -168,12 +166,17 @@ const actions={
     },
 
     // Đăng xuất
-    async logoutUser(){
-        const userLogout = JSON.parse(localStorage.getItem('userLogin'));        
+    async logoutUser(context){
+        if(confirm('Bạn có chắc chắn xóa sản phẩm này không?') == true){
+             const userLogout = JSON.parse(localStorage.getItem('userLogin'));        
          if(localStorage.getItem('userLogin')){
             await LogoutPageApi(userLogout)
             localStorage.removeItem('userLogin')
         }
+        }else{
+            context.dispatch("loadUserLoginFromLocalStorage")
+        }
+       
     },
 
     // Thêm sản phẩm vào giỏ hàng

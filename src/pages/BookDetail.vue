@@ -23,42 +23,6 @@
               @selected="setSelected"
             ></tab-product>
           </div>
-
-          <div class="catagory_area color">
-            <h2>COLOR</h2>
-
-            <ul class="catagory">
-              <li>
-                <a class="bs_color_red" href="/collections/all/red"
-                  ><i class="fa fa-angle-right"></i>red</a
-                >
-              </li>
-
-              <li>
-                <a class="bs_color_white" href="/collections/all/white"
-                  ><i class="fa fa-angle-right"></i>white</a
-                >
-              </li>
-
-              <li>
-                <a class="bs_color_blue" href="/collections/all/blue"
-                  ><i class="fa fa-angle-right"></i>blue</a
-                >
-              </li>
-
-              <li>
-                <a class="bs_color_black" href="/collections/all/black"
-                  ><i class="fa fa-angle-right"></i>black</a
-                >
-              </li>
-
-              <li>
-                <a class="bs_color_pink" href="/collections/all/pink"
-                  ><i class="fa fa-angle-right"></i>pink</a
-                >
-              </li>
-            </ul>
-          </div>
         </div>
         <div class="add_r_sidebar-2 mt-3">
           <h2 class="blog__right-title-5">bestsellers</h2>
@@ -140,7 +104,7 @@
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="product_blog_image">
                   <div class="product_blog_image">
-                    <a href=""
+                    <a href="" @click.prevent="handleToDetail(featured._id)"
                       ><img :src="featured.image" :alt="featured.name"
                     /></a>
                   </div>
@@ -149,7 +113,9 @@
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="blog_product_details">
                   <h2 class="blog_heading">
-                    <a href="">{{ featured.name }}</a>
+                    <a href="" @click.prevent="handleToDetail(featured._id)">{{
+                      featured.name
+                    }}</a>
                   </h2>
                   <div class="product_rating">
                     <span class="spr-badge"
@@ -205,8 +171,9 @@
                       </p>
                       <a
                         class="learn_more"
-                        href="/collections/all/products/lorem-ipsum-dolor-1"
-                        >Learn More</a
+                        href=""
+                        @click.prevent="handleToDetail(featured._id)"
+                        >Xem thêm</a
                       >
                     </div>
                   </div>
@@ -219,6 +186,7 @@
                         name="add"
                         value=""
                         @click.prevent="addToCart(featured)"
+                        :disabled="featured.quantity === 0"
                       >
                         Add to cart
                       </button>
@@ -321,7 +289,7 @@
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="product_blog_image">
                   <div class="product_blog_image">
-                    <a href=""
+                    <a href="" @click.prevent="handleToDetail(featured._id)"
                       ><img :src="featured.image" :alt="featured.name"
                     /></a>
                   </div>
@@ -330,7 +298,9 @@
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="blog_product_details">
                   <h2 class="blog_heading">
-                    <a href="">{{ featured.name }}</a>
+                    <a href="" @click.prevent="handleToDetail(featured._id)">{{
+                      featured.name
+                    }}</a>
                   </h2>
                   <div class="product_rating">
                     <span class="spr-badge"
@@ -386,8 +356,9 @@
                       </p>
                       <a
                         class="learn_more"
-                        href="/collections/all/products/lorem-ipsum-dolor-1"
-                        >Learn More</a
+                        href=""
+                        @click.prevent="handleToDetail(featured._id)"
+                        >Xem thêm</a
                       >
                     </div>
                   </div>
@@ -400,6 +371,7 @@
                         name="add"
                         value=""
                         @click.prevent="addToCart(featured)"
+                        :disabled="featured.quantity === 0"
                       >
                         Add to cart
                       </button>
@@ -503,7 +475,7 @@
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="product_blog_image">
                   <div class="product_blog_image">
-                    <a href=""
+                    <a href="" @click.prevent="handleToDetail(featured._id)"
                       ><img :src="featured.image" :alt="featured.name"
                     /></a>
                   </div>
@@ -512,7 +484,9 @@
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="blog_product_details">
                   <h2 class="blog_heading">
-                    <a href="">{{ featured.name }}</a>
+                    <a href="" @click.prevent="handleToDetail(featured._id)">{{
+                      featured.name
+                    }}</a>
                   </h2>
                   <div class="product_rating">
                     <span class="spr-badge"
@@ -568,8 +542,9 @@
                       </p>
                       <a
                         class="learn_more"
-                        href="/collections/all/products/lorem-ipsum-dolor-1"
-                        >Learn More</a
+                        href=""
+                        @click.prevent="handleToDetail(featured._id)"
+                        >Xem thêm</a
                       >
                     </div>
                   </div>
@@ -582,6 +557,7 @@
                         name="add"
                         value=""
                         @click.prevent="addToCart(featured)"
+                        :disabled="featured.quantity === 0"
                       >
                         Add to cart
                       </button>
@@ -685,7 +661,7 @@
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="product_blog_image">
                   <div class="product_blog_image">
-                    <a href=""
+                    <a href="" @click.prevent="handleToDetail(featured._id)"
                       ><img :src="featured.image" :alt="featured.name"
                     /></a>
                   </div>
@@ -694,7 +670,9 @@
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="blog_product_details">
                   <h2 class="blog_heading">
-                    <a href="">{{ featured.name }}</a>
+                    <a href="" @click.prevent="handleToDetail(featured._id)">{{
+                      featured.name
+                    }}</a>
                   </h2>
                   <div class="product_rating">
                     <span class="spr-badge"
@@ -750,8 +728,9 @@
                       </p>
                       <a
                         class="learn_more"
-                        href="/collections/all/products/lorem-ipsum-dolor-1"
-                        >Learn More</a
+                        href=""
+                        @click.prevent="handleToDetail(featured._id)"
+                        >Xem thêm</a
                       >
                     </div>
                   </div>
@@ -764,6 +743,7 @@
                         name="add"
                         value=""
                         @click.prevent="addToCart(featured)"
+                        :disabled="featured.quantity === 0"
                       >
                         Add to cart
                       </button>
@@ -980,6 +960,14 @@ export default {
     },
     setSelected(tab) {
       this.selected = tab;
+    },
+    handleToDetail(a) {
+      this.$router.push(`/product-detail/${a}`);
+      window.scrollTo({
+        top: 100,
+        left: 100,
+        behavior: "smooth",
+      });
     },
   },
 };

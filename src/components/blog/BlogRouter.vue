@@ -33,7 +33,7 @@
 
             <div class="single-l-post">
               <p class="grid-item">
-                <a href="/blogs/news/127241219-praesent-ornare-tortor" title=""
+                <a href="" title=""
                   ><img
                     src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-5_50x50.jpg?v=1464181744"
                     alt="Praesent ornare tortor"
@@ -43,9 +43,7 @@
 
               <div class="post-sidebar-info">
                 <h6>
-                  <a href="/blogs/news/127241219-praesent-ornare-tortor"
-                    >Praesent ornare tortor</a
-                  >
+                  <a href="">Praesent ornare tortor</a>
                 </h6>
                 <span>
                   <i class="fa fa-user"></i> <span>Boot Experts</span>
@@ -56,7 +54,7 @@
 
             <div class="single-l-post">
               <p class="grid-item">
-                <a href="/blogs/news/127241155-praesent-ornare-tortor" title=""
+                <a href="" title=""
                   ><img
                     src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-4_50x50.jpg?v=1464181673"
                     alt="Praesent ornare tortor"
@@ -66,9 +64,7 @@
 
               <div class="post-sidebar-info">
                 <h6>
-                  <a href="/blogs/news/127241155-praesent-ornare-tortor"
-                    >Praesent ornare tortor</a
-                  >
+                  <a href="">Praesent ornare tortor</a>
                 </h6>
                 <span>
                   <i class="fa fa-user"></i> <span>Boot Experts</span>
@@ -79,7 +75,7 @@
 
             <div class="single-l-post">
               <p class="grid-item">
-                <a href="/blogs/news/127240899-william-eto" title=""
+                <a href="" title=""
                   ><img
                     src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-3_50x50.jpg?v=1464181623"
                     alt="william eto"
@@ -89,7 +85,7 @@
 
               <div class="post-sidebar-info">
                 <h6>
-                  <a href="/blogs/news/127240899-william-eto">william eto</a>
+                  <a href="">william eto</a>
                 </h6>
                 <span>
                   <i class="fa fa-user"></i> <span>Boot Experts</span>
@@ -100,7 +96,7 @@
 
             <div class="single-l-post">
               <p class="grid-item">
-                <a href="/blogs/news/127240579-praesent-ornare-tortor" title=""
+                <a href="" title=""
                   ><img
                     src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-2_50x50.jpg?v=1464181554"
                     alt="Praesent ornare tortor"
@@ -110,9 +106,7 @@
 
               <div class="post-sidebar-info">
                 <h6>
-                  <a href="/blogs/news/127240579-praesent-ornare-tortor"
-                    >Praesent ornare tortor</a
-                  >
+                  <a href="">Praesent ornare tortor</a>
                 </h6>
                 <span>
                   <i class="fa fa-user"></i> <span>Boot Experts</span>
@@ -126,35 +120,19 @@
             <div class="block-content">
               <ul class="tags-list">
                 <li>
-                  <a
-                    href="/blogs/news/tagged/blog"
-                    title="Show articles tagged blog"
-                    >blog</a
-                  >
+                  <a href="" title="Show articles tagged blog">blog</a>
                 </li>
 
                 <li>
-                  <a
-                    href="/blogs/news/tagged/mohin"
-                    title="Show articles tagged mohin"
-                    >mohin</a
-                  >
+                  <a href="" title="Show articles tagged mohin">mohin</a>
                 </li>
 
                 <li>
-                  <a
-                    href="/blogs/news/tagged/nirob"
-                    title="Show articles tagged nirob"
-                    >nirob</a
-                  >
+                  <a href="" title="Show articles tagged nirob">nirob</a>
                 </li>
 
                 <li>
-                  <a
-                    href="/blogs/news/tagged/salim"
-                    title="Show articles tagged salim"
-                    >salim</a
-                  >
+                  <a href="" title="Show articles tagged salim">salim</a>
                 </li>
               </ul>
             </div>
@@ -173,7 +151,7 @@
         <div class="col-lg-9">
           <div v-for="blog in getItems" :key="blog._id" class="single-blog">
             <div class="">
-              <a href="" @click="handleBlogDetail(blog._id)">
+              <a href="" @click.prevent="handleBlogDetail(blog._id)">
                 <img :src="blog.image" class="blog_router-img" alt="" />
               </a>
             </div>
@@ -209,8 +187,8 @@
                 <div class="blog-router-btn">
                   <a
                     class="readmore_link"
-                    @click="handleBlogDetail(blog._id)"
-                    href="#"
+                    @click.prevent="handleBlogDetail(blog._id)"
+                    href=""
                     title="Images"
                     >Read more</a
                   >
@@ -690,7 +668,6 @@ export default {
 .banner_home_img {
   width: 100%;
   object-fit: fill;
-
   /* opacity: 1;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s; */

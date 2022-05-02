@@ -99,6 +99,7 @@
                         name="add"
                         value=""
                         @click="handleBuy(featured)"
+                        :disabled="featured.quantity === 0"
                       >
                         Add to cart
                       </button>

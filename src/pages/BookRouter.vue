@@ -24,14 +24,14 @@
             ></tab-product>
           </div>
 
-          <div class="catagory_area color">
+          <!-- <div class="catagory_area color">
             <h2>COLOR</h2>
             <tab-product
               :tabs="['Red', 'White', 'Black', 'Blue', 'Gray']"
               :selected="selectedcolor"
               @selected="setSelected"
             ></tab-product>
-          </div>
+          </div> -->
         </div>
         <div class="add_r_sidebar-2 mt-3">
           <h2 class="blog__right-title-5">bestsellers</h2>

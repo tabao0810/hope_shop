@@ -38,11 +38,9 @@
             </div>
             <div class="blog_info_details">
               <h2>
-                <a
-                  class="blog_info_heading"
-                  href="/blogs/news/127241219-praesent-ornare-tortor"
-                  >{{ blogDetail.description }}</a
-                >
+                <a class="blog_info_heading" href="">{{
+                  blogDetail.description
+                }}</a>
               </h2>
 
               <p class="blog_info_text-detail">
@@ -57,7 +55,7 @@
             </h2>
           </div>
           <hr />
-          <div v-for="(cmt, index) in blogDetail.comments" :key="index">
+          <div v-for="(cmt, index) in getComments" :key="index">
             <div class="listComment mt-3">
               <div class="commentImg">
                 <img
@@ -73,6 +71,26 @@
                 </div>
               </div>
             </div>
+          </div>
+          <hr />
+          <div class="pagination shop_paginatin clearfix">
+            <paginate
+              :page-count="getPaginationCountComment"
+              :page-range="2"
+              :margin-pages="2"
+              :click-handler="clickCallbackComment"
+              :prev-text="'←'"
+              :next-text="'→'"
+              :container-class="'pagination'"
+              :page-class="'page-item'"
+              :page-link-class="'page-link'"
+              :prev-class="'page-item'"
+              :prev-link-class="'page-link'"
+              :next-class="'page-item'"
+              :next-link-class="'page-link'"
+              :hide-prev-next="true"
+            >
+            </paginate>
           </div>
           <div class="blog__detail-cmt">
             <h5>Add comment</h5>
@@ -120,7 +138,7 @@
 
             <div class="single-l-post">
               <p class="grid-item">
-                <a href="/blogs/news/127241219-praesent-ornare-tortor" title=""
+                <a href="" title=""
                   ><img
                     src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-5_50x50.jpg?v=1464181744"
                     alt="Praesent ornare tortor"
@@ -130,9 +148,7 @@
 
               <div class="post-sidebar-info">
                 <h6>
-                  <a href="/blogs/news/127241219-praesent-ornare-tortor"
-                    >Praesent ornare tortor</a
-                  >
+                  <a href="">Praesent ornare tortor</a>
                 </h6>
                 <span>
                   <i class="fa fa-user"></i> <span>Boot Experts</span>
@@ -143,7 +159,7 @@
 
             <div class="single-l-post">
               <p class="grid-item">
-                <a href="/blogs/news/127241155-praesent-ornare-tortor" title=""
+                <a href="" title=""
                   ><img
                     src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-4_50x50.jpg?v=1464181673"
                     alt="Praesent ornare tortor"
@@ -153,9 +169,7 @@
 
               <div class="post-sidebar-info">
                 <h6>
-                  <a href="/blogs/news/127241155-praesent-ornare-tortor"
-                    >Praesent ornare tortor</a
-                  >
+                  <a href="">Praesent ornare tortor</a>
                 </h6>
                 <span>
                   <i class="fa fa-user"></i> <span>Boot Experts</span>
@@ -166,7 +180,7 @@
 
             <div class="single-l-post">
               <p class="grid-item">
-                <a href="/blogs/news/127240899-william-eto" title=""
+                <a href="" title=""
                   ><img
                     src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-3_50x50.jpg?v=1464181623"
                     alt="william eto"
@@ -176,7 +190,7 @@
 
               <div class="post-sidebar-info">
                 <h6>
-                  <a href="/blogs/news/127240899-william-eto">william eto</a>
+                  <a href="">william eto</a>
                 </h6>
                 <span>
                   <i class="fa fa-user"></i> <span>Boot Experts</span>
@@ -187,7 +201,7 @@
 
             <div class="single-l-post">
               <p class="grid-item">
-                <a href="/blogs/news/127240579-praesent-ornare-tortor" title=""
+                <a href="" title=""
                   ><img
                     src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-2_50x50.jpg?v=1464181554"
                     alt="Praesent ornare tortor"
@@ -197,9 +211,7 @@
 
               <div class="post-sidebar-info">
                 <h6>
-                  <a href="/blogs/news/127240579-praesent-ornare-tortor"
-                    >Praesent ornare tortor</a
-                  >
+                  <a href="">Praesent ornare tortor</a>
                 </h6>
                 <span>
                   <i class="fa fa-user"></i> <span>Boot Experts</span>
@@ -213,35 +225,19 @@
             <div class="block-content">
               <ul class="tags-list">
                 <li>
-                  <a
-                    href="/blogs/news/tagged/blog"
-                    title="Show articles tagged blog"
-                    >blog</a
-                  >
+                  <a href="" title="Show articles tagged blog">blog</a>
                 </li>
 
                 <li>
-                  <a
-                    href="/blogs/news/tagged/mohin"
-                    title="Show articles tagged mohin"
-                    >mohin</a
-                  >
+                  <a href="" title="Show articles tagged mohin">mohin</a>
                 </li>
 
                 <li>
-                  <a
-                    href="/blogs/news/tagged/nirob"
-                    title="Show articles tagged nirob"
-                    >nirob</a
-                  >
+                  <a href="" title="Show articles tagged nirob">nirob</a>
                 </li>
 
                 <li>
-                  <a
-                    href="/blogs/news/tagged/salim"
-                    title="Show articles tagged salim"
-                    >salim</a
-                  >
+                  <a href="" title="Show articles tagged salim">salim</a>
                 </li>
               </ul>
             </div>
@@ -282,6 +278,7 @@
 </template>
 
 <script>
+import Paginate from "vuejs-paginate-next";
 import { useRoute } from "vue-router";
 import { createNamespacedHelpers, useStore } from "vuex";
 const { mapState } = createNamespacedHelpers("blogs");
@@ -293,12 +290,14 @@ export default {
         name: "",
         content: "",
       },
+      items: [],
+      currentPage: 1,
+      perPage: 3,
     };
   },
   setup() {
     const store = useStore();
     const route = useRoute();
-
     store.dispatch("blogs/getSingleBlogAction", route.params.blogId);
   },
   methods: {
@@ -314,12 +313,38 @@ export default {
       const time = new Date(a);
       return time.toDateString().slice(3);
     },
+    clickCallbackComment(pagenum) {
+      this.currentPage = Number(pagenum);
+      window.scrollTo({
+        bottom: 100,
+        left: 100,
+        behavior: "smooth",
+      });
+    },
   },
   computed: {
     ...mapState({
       blogDetail: (state) => state.blogDetail,
+      blogComments: (state) => state.blogDetail.comments,
     }),
+    getComments() {
+      let start = (this.currentPage - 1) * this.perPage;
+      let end = this.currentPage * this.perPage;
+      return this.blogComments.slice(start, end);
+    },
+    getPaginationCountComment() {
+      return Math.ceil(this.blogComments.length / this.perPage);
+    },
   },
+  components: {
+    Paginate,
+  },
+  // created() {
+  //   console.log(this.blogDetail);
+  //   this.blogDetail.map((item) => {
+  //     this.items.push(item);
+  //   });
+  // },
 };
 </script>
 
@@ -442,5 +467,10 @@ export default {
 }
 .commentContent_list {
   padding: 4px 20px;
+}
+</style>
+<style scoped>
+.pagination {
+  margin: -5px 0;
 }
 </style>
