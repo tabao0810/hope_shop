@@ -14,7 +14,7 @@
         <div class="col-lg-9 navbar-home">
           <div class="navbar__contact">
             <p class="navbar__contact-text">
-              Contact us: (555) 732-253-8714, (555) 732-253-8715
+              Liên hệ: (555) 732-253-8714, (555) 732-253-8715
             </p>
             <div class="navbar__contact-icon">
               <div class="navbar__contact-account">
@@ -78,9 +78,12 @@
                       <a href=""><img :src="cartItem.image" alt="" /></a>
                     </div>
                     <div class="cart_single-text">
-                      <router-link href="" to="/my-cart">{{
-                        cartItem.name
-                      }}</router-link>
+                      <router-link
+                        href=""
+                        to="/my-cart"
+                        class="cart_single__name"
+                        >{{ cartItem.name }}</router-link
+                      >
                       <p>{{ cartItem.amount }} x {{ FormatSale(cartItem) }}</p>
                     </div>
                     <div class="cart_single-remove">
@@ -90,7 +93,7 @@
                     </div>
                   </div>
                   <div class="cart_shoptings">
-                    <router-link to="/my-cart">Checkout</router-link>
+                    <router-link to="/my-cart">Thanh toán</router-link>
                   </div>
                 </div>
               </div>
@@ -568,8 +571,8 @@ export default {
   transform: scaleY(0);
 }
 .cart_single {
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 4px 10px;
+
   display: flex;
   align-items: center;
 }
@@ -706,5 +709,12 @@ export default {
 .mega-menu-new {
   left: -130px !important;
   width: 800px;
+}
+.cart_single__name {
+  height: 24px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 </style>

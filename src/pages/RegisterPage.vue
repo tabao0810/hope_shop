@@ -8,7 +8,7 @@
       </div>
       <div class="col-lg-10 col-md-12 col-sm-12">
         <div class="form-vertical customer_register_page">
-          <h3>Create Account</h3>
+          <h3>Tạo tài khoản</h3>
 
           <form id="create_customer" accept-charset="UTF-8">
             <label for="FirstName" class="hidden-label">First Name</label>
@@ -16,7 +16,7 @@
               type="text"
               id="FirstName"
               class="input-full"
-              placeholder="First Name"
+              placeholder="Họ đệm"
               autofocus=""
               v-model="userResgister.firstName"
             />
@@ -26,7 +26,7 @@
               type="text"
               id="LastName"
               class="input-full"
-              placeholder="Last Name"
+              placeholder="Tên"
               v-model="userResgister.lastName"
             />
 
@@ -44,7 +44,7 @@
               type="password"
               id="CreatePassword"
               class="input-full"
-              placeholder="Password"
+              placeholder="Mật khẩu"
               v-model="userResgister.password"
             />
             <label for="Re-enterPassword" class="hidden-label">Password</label>
@@ -52,7 +52,7 @@
               type="password"
               id="Re-enterPassword"
               class="input-full"
-              placeholder="Re-enter password"
+              placeholder="Nhập lại mật khẩu"
               v-model="userResgister.rePassword"
             />
 
@@ -62,7 +62,7 @@
                 href=""
                 @click.prevent="handleSignIn(userResgister)"
                 class="btn btn-sm animated-button thar-three"
-                >Submit</a
+                >Đăng kí</a
               >
             </div>
           </form>

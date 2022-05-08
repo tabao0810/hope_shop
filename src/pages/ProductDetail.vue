@@ -95,7 +95,9 @@
           </div>
           <div class="product-detail">
             <div v-if="productDetail.color" class="selectColor">
-              <p style="margin: 0; font-size: 20px; font-weight: 500">Color:</p>
+              <p style="margin: 0; font-size: 20px; font-weight: 500">
+                Màu sắc:
+              </p>
               <div class="selectColor-pick">
                 <div
                   v-for="(color, index) in productDetail.colors"
@@ -119,7 +121,7 @@
           </div>
           <div class="product-detail mt-3"></div>
           <div class="product-detail mt-3">
-            <label for="">Quantity</label>
+            <label for="">Số lượng</label>
             <input
               type="number"
               style="outline: none; padding: 4px 10px; width: 200px"
@@ -133,7 +135,7 @@
               @click="handleBuy(productDetail)"
               :disabled="productDetail.quantity === 0"
             >
-              <span style="font-size: 14px">ADD TO CART</span>
+              <span style="font-size: 14px">MUA NGAY</span>
             </button>
             <button @click="handleWishList(productDetail)">
               <i class="fa fa-heart"></i>
@@ -146,12 +148,12 @@
     <div class="row mt-5">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <tab-nav
-          :tabs="['data shet', 'product description', 'reviews']"
+          :tabs="['Cửa hàng', 'Thông tin sản phẩm', 'Đánh giá sản phẩm']"
           :selected="selected"
           @selected="setSelected"
         >
         </tab-nav>
-        <the-tab :isSelected="selected === 'data shet'">
+        <the-tab :isSelected="selected === 'Cửa hàng'">
           <div class="tab-pane">
             <table width="100%">
               <tr>
@@ -161,18 +163,18 @@
                 </td>
               </tr>
               <tr>
-                <td align="left">Vendor</td>
+                <td align="left">Cửa hàng</td>
                 <td align="left">Hope</td>
               </tr>
             </table>
           </div>
         </the-tab>
-        <the-tab :isSelected="selected === 'product description'">
+        <the-tab :isSelected="selected === 'Thông tin sản phẩm'">
           <div class="tab-pane">
             <p>{{ productDetail.description }}</p>
           </div>
         </the-tab>
-        <the-tab :isSelected="selected === 'reviews'">
+        <the-tab :isSelected="selected === 'Đánh giá sản phẩm'">
           <div class="tab-pane">
             <h4>Customer Reviews</h4>
             <img :src="img_svg" style="width: 50%" alt="" />
@@ -182,7 +184,7 @@
     </div>
     <div class="row mt-5">
       <div class="col-lg-12" v-if="productDetail.typeProduct === 'Quần áo'">
-        <h1 class="blog__heading">Related Product</h1>
+        <h1 class="blog__heading">Sản phẩm tương tự</h1>
         <div class="product-slide">
           <swiper
             :slidesPerView="setCount"
@@ -347,7 +349,7 @@ const { mapActions } = createNamespacedHelpers("user");
 export default {
   data() {
     return {
-      selected: "data shet",
+      selected: "Cửa hàng",
       img_svg: theReview,
     };
   },
@@ -531,6 +533,9 @@ export default {
 }
 .tab-pane > p {
   text-align: left;
+  width: 100%;
+  text-indent: 50px;
+  text-align: justify;
 }
 </style>
 <style scoped>
@@ -751,5 +756,10 @@ $colors: (
       }
     }
   }
+}
+.product-detail-des {
+  width: 100%;
+  text-indent: 50px;
+  text-align: justify;
 }
 </style>

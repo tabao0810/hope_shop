@@ -11,11 +11,12 @@
       <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mt-4">
           <div class="new_customer register_field">
-            <h3>New customer</h3>
+            <h3>Khách hàng mới</h3>
             <p>
-              By creating an account with our store, you will be able to move
-              through the checkout process faster, store multiple shipping
-              addresses, view and track your orders in your account and more.
+              Bằng cách tạo tài khoản với cửa hàng của chúng tôi, bạn sẽ có thể
+              thực hiện quy trình thanh toán nhanh hơn, lưu trữ nhiều địa chỉ
+              giao hàng, xem và theo dõi đơn đặt hàng trong tài khoản của bạn và
+              hơn thế nữa.
             </p>
           </div>
           <div class="create_button_area register_button">
@@ -24,7 +25,7 @@
               id="SubmitCreate"
               to="/register"
             >
-              <span>Register</span>
+              <span>Đăng kí</span>
             </router-link>
           </div>
         </div>
@@ -39,13 +40,16 @@
             </div>
             <div class="form-vertical customer_login_form">
               <form>
-                <h3>Login your account</h3>
+                <h3>Đăng nhập</h3>
                 <p v-if="errMes" class="errMess">
-                  <span>Login failed! Check authentication credentials</span>
+                  <span
+                    >Đăng nhập thất bại! Vui lòng kiểm tra lại tài khoản hoặc
+                    mật khẩu</span
+                  >
                 </p>
                 <p v-else>If you have an account with us, please log in.</p>
                 <label for="CustomerEmail" class="customer_label"
-                  >Email Address*</label
+                  >Tài khoản/ Email*</label
                 >
                 <input
                   type="email"
@@ -57,7 +61,7 @@
                 />
 
                 <label for="CustomerPassword" class="customer_label"
-                  >Password*</label
+                  >Mật khẩu*</label
                 >
                 <input
                   type="password"
@@ -72,71 +76,15 @@
                     <div class="customer_login_canel">
                       <a href="/">Return to Store</a>
                     </div>
-                    <div class="custer_forgott_Password">
-                      <a href="#recover" id="RecoverPassword"
-                        >Forgot your password?</a
-                      >
-                    </div>
                   </div>
                   <a
                     href=""
                     @click.prevent.enter="handleLogin(userLogin)"
                     class="btn btn-sm animated-button thar-three"
-                    >Sign In</a
+                    >Đăng nhập</a
                   >
                 </div>
               </form>
-            </div>
-
-            <div
-              class="customer_reset-password"
-              id="RecoverPasswordForm"
-              style="display: none"
-            >
-              <h3>Reset your password</h3>
-              <p>We will send you an email to reset your password.</p>
-
-              <div class="form-vertical">
-                <form
-                  method="post"
-                  action="/account/recover"
-                  accept-charset="UTF-8"
-                  onsubmit='window.Shopify.recaptchaV3.addToken(this, "recover_customer_password"); return false;'
-                >
-                  <input
-                    type="hidden"
-                    name="form_type"
-                    value="recover_customer_password"
-                  /><input type="hidden" name="utf8" value="✓" />
-
-                  <label for="RecoverEmail" class="forgot_password_label"
-                    >Email</label
-                  >
-                  <input
-                    type="email"
-                    value=""
-                    name="email"
-                    id="RecoverEmail"
-                    class="forgot_pass_email"
-                    placeholder="Email"
-                  />
-
-                  <div class="create_button_area">
-                    <p>
-                      <input type="submit" class="login_btn" value="Submit" />
-                    </p>
-                    <div class="forgot_passwor_cancel">
-                      <button
-                        type="button"
-                        id="HideRecoverPasswordLink"
-                        class="text-link"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
             </div>
           </div>
         </div>

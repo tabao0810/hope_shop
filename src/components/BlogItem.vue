@@ -93,6 +93,7 @@ export default {
   transform: scale(1);
   -webkit-transition: 0.3s linear;
   transition: 0.3s linear;
+  object-fit: fill;
 }
 /* .blogContent .card:hover .blog-img{
     -webkit-transform: scale(1.3);

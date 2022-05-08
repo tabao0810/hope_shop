@@ -10,7 +10,7 @@ const state = ()=>{
         ],  
         userWishes:[
 
-        ]       
+        ]      
           
     }
 }
@@ -63,7 +63,11 @@ const mutations={
         const size = state.userInfo.carts.findIndex((cart) => cart.sizeClothing === payload.sizeClothing)
         const color = state.userInfo.carts.findIndex((cart) => cart.color === payload.color)
         if(index !== -1 && size !== -1 && color!==-1) {
-            state.userInfo.carts.splice(index, 1);
+            if(confirm("Bạn có chắc chắn xóa sản phẩm này không??") == true){
+                state.userInfo.carts.splice(index, 1);
+            }else{
+                state.userInfo.carts
+            }            
         }else{
             alert("Loi")
         }
@@ -103,7 +107,7 @@ const mutations={
                 }else{
                     state.userInfo.carts[index].amount = 1;
                 }
-            }
+            }            
         }else{
             alert('loi')
         }
@@ -115,7 +119,7 @@ const mutations={
         const color = state.userInfo.carts.findIndex((cart) => cart.color === payload.color)
         if(index !== -1 && size !== -1 && color!==-1) {
             state.userInfo.carts[index].amount += 1;
-            payload.quantity -=1; 
+            payload.quantity -=1;             
         }else{
             alert('loi')
         }
@@ -126,10 +130,7 @@ const mutations={
     removeAllCartMutation(state){
         state.userInfo.carts = [],
         state.userCarts = []
-    }
-   
-
-
+    } 
 }
 const actions={
 

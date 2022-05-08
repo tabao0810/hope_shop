@@ -1,8 +1,10 @@
 <template>
   <section class="sale-list">
     <div class="row">
-      <h6 class="container text-sale-list mt-3 col-xs-12 col-sm-12 col-12">
-        FREE SHIPPING WORLDWIDE. NO MINIMUM OURCHASE REQUIRED
+      <h6
+        class="container text-sale-list mt-3 col-xs-12 col-sm-12 col-12 text-uppercase"
+      >
+        Các sản phẩm bắt nhịp quốc tế, thời thượng không nên bỏ lỡ
       </h6>
       <div class="col-xs-12 col-sm-12 col-12">
         <div class="pro-list row">

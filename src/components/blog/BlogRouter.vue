@@ -26,122 +26,23 @@
               <button class="blog__right-btn">Subscribe</button>
             </div>
           </div>
-          <div class="latest-posts">
-            <div class="blog__right-sidebar-2">
-              <h2 class="blog__right-title-2">recent posts</h2>
-            </div>
-
-            <div class="single-l-post">
-              <p class="grid-item">
-                <a href="" title=""
-                  ><img
-                    src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-5_50x50.jpg?v=1464181744"
-                    alt="Praesent ornare tortor"
-                    class="article__image"
-                /></a>
-              </p>
-
-              <div class="post-sidebar-info">
-                <h6>
-                  <a href="">Praesent ornare tortor</a>
-                </h6>
-                <span>
-                  <i class="fa fa-user"></i> <span>Boot Experts</span>
-                </span>
-                <span> <i class="fa fa-clock-o"></i> 2016-05-25 </span>
-              </div>
-            </div>
-
-            <div class="single-l-post">
-              <p class="grid-item">
-                <a href="" title=""
-                  ><img
-                    src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-4_50x50.jpg?v=1464181673"
-                    alt="Praesent ornare tortor"
-                    class="article__image"
-                /></a>
-              </p>
-
-              <div class="post-sidebar-info">
-                <h6>
-                  <a href="">Praesent ornare tortor</a>
-                </h6>
-                <span>
-                  <i class="fa fa-user"></i> <span>Boot Experts</span>
-                </span>
-                <span> <i class="fa fa-clock-o"></i> 2016-05-25 </span>
-              </div>
-            </div>
-
-            <div class="single-l-post">
-              <p class="grid-item">
-                <a href="" title=""
-                  ><img
-                    src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-3_50x50.jpg?v=1464181623"
-                    alt="william eto"
-                    class="article__image"
-                /></a>
-              </p>
-
-              <div class="post-sidebar-info">
-                <h6>
-                  <a href="">william eto</a>
-                </h6>
-                <span>
-                  <i class="fa fa-user"></i> <span>Boot Experts</span>
-                </span>
-                <span> <i class="fa fa-clock-o"></i> 2016-05-25 </span>
-              </div>
-            </div>
-
-            <div class="single-l-post">
-              <p class="grid-item">
-                <a href="" title=""
-                  ><img
-                    src="//cdn.shopify.com/s/files/1/1309/3901/articles/blog-2_50x50.jpg?v=1464181554"
-                    alt="Praesent ornare tortor"
-                    class="article__image"
-                /></a>
-              </p>
-
-              <div class="post-sidebar-info">
-                <h6>
-                  <a href="">Praesent ornare tortor</a>
-                </h6>
-                <span>
-                  <i class="fa fa-user"></i> <span>Boot Experts</span>
-                </span>
-                <span> <i class="fa fa-clock-o"></i> 2016-05-25 </span>
-              </div>
-            </div>
-          </div>
-          <div class="blog_tags">
-            <h2 class="blog__right-title-3">all tags</h2>
-            <div class="block-content">
-              <ul class="tags-list">
-                <li>
-                  <a href="" title="Show articles tagged blog">blog</a>
-                </li>
-
-                <li>
-                  <a href="" title="Show articles tagged mohin">mohin</a>
-                </li>
-
-                <li>
-                  <a href="" title="Show articles tagged nirob">nirob</a>
-                </li>
-
-                <li>
-                  <a href="" title="Show articles tagged salim">salim</a>
-                </li>
-              </ul>
-            </div>
+          <div class="add_r_sidebar">
+            <p class="banner_block">
+              <a href="">
+                <img
+                  class="sidebar-image"
+                  src="https://cdn.chanhtuoi.com/uploads/2016/03/balo-JUNO.jpg.webp"
+                  alt=""
+                />
+              </a>
+            </p>
           </div>
           <div class="add_r_sidebar">
             <p class="banner_block">
               <a href="">
                 <img
-                  src="//cdn.shopify.com/s/files/1/1309/3901/t/2/assets/3_002.jpg?v=14417891289564973374"
+                  class="sidebar-image"
+                  src="https://file.hstatic.net/1000003969/file/3_bdbb2eb57de648dabcdb98fb58fb360d.jpg"
                   alt=""
                 />
               </a>
@@ -159,13 +60,7 @@
               <i class="fa fa-video-camera"></i>
               <div class="blog_details_list">
                 <div class="blog_details-icon">
-                  <i class="fa fa-folder-open-o"></i>
-                  <a href=""><span class="mr-1">blog</span></a
-                  >, <a href=""><span class="mr-1">mohin</span></a
-                  >, <a href=""><span class="mr-1">nirob</span></a
-                  >,
-                  <a href=""><span>salim</span></a>
-                  <i class="fa fa-user px-1 ml-2"></i>Boot Experts
+                  <i class="fa fa-user px-1"></i>hope shop
                   <i class="fa fa-clock-o px-1 ml-1"></i>
                   {{ formatBlogRouterDate(blog.createdAt) }}
                 </div>
@@ -190,11 +85,11 @@
                     @click.prevent="handleBlogDetail(blog._id)"
                     href=""
                     title="Images"
-                    >Read more</a
+                    >Đọc thêm</a
                   >
 
                   <a class="comments_link" href="">
-                    <span>{{ blog.comments.length }}</span> comments
+                    <span>{{ blog.comments.length }}</span> bình luận
                   </a>
                 </div>
               </div>
@@ -232,7 +127,7 @@
             <div class="banner_home_effect">
               <a href="">
                 <img
-                  src="//cdn.shopify.com/s/files/1/1309/3901/t/2/assets/2.jpg?v=3670722495055676451"
+                  src="https://file.hstatic.net/200000355547/file/headline_juno_1_71eab1e1bf874661802a268e5d04c300.jpeg"
                   alt=""
                   class="banner_home_img"
                 />
@@ -254,7 +149,7 @@ export default {
     return {
       items: [],
       currentPage: 1,
-      perPage: 4,
+      perPage: 3,
     };
   },
   components: {
@@ -427,7 +322,7 @@ export default {
   filter: brightness(80%);
 }
 .blog-router-detail {
-  margin: 40px 0;
+  margin: 20px 0 40px 0;
 }
 .blog_details-icon {
   display: flex;
@@ -467,14 +362,16 @@ export default {
   color: #ff343b;
 }
 .blog_info_text {
-  text-align: left;
   margin: 15px 0px 25px 0px;
-  line-height: 1.5;
+  text-align: left;
+  line-height: 1.6;
   height: 72px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  text-indent: 50px;
+  text-align: justify;
 }
 .blog-router-btn {
   display: flex;
@@ -701,7 +598,8 @@ export default {
   overflow: hidden;
 }
 @media (max-width: 991.98px) {
-  .add_r_sidebar {
+  .add_r_sidebar,
+  .blog__right-sidebar {
     display: none;
   }
   .blog_tags {

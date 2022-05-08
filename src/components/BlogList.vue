@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     ...mapState({
-      blogList: (state) => state.blogList,
+      blogList: (state) => state.blogList.slice(0, 5),
     }),
     setCount() {
       let x = screen.width;

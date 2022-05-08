@@ -20,7 +20,7 @@
     </div>
     <div class="container col-12 mt-3">
       <button class="btn btn-loadmore mt-4 mb-5" @click="handleToShop">
-        <span> Load More...</span>
+        <span> Xem thêm...</span>
       </button>
     </div>
   </div>

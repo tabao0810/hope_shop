@@ -18,7 +18,6 @@
       <i class="fa fa-star"></i>
       <i class="fa fa-star"></i>
       <i class="fa fa-star"></i>
-      <span style="color: black"> No reviews</span>
     </h6>
     <div class="product-item-price">
       <p class="product-item-price-new">

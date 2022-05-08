@@ -23,22 +23,14 @@
               @selected="setSelected"
             ></tab-product>
           </div>
-
-          <!-- <div class="catagory_area color">
-            <h2>COLOR</h2>
-            <tab-product
-              :tabs="['Red', 'White', 'Black', 'Blue', 'Gray']"
-              :selected="selectedcolor"
-              @selected="setSelected"
-            ></tab-product>
-          </div> -->
         </div>
         <div class="add_r_sidebar-2 mt-3">
           <h2 class="blog__right-title-5">bestsellers</h2>
           <p class="banner_block-2">
             <a href="">
               <img
-                src="https://cdn.shopify.com/s/files/1/1309/3901/t/2/assets/banner_left.jpg?v=4606861808685713538"
+                class="sidebar-image"
+                src="https://file.hstatic.net/1000003969/file/179-700x1010_a59c249c185d4259a3c1b3537ebe6f6d.jpg"
                 alt=""
               />
             </a>
@@ -571,6 +563,9 @@ export default {
 };
 </script>
 <style>
+.sidebar-image {
+  width: 100%;
+}
 .toolbar {
   border-bottom: 1px solid #ddd;
   margin-bottom: 32px;
@@ -714,14 +709,12 @@ label {
     top: 540px;
     width: var(--blog-width);
   }
-}
-@media (max-width: 767.98px) {
-  label {
+  .add_r_sidebar-2 {
     display: none;
   }
 }
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .add_r_sidebar-2 {
+@media (max-width: 767.98px) {
+  label {
     display: none;
   }
 }

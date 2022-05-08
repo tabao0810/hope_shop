@@ -24,6 +24,17 @@
             ></tab-product>
           </div>
         </div>
+        <div class="add_r_sidebar">
+          <p class="banner_block">
+            <a href="">
+              <img
+                class="sidebar-image"
+                src="https://webmuasam.com.vn/data/files/Ma%20giam%20gia/deal_coupons-28-01-2021-v1mpue.png"
+                alt=""
+              />
+            </a>
+          </p>
+        </div>
       </div>
       <div class="col-lg-9">
         <the-product :isSelected="selected === 'Tất cả'">

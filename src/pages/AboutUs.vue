@@ -18,9 +18,9 @@
           <div class="about_hope_text">
             <h1>welcome to <strong>hope</strong></h1>
             <p>
-              Lorem ipsum scelerisque molestie id molestie magna ante etiam
-              sollicitudin tempus consectetur conubia, urna eros nunc curabitur
-              viverra rutrum tortor luctus torquent mollis est dictum euismod
+              "Không có phụ nữ xấu, chỉ có phụ nữ không biết làm đẹp "- Trích
+              câu danh ngôn nổi tiếng của LaBruyere để thay lời của Juno - những
+              người góp phần tôn vinh, khơi dậy vẻ đẹp phụ nữ Việt Nam.
             </p>
             <ul class="about_hope_details">
               <li>
@@ -39,7 +39,9 @@
               </li>
             </ul>
             <div class="about_read_more">
-              <a class="learn_btn" href="">Learn more</a>
+              <a class="learn_btn" href="https://juno.vn/pages/gioi-thieu"
+                >Xem thêm</a
+              >
             </div>
           </div>
         </div>

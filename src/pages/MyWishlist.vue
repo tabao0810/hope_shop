@@ -2,7 +2,7 @@
   <div class="container my-wishlist">
     <div class="row">
       <div class="col-lg-12">
-        <h2 class="wishlist_heading">My Wishlist</h2>
+        <h2 class="wishlist_heading">Sản phẩm ưa thích</h2>
         <hr />
         <div v-if="wishlist.length > 0">
           <div
@@ -86,7 +86,7 @@
                         class="learn_more"
                         href=""
                         @click.prevent="handleToDetail(featured._id)"
-                        >Learn More</a
+                        >Xem thêm</a
                       >
                     </div>
                   </div>

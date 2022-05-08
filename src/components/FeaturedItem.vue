@@ -50,7 +50,7 @@
             @click="handleBuy(featuredItem)"
             :disabled="featuredItem.quantity === 0"
           >
-            ADD TO CART
+            MUA NGAY
           </button>
           <button class="btn feature-btn" @click="handleOpenDetail">
             <i class="fa fa-eye"></i>

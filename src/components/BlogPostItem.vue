@@ -1,5 +1,5 @@
 <template>
-  <h1 class="blog__heading">Blog Post</h1>
+  <h1 class="blog__heading">Tin tức</h1>
 </template>
 
 <script>

@@ -86,7 +86,7 @@
                     class="learn_more"
                     href=""
                     @click.prevent="handleToDetail(featured._id)"
-                    >Learn More</a
+                    >Xem thêm</a
                   >
                 </div>
               </div>

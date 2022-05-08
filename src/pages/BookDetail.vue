@@ -29,7 +29,8 @@
           <p class="banner_block-2">
             <a href="">
               <img
-                src="https://cdn.shopify.com/s/files/1/1309/3901/t/2/assets/banner_left.jpg?v=4606861808685713538"
+                class="sidebar-image"
+                src="https://file.hstatic.net/1000003969/file/179-700x1010_a59c249c185d4259a3c1b3537ebe6f6d.jpg"
                 alt=""
               />
             </a>
@@ -474,7 +475,7 @@
             <div class="row">
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="product_blog_image">
-                  <div class="product_blog_image">
+                  <div class="product_blog_image-1">
                     <a href="" @click.prevent="handleToDetail(featured._id)"
                       ><img :src="featured.image" :alt="featured.name"
                     /></a>
@@ -1151,7 +1152,6 @@ option {
 }
 .single_product_list {
   overflow: hidden;
-  padding-bottom: 30px;
 }
 .product_blog_image img {
   width: 100%;
@@ -1240,6 +1240,16 @@ option {
 .pricing_rate .blog_texts {
   color: #555;
   text-align: left;
+  width: 100%;
+  text-indent: 20px;
+  text-align: justify;
+  text-align: left;
+  max-height: 125px;
+  line-height: 1.6;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 .learn_more {
   color: #000;
@@ -1289,11 +1299,29 @@ option {
 }
 @media (max-width: 991.98px) {
   .blog_texts {
-    height: 90px;
+    height: 72px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
+  }
+  .blog_heading > a {
+    max-height: 35px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+}
+@media (max-width: 580px) {
+  .blog_product_details {
+    margin-bottom: 10px;
+  }
+  .product_blog_image {
+    margin-top: 20px;
+  }
+  .product_blog_image img {
+    margin-bottom: 10px;
   }
 }
 </style>

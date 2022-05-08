@@ -5,132 +5,95 @@
       <div class="cart_table">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
-            <table
-              class="cart_table-list"
-              border="1"
-              cellspacing="0"
-              cellpadding="10"
-              width="100%"
-            >
-              <tr>
-                <th width="10%">Remove</th>
-                <th width="30%">Images</th>
-                <th width="15%">Product Name</th>
-                <th width="13%">variant name</th>
-                <th width="12%">Unit Price</th>
-                <th width="8%">Qty</th>
-                <th width="12%">Subtotal</th>
-              </tr>
-              <tr v-for="cartItem in cartList" :key="cartItem._id">
-                <td>
-                  <a
-                    title="Remove"
-                    class="cart_table-remove"
-                    data-toggle="modal"
-                    data-target="#exampleModalCenter"
-                  >
-                    <span><i class="fa fa-trash"></i></span>
-                  </a>
-                  <div
-                    class="modal fade"
-                    id="exampleModalCenter"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="exampleModalCenterTitle"
-                    aria-hidden="true"
-                  >
-                    <div
-                      class="modal-dialog modal-dialog-centered"
-                      role="document"
-                    >
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          Bạn có chắc chắn muốn xóa sản phẩm ra khỏi giỏ hàng
-                          không?
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                          >
-                            Không
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            @click="handleDelete(cartItem)"
-                            data-dismiss="modal"
-                          >
-                            Có
-                          </button>
-                        </div>
+            <div class="table-responsive">
+              <table
+                class="cart_table-list"
+                border="1"
+                cellspacing="0"
+                cellpadding="10"
+                width="1100"
+              >
+                <thead>
+                  <tr>
+                    <td width="1%">Remove</td>
+                    <td width="10%">Hình ảnh</td>
+                    <td width="20%">Tên sản phẩm</td>
+                    <td width="5%">Chi tiết sản phẩm</td>
+                    <td width="5%">Đơn giá</td>
+                    <td width="1%">Số lượng</td>
+                    <td width="5%">Tạm tính</td>
+                  </tr>
+                  <tr v-for="cartItem in cartList" :key="cartItem._id">
+                    <td>
+                      <a
+                        title="Remove"
+                        class="cart_table-remove"
+                        @click.prevent="handleDelete(cartItem)"
+                      >
+                        <span><i class="fa fa-trash"></i></span>
+                      </a>
+                    </td>
+                    <td>
+                      <img
+                        :src="cartItem.image"
+                        class="cart_table-list-image"
+                        alt=""
+                      />
+                    </td>
+                    <td>
+                      <p>{{ cartItem.name }}</p>
+                    </td>
+                    <td>
+                      <span v-if="cartItem.sizeClothing" class="mr-2"
+                        >{{ cartItem.sizeClothing }}/</span
+                      >
+                      <span v-if="cartItem.sizeShoe" class="mr-2"
+                        >{{ cartItem.sizeShoe }}/</span
+                      >{{ cartItem.color }}
+                    </td>
+                    <td>
+                      <p>{{ FormatSale(cartItem) }}</p>
+                    </td>
+                    <td>
+                      <div class="quantity_cart">
+                        <button
+                          class="qty-btn"
+                          @click.prevent="handleDown(cartItem)"
+                        >
+                          -
+                        </button>
+                        <input
+                          type="number"
+                          min="1"
+                          class="cart_table-list-qty"
+                          v-model="cartItem.amount"
+                          style="width: 50px"
+                          :max="cartItem.quantity"
+                          readonly
+                        />
+                        <button
+                          class="qty-btn"
+                          @click.prevent="handleUp(cartItem)"
+                          :disabled="cartItem.quantity === 1"
+                        >
+                          +
+                        </button>
                       </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <img
-                    :src="cartItem.image"
-                    class="cart_table-list-image"
-                    alt=""
-                  />
-                </td>
-                <td>
-                  <p>{{ cartItem.name }}</p>
-                </td>
-                <td>
-                  <span v-if="cartItem.sizeClothing" class="mr-2"
-                    >{{ cartItem.sizeClothing }}/</span
-                  >
-                  <span v-if="cartItem.sizeShoe" class="mr-2"
-                    >{{ cartItem.sizeShoe }}/</span
-                  >{{ cartItem.color }}
-                </td>
-                <td>
-                  <p>{{ FormatSale(cartItem) }}</p>
-                </td>
-                <td>
-                  <div class="quantity_cart">
-                    <button
-                      class="qty-btn"
-                      @click.prevent="handleDown(cartItem)"
+                    </td>
+                    <td>{{ subTotal(cartItem) }}</td>
+                  </tr>
+                </thead>
+                <tr height="80px">
+                  <td colspan="7" align="left">
+                    <router-link
+                      to="/thehome"
+                      class="cart_table-btn cart_table-margin"
+                      >Tiếp tục mua sắm</router-link
                     >
-                      -
-                    </button>
-                    <input
-                      type="text"
-                      min="1"
-                      class="cart_table-list-qty"
-                      v-model="cartItem.amount"
-                    />
-                    <button class="qty-btn" @click.prevent="handleUp(cartItem)">
-                      +
-                    </button>
-                  </div>
-                </td>
-                <td>{{ subTotal(cartItem) }}</td>
-              </tr>
-              <tr height="80px">
-                <td colspan="7" align="left">
-                  <router-link
-                    to="/thehome"
-                    class="cart_table-btn cart_table-margin"
-                    >continue shopping</router-link
-                  >
-                </td>
-              </tr>
-            </table>
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -142,17 +105,14 @@
           </div>
           <div class="col-lg-4 cart_comment-heading-2">
             <p class="cart_comment-price">
-              Subtotal <span>{{ sumTotal }}</span>
+              Tạm tính <span>{{ sumTotal }}</span>
             </p>
             <a
               href=""
               class="cart_table-btn cart_table-btn-pay"
               @click.prevent="handleToCheckOut"
-              >proceed to checkout</a
+              >Thanh toán</a
             >
-            <p class="cart_comment-note">
-              Shipping & Taxes Calculated At Checkout
-            </p>
           </div>
         </div>
       </div>
@@ -364,5 +324,14 @@ export default {
   .quantity_cart {
     flex-wrap: wrap-reverse;
   }
+}
+</style>
+<style scoped>
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 </style>

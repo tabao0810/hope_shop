@@ -18,7 +18,7 @@
       <div class="col-sm-4 mt-2">
         <div class="contact contact-box">
           <div class="card-title card-contact">
-            <span class="card-title-text">Conect us:</span>
+            <span class="card-title-text">Liên hệ: </span>
             <div class="tool-tip">
               <i class="fa fa-facebook-f px-1 contact-icon"></i>
               <span class="tooltip-text">Like 6k</span>
