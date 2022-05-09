@@ -4,15 +4,13 @@
       <div class="col-sm-4 mt-2">
         <div class="contact contact-box">
           <p class="card-title">
-            <i class="fa fa-envelope mr-1"></i>info@liendobingo.com
+            <i class="fa fa-envelope mr-1"></i>tabao08102000@gmail.com
           </p>
         </div>
       </div>
       <div class="col-sm-4 mt-2">
         <div class="contact contact-box">
-          <p class="card-title">
-            <i class="fa fa-phone mr-2"></i>(+5555) 224 434
-          </p>
+          <p class="card-title"><i class="fa fa-phone mr-2"></i>036.7773.541</p>
         </div>
       </div>
       <div class="col-sm-4 mt-2">

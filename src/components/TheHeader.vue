@@ -14,7 +14,7 @@
         <div class="col-lg-9 navbar-home">
           <div class="navbar__contact">
             <p class="navbar__contact-text">
-              Liên hệ: (555) 732-253-8714, (555) 732-253-8715
+              Liên hệ: 036.7773.541 - 033.5480.569
             </p>
             <div class="navbar__contact-icon">
               <div class="navbar__contact-account">

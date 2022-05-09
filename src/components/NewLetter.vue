@@ -55,9 +55,9 @@
         <div class="col-sm letter-text">
           <h5 class="letter__header">STORE INFORMATION</h5>
           <div class="list-letter-2 mt-3">
-            <p>My Company: 42 avenue des Champs Elysées 123 Paris France</p>
-            <p>Call us now:(+1)866-540-3229</p>
-            <p>Email: admin@bootexperts.com</p>
+            <p>Địa chỉ: Ngã tư Minh Hòa, Hưng Hà, Thái Bình</p>
+            <p>Liên hệ: 0367773541</p>
+            <p>Email: tabao08102000@gmail.com</p>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
     </div>
     <div class="footer container">
       <p>
-        Copyright <a href="" class="text-danger">©BootExperts</a>.All Rights
+        Copyright <a href="" class="text-danger">©Tạ Quốc Bảo</a>.All Rights
         Reserved
       </p>
       <div class="icon">

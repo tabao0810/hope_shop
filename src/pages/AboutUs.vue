@@ -62,11 +62,8 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="about_skills">
-            <h2>our <strong>skill</strong></h2>
-            <p>
-              Our skill is really high quality and standard for build your
-              project.
-            </p>
+            <h2>our <strong>products</strong></h2>
+            <p>The difference between style and fashion is quality.</p>
           </div>
         </div>
       </div>
@@ -121,8 +118,8 @@
           <div class="creative_member_text">
             <h2>our creative <strong>member</strong></h2>
             <p>
-              Our skill is really high quality and standard for build your
-              project.
+              Fashion is a form of ugliness so intolerable that we have to alter
+              it every six months.
             </p>
           </div>
         </div>
@@ -138,7 +135,7 @@
             </div>
             <div class="member_info">
               <span class="member_name">Havier Macherano</span>
-              <span class="member_role">Developer</span>
+              <span class="member_role">Public Relations</span>
             </div>
 
             <div class="member_icons">
@@ -174,7 +171,7 @@
             </div>
             <div class="member_info">
               <span class="member_name">Luka Biglia</span>
-              <span class="member_role">Programmer</span>
+              <span class="member_role">CEO - Founder</span>
             </div>
 
             <div class="member_icons">
@@ -246,7 +243,7 @@
             </div>
             <div class="member_info">
               <span class="member_name">Martin Demichelis</span>
-              <span class="member_role">PHP Developer</span>
+              <span class="member_role">Model Photos</span>
             </div>
 
             <div class="member_icons">
