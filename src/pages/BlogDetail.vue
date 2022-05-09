@@ -48,7 +48,7 @@
               <span>{{ blogDetail.comments.length }}</span> bình luận
             </h2>
           </div>
-          <hr />
+
           <div v-for="(cmt, index) in getComments" :key="index">
             <div class="listComment mt-3">
               <div class="commentImg">
