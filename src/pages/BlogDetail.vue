@@ -109,7 +109,7 @@
               </div>
             </div>
             <div class="blog__detail-link">
-              <a href="" @click="postComment(cmt)">Đăng</a>
+              <a href="" @click.prevent="postComment(cmt)">Đăng</a>
             </div>
           </div>
         </div>

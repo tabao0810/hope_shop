@@ -3,7 +3,7 @@ import axios from "axios";
 export const getAllBannerApi = async () => {
     const res = await axios({
         method: "GET",
-        url:"http://localhost:5035/api/banners",
+        url:"https://api-hope.herokuapp.com/api/banners",
     });
     return res.data.Banner;
 };

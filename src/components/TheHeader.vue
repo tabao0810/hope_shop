@@ -29,9 +29,9 @@
                   <div class="account_single_item">
                     <h2>setting</h2>
                     <ul class="account_single_nav_3">
-                      <li v-if="userInfo._id">
+                      <!-- <li v-if="userInfo._id">
                         <a href="">Thông tin cá nhân</a>
-                      </li>
+                      </li> -->
                       <li v-if="userInfo._id">
                         <router-link href="" to="my-cart">giỏ hàng</router-link>
                       </li>
@@ -46,7 +46,7 @@
                         >
                       </li>
                       <li v-if="userInfo._id">
-                        <a href="" @click="LogoutPage">Đăng xuất</a>
+                        <a href="" @click.prevent="LogoutPage">Đăng xuất</a>
                       </li>
                       <li v-else>
                         <router-link to="/login">Đăng nhập</router-link>

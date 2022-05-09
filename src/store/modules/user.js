@@ -167,19 +167,16 @@ const actions={
     },
 
     // Đăng xuất
-    async logoutUser(context){
-        if(confirm('Bạn có chắc chắn xóa sản phẩm này không?') == true){
-             const userLogout = JSON.parse(localStorage.getItem('userLogin'));        
-         if(localStorage.getItem('userLogin')){
-            await LogoutPageApi(userLogout)
-            localStorage.removeItem('userLogin')
-        }
-        }else{
-            context.dispatch("loadUserLoginFromLocalStorage")
-        }
+    async logoutUser(context){        
+        if(localStorage.getItem('userLogin')){            
+            const userLogout = JSON.parse(localStorage.getItem('userLogin'));                  
+                await LogoutPageApi(userLogout)
+                localStorage.removeItem('userLogin')
+                location.reload();
+                context.dispatch("loadUserLoginFromLocalStorage")           
+            }
+        },
        
-    },
-
     // Thêm sản phẩm vào giỏ hàng
      addCartAction(context,payload){
         // const newCart = {...payload, amount:1}        

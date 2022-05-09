@@ -3,7 +3,7 @@ import axios from "axios";
 export const createOrderApi = async(order)=>{
     const res = await axios({
         method:"POST",
-        url:"http://localhost:5035/api/order/create",
+        url:"https://api-hope.herokuapp.com/api/order/create",
        data:order
     })
     return res.data
@@ -11,7 +11,15 @@ export const createOrderApi = async(order)=>{
 export const getAllOrdersApi = async() => {
     const res = await axios({
         method:"GET",
-        url:"http://localhost:5035/api/order/getOrder",
+        url:"https://api-hope.herokuapp.com/api/order/getOrder",
     });
     return res.data.Orders;
+}
+export const updateOrderApi  = async (product) =>{
+    const res = await axios({
+        method: "PUT",
+         url:`https://api-hope.herokuapp.com/api/order/update/${product._id}`,  
+         data: product      
+    });
+    return res;
 }

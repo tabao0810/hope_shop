@@ -1,4 +1,4 @@
-import {createOrderApi, getAllOrdersApi} from "../../apis/order";
+import {createOrderApi, getAllOrdersApi,updateOrderApi} from "../../apis/order";
 import {  GetUserApi } from "@/apis/user";
 import { getAllProductsApi,getSingleProductsApi,updateProductApi } from "@/apis/products";
 
@@ -60,6 +60,10 @@ const actions ={
             context.commit('setUserLoginFromLocalStorage',userLogin);           
         }     
     },
+    async updateOrderActions(context,payload){
+            await updateOrderApi(payload);
+            context.dispatch("getAllOrdersActions")            
+        },
 }
 
 export default {

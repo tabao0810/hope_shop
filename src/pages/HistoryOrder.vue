@@ -73,6 +73,20 @@
                   style="width: 50px"
                 /><br />{{ order.mess }}</span
               >
+              <hr v-if="order.mess !== 'Giao hàng thành công'" />
+              <div
+                class="updateStatus"
+                v-if="order.mess !== 'Giao hàng thành công'"
+              >
+                <input
+                  type="checkbox"
+                  :name="order._id"
+                  :id="order._id"
+                  class="check-status"
+                  @click="checkedStatus(order)"
+                />
+                <label :for="order._id">Đã nhận hàng</label>
+              </div>
             </td>
           </tr>
         </thead>
@@ -160,6 +174,10 @@ export default {
         behavior: "smooth",
       });
     },
+    checkedStatus(ord) {
+      ord.mess = "Giao hàng thành công";
+      this.$store.dispatch("order/updateOrderActions", ord);
+    },
   },
   computed: {
     ...mapGetters({
@@ -226,5 +244,24 @@ export default {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+}
+.updateStatus > label {
+  margin: 0;
+  padding-left: 4px;
+  font-weight: 500;
+}
+.updateStatus:hover label {
+  color: rgb(0, 255, 0);
+  font-weight: 600;
+}
+.updateStatus {
+  display: flex;
+  align-items: center;
+}
+.check-status {
+  accent-color: #9d3039;
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
 }
 </style>
