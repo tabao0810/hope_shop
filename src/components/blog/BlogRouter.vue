@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="add_r_sidebar">
-            <p class="banner_block">
+            <div class="banner_block">
               <a href="">
                 <img
                   class="sidebar-image"
@@ -35,10 +35,10 @@
                   alt=""
                 />
               </a>
-            </p>
+            </div>
           </div>
           <div class="add_r_sidebar">
-            <p class="banner_block">
+            <div class="banner_block">
               <a href="">
                 <img
                   class="sidebar-image"
@@ -46,7 +46,7 @@
                   alt=""
                 />
               </a>
-            </p>
+            </div>
           </div>
         </div>
         <div class="col-lg-9">
@@ -119,21 +119,15 @@
       </div>
     </div>
   </div>
-  <div class="blog_banner_area">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="banner_home_inner">
-            <div class="banner_home_effect">
-              <a href="">
-                <img
-                  src="https://file.hstatic.net/200000355547/file/headline_juno_1_71eab1e1bf874661802a268e5d04c300.jpeg"
-                  alt=""
-                  class="banner_home_img"
-                />
-              </a>
-            </div>
-          </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="blog_banner_area">
+          <img
+            src="https://file.hstatic.net/200000355547/file/headline_juno_1_71eab1e1bf874661802a268e5d04c300.jpeg"
+            alt=""
+            class="banner_home_img"
+          />
         </div>
       </div>
     </div>
@@ -483,36 +477,19 @@ export default {
   background: #fff;
 }
 .add_r_sidebar {
-  margin-top: 35px;
-  overflow: hidden;
+  margin-top: 25px;
+}
+.sidebar-image {
   position: relative;
+  top: 0;
+  left: 0;
+  cursor: default;
 }
-.banner_block {
-  margin: 0 0 10px;
+.add_r_sidebar:hover .sidebar-image {
+  top: -10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.banner_block:before {
-  position: absolute;
-  top: 50%;
-  bottom: 50%;
-  left: 50%;
-  right: 50%;
-  content: "";
-  opacity: 0;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  z-index: 2;
-}
-.banner_block a {
-  transition: all linear 0.3s;
-}
-.add_r_sidebar:hover .banner_block:before {
-  background-color: rgba(0, 0, 0, 0.25);
-  top: 15px;
-  bottom: 25px;
-  right: 20px;
-  left: 20px;
-  opacity: 1;
-}
+
 .pagination {
   display: inline-block;
   float: right;
@@ -558,41 +535,12 @@ export default {
   margin-bottom: 40px;
   width: 100%;
 }
-.banner_home_inner {
-  position: relative;
-  overflow: hidden;
-}
 .banner_home_img {
   width: 100%;
   object-fit: fill;
-  /* opacity: 1;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s; */
+  cursor: default;
 }
-.banner_home_effect::before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border: 2px solid #fff;
-  content: "";
-  opacity: 0;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  z-index: 2;
-}
-.banner_home_inner:hover .banner_home_img {
-  filter: brightness(50%);
-}
-.banner_home_inner:hover .banner_home_effect::before {
-  background-color: transparent;
-  top: 15px;
-  bottom: 15px;
-  right: 20px;
-  left: 20px;
-  opacity: 1;
-}
+
 .latest-posts {
   text-align: left;
   overflow: hidden;

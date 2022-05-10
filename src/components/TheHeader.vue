@@ -27,7 +27,7 @@
                 </a>
                 <div class="account_menu_list">
                   <div class="account_single_item">
-                    <h2>setting</h2>
+                    <!-- <h2>setting</h2> -->
                     <ul class="account_single_nav_3">
                       <!-- <li v-if="userInfo._id">
                         <a href="">Thông tin cá nhân</a>

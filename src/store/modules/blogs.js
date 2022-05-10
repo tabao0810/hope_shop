@@ -37,8 +37,7 @@ const actions={
   async updateBlogAction({state}){
       await updateBlogApi(state.blogDetail);
   },
-  addCommentAction(context,payload){
-    
+  addCommentAction(context,payload){    
     context.commit("setCommetMutation",payload);
     context.dispatch("updateBlogAction")
   }

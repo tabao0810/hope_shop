@@ -16,10 +16,18 @@
         >
           {{ blogList.description }}
         </h5>
-        <p class="card-text">{{ blogList.text }}</p>
+        <p
+          class="card-text content-text"
+          @click="handleBlogDetail(blogList._id)"
+        >
+          {{ blogList.text }}
+        </p>
         <p class="blogText">
           {{ formatDateBlog(blogList.createdAt) }}
-          <a class="text-cmt" href=""
+          <a
+            class="text-cmt"
+            href=""
+            @click.prevent="handleBlogDetail(blogList._id)"
             ><i class="fa fa-comments mr-1 ml-2"></i
             ><span class="mr-1">{{ blogList.comments.length }}</span
             >COMMENTS</a
@@ -147,16 +155,24 @@ export default {
   color: #222;
   display: block;
   font-size: 15px;
-  margin-bottom: 5px;
-  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 10px;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+  max-height: 15px;
+  overflow: hidden;
+  -webkit-line-clamp: 1; /* số dòng hiển thị */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 .cart-to-detail:hover {
   color: #ff343b;
   transition: all linear 0.3s;
+}
+.content-text {
+  cursor: pointer;
 }
 .formatDateBlog {
 }
