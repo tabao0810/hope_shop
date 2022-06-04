@@ -83,13 +83,22 @@ const getters = {
     productListSale(state){
       return state.productList.filter((product) => product.isSale === true)  
     },
-    productListSaleMin(state){        
+    
+    productListSaleClothing(state){        
         const saleArr = state.productList.filter((product) => product.isSale === true)
-        return saleArr.filter((product) => (product.price - (product.price*(product.sale/100)))< 290000)
+        return saleArr.filter((product) => product.typeProduct === 'Quần áo')
     },
-    productListSaleMax(state){        
+    productListSaleAccessory(state){        
         const saleArr = state.productList.filter((product) => product.isSale === true)
-        return saleArr.filter((product) => (product.price - (product.price*(product.sale/100)))> 400000)
+        return saleArr.filter((product) => product.typeProduct === 'Phụ kiện')
+    },
+    productListSaleBag(state){        
+        const saleArr = state.productList.filter((product) => product.isSale === true)
+        return saleArr.filter((product) => product.typeProduct === 'Túi')
+    },
+    productListSaleShoe(state){        
+        const saleArr = state.productList.filter((product) => product.isSale === true)
+        return saleArr.filter((product) => product.typeProduct === 'Giày')
     }   
 };
 

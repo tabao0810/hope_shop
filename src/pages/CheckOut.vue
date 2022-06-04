@@ -12,7 +12,7 @@
     </div>
     <div class="row mt-2">
       <div class="col-lg-6 user-information">
-        <h3 class="user-infor-heading">Shipping address</h3>
+        <h3 class="user-infor-heading">Địa điểm giao hàng:</h3>
         <form action="" class="mt-3 mb-4">
           <div class="input-field mt-2">
             <input
@@ -47,34 +47,57 @@
             </div>
           </div>
           <div class="input-field mt-2">
-            <input
-              type="text"
-              id="city"
-              required
-              class="fullName-input"
+            <select
+              name=""
+              id=""
+              class="selectedAddress"
               v-model="order.city"
-            />
-            <label for="city" class="fullName-label">Thành phố:</label>
+              @change="ChangeCity"
+            >
+              <option value="" disabled selected>Chọn tỉnh, thành phố</option>
+              <option
+                v-for="city in listCities"
+                :key="city.code"
+                :value="city.name"
+              >
+                {{ city.name }}
+              </option>
+            </select>
           </div>
           <div class="input-field mt-2">
-            <input
-              type="text"
-              id="district"
-              required
-              class="fullName-input"
+            <select
+              name=""
+              id=""
+              class="selectedAddress"
               v-model="order.district"
-            />
-            <label for="district" class="fullName-label">Huyện:</label>
+              @change="ChangeDistrict"
+            >
+              <option value="" disabled selected>Chọn quận, huyện</option>
+              <option
+                v-for="district in listDistricts"
+                :key="district.code"
+                :value="district.name"
+              >
+                {{ district.name }}
+              </option>
+            </select>
           </div>
           <div class="input-field mt-2">
-            <input
-              type="text"
-              id="address"
-              required
-              class="fullName-input"
+            <select
+              name=""
+              id=""
+              class="selectedAddress"
               v-model="order.commune"
-            />
-            <label for="address" class="fullName-label">Xã:</label>
+            >
+              <option value="" disabled selected>Chọn phường, xã</option>
+              <option
+                v-for="ward in listWards"
+                :key="ward.code"
+                :value="ward.name"
+              >
+                {{ ward.name }}
+              </option>
+            </select>
           </div>
           <div class="input-field mt-2">
             <input
@@ -88,7 +111,7 @@
           </div>
         </form>
         <hr />
-        <h3 class="user-infor-heading mt-2">Shipping method</h3>
+        <h3 class="user-infor-heading mt-2">Loại hình giao hàng:</h3>
         <div class="ship-product">
           <div>
             <input
@@ -99,7 +122,7 @@
               v-model="order.shipcod"
               style="height: 18px; width: 18px; vertical-align: middle"
             />
-            <label for="ship">Ship</label>
+            <label for="ship">Ship thường</label>
           </div>
           <p>20,000 đ</p>
         </div>
@@ -113,15 +136,15 @@
               v-model="order.shipcod"
               style="height: 18px; width: 18px; vertical-align: middle"
             />
-            <label for="flash-ship">Flash ship</label>
+            <label for="flash-ship">Ship nhanh</label>
           </div>
           <p>40,000 đ</p>
         </div>
         <hr />
         <div class="user-infor-btn mt-3">
-          <a href="" @click.prevent="handleToCart">Return to cart</a>
+          <a href="" @click.prevent="handleToCart">Quay lại giỏ hàng</a>
           <a href="" @click.prevent="handleToPayment(order)"
-            >Continue to payment</a
+            >Tiếp tục thanh toán</a
           >
         </div>
       </div>
@@ -147,16 +170,16 @@
         </div>
         <hr />
         <div class="subTotal">
-          <p>Subtotal</p>
+          <p>Tạm tính</p>
           <p>{{ sumTotalCart }}</p>
         </div>
         <div class="subTotal">
-          <p>Shipping</p>
+          <p>Phí giao hàng</p>
           <p>{{ formatShip(order.shipcod) }}</p>
         </div>
         <hr />
         <div class="total">
-          <p>Total</p>
+          <p>Tổng</p>
           <p>{{ totalCart }}</p>
         </div>
       </div>
@@ -170,6 +193,10 @@ import { createNamespacedHelpers, useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 const { mapState } = createNamespacedHelpers("user");
+const CityState = createNamespacedHelpers("places");
+const DistrictState = createNamespacedHelpers("places");
+const WardState = createNamespacedHelpers("places");
+
 export default {
   setup() {
     const store = useStore();
@@ -191,21 +218,32 @@ export default {
       if (order.fullName.length >= 10) {
         if (order.email.length !== 0 && order.email.includes("@")) {
           if (order.phoneNumber.length > 9 && order.phoneNumber.length < 13) {
-            const data = {
-              fullName: order.fullName,
-              email: order.email,
-              phoneNumber: order.phoneNumber,
-              city: order.city,
-              district: order.district,
-              commune: order.commune,
-              address: order.address,
-              shipcod: order.shipcod,
-              carts: order.carts,
-              userId: order.userId,
-            };
-            store.dispatch("order/createOrderAction", { data, router });
-            store.dispatch("user/removeAllCartActions");
-            toast.success("Đặt hàng thành công");
+            if (
+              order.city.length !== 0 &&
+              order.district.length !== 0 &&
+              order.commune.length !== 0 &&
+              order.address.length !== 0
+            ) {
+              const data = {
+                fullName: order.fullName,
+                email: order.email,
+                phoneNumber: order.phoneNumber,
+                city: order.city,
+                district: order.district,
+                commune: order.commune,
+                address: order.address,
+                shipcod: order.shipcod,
+                carts: order.carts,
+                userId: order.userId,
+              };
+              store.dispatch("order/createOrderAction", { data, router });
+              store.dispatch("user/removeAllCartActions");
+              toast.success("Đặt hàng thành công");
+            } else {
+              toast.error(
+                "Vui lòng điền đầy đủ thông tin về địa chỉ nhận hàng"
+              );
+            }
           } else {
             toast.error("Số điện thoại không hợp lệ");
           }
@@ -216,11 +254,29 @@ export default {
         toast.error("Họ và tên phải có từ 10 kí tự trở lên");
       }
     };
-    return { order: order, handleToPayment };
+    store.dispatch("places/getAllCitiesAction");
+    const ChangeCity = () => {
+      store.dispatch("places/getAllDistrictsAction", order.city);
+      order.district = "";
+      order.commune = "";
+    };
+    const ChangeDistrict = () => {
+      store.dispatch("places/getAllWardsAction", order.district);
+    };
+    return { order: order, handleToPayment, ChangeCity, ChangeDistrict };
   },
   computed: {
     ...mapState({
       cartList: (state) => state.userCarts,
+    }),
+    ...CityState.mapState({
+      listCities: (state) => state.listCities,
+    }),
+    ...DistrictState.mapState({
+      listDistricts: (state) => state.listDistricts,
+    }),
+    ...WardState.mapState({
+      listWards: (state) => state.listWards,
     }),
     sumTotalCart() {
       let x = this.cartList.reduce(
@@ -288,7 +344,17 @@ export default {
   },
 };
 </script>
-
+<style>
+.selectedAddress {
+  width: 100%;
+  padding: 8px;
+  outline: none;
+  border: none;
+}
+.selectedAddress > option {
+  font-size: 20px;
+}
+</style>
 <style scoped>
 .product-infor-detail > p {
   text-align: left;

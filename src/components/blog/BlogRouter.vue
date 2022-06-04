@@ -28,10 +28,10 @@
           </div>
           <div class="add_r_sidebar">
             <div class="banner_block">
-              <a href="">
+              <a>
                 <img
                   class="sidebar-image"
-                  src="https://cdn.chanhtuoi.com/uploads/2016/03/balo-JUNO.jpg.webp"
+                  src="https://file.hstatic.net/1000003969/file/5_4e8bbd11e68d4e08a72d2d9b4738f03b.jpg"
                   alt=""
                 />
               </a>
@@ -39,10 +39,21 @@
           </div>
           <div class="add_r_sidebar">
             <div class="banner_block">
-              <a href="">
+              <a>
                 <img
                   class="sidebar-image"
                   src="https://file.hstatic.net/1000003969/file/3_bdbb2eb57de648dabcdb98fb58fb360d.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+          </div>
+          <div class="add_r_sidebar">
+            <div class="banner_block">
+              <a>
+                <img
+                  class="sidebar-image"
+                  src="https://file.hstatic.net/1000003969/file/1_bd94c2d5fef549f2ae4465bb6732fc0f.jpg"
                   alt=""
                 />
               </a>
@@ -488,6 +499,7 @@ export default {
 .add_r_sidebar:hover .sidebar-image {
   top: -10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all linear 0.3s;
 }
 
 .pagination {

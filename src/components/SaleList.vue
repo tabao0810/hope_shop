@@ -47,5 +47,8 @@ export default {
   .text-center > p {
     font-size: 18px;
   }
+  .text-sale-list {
+    font-size: 14px;
+  }
 }
 </style>

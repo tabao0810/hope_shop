@@ -2,7 +2,7 @@
   <div class="featured-list">
     <div class="container">
       <div class="featured-header font-weight-bold">
-        <h1 class="featured__heading">Featured</h1>
+        <h1 class="featured__heading">Nổi bật</h1>
       </div>
     </div>
     <div class="fea-list">

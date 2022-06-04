@@ -18,7 +18,7 @@
           <div class="catagory_area">
             <h2>collection</h2>
             <tab-product
-              :tabs="['Tất cả', 'Sản phẩm 290k', 'Sản phẩm 400k']"
+              :tabs="['Tất cả', 'Quần áo', 'Phụ kiện', 'Túi xách', 'Giày']"
               :selected="selected"
               @selected="setSelected"
             ></tab-product>
@@ -26,10 +26,21 @@
         </div>
         <div class="add_r_sidebar">
           <p class="banner_block">
-            <a href="">
+            <a>
               <img
                 class="sidebar-image"
                 src="https://webmuasam.com.vn/data/files/Ma%20giam%20gia/deal_coupons-28-01-2021-v1mpue.png"
+                alt=""
+              />
+            </a>
+          </p>
+        </div>
+        <div class="add_r_sidebar">
+          <p class="banner_block">
+            <a>
+              <img
+                class="sidebar-image"
+                src="http://file.hstatic.net/1000003969/collection/kv_sale_kho_qua_doc_700x1010_final_d4cd552dbefe4ae681dd58fb8bfaad58.jpg"
                 alt=""
               />
             </a>
@@ -43,7 +54,7 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="single_banner">
                   <div class="banner_home_inner-2">
-                    <a href="">
+                    <a style="cursor: default">
                       <img
                         src="https://file.hstatic.net/1000003969/file/d3f0a7eb-8dd3-451f-9970-b9de7ce0134f_8279224c5331452abde49137bc8627e4.jpeg"
                         alt=""
@@ -87,13 +98,13 @@
             </paginate>
           </div>
         </the-product>
-        <the-product :isSelected="selected === 'Sản phẩm 290k'">
+        <the-product :isSelected="selected === 'Quần áo'">
           <div class="blog_banner_area">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="single_banner">
                   <div class="banner_home_inner-2">
-                    <a href="">
+                    <a style="cursor: default">
                       <img
                         src="https://img.freepik.com/free-vector/black-friday-sale-banner-with-limited-time-offer-details_1017-28051.jpg?w=2000"
                         alt=""
@@ -107,9 +118,18 @@
           <hr />
           <div class="product-router-item">
             <div class="fea-list row">
+              <div v-if="getSaleClothing.length === 0" style="width: 100%">
+                <h3>Hiện chưa có sản phẩm nào</h3>
+                <img
+                  :src="img_svg"
+                  alt=""
+                  style="width: 50%; margin: auto; display: block"
+                />
+              </div>
               <div
+                v-else
                 class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12"
-                v-for="featuredItem in getSaleMin"
+                v-for="featuredItem in getSaleClothing"
                 :key="featuredItem.id"
               >
                 <featured-item :featuredItem="featuredItem" />
@@ -119,10 +139,10 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
-              :page-count="getPaginationCountSaleMin"
+              :page-count="getPaginationCountSaleClothing"
               :page-range="2"
               :margin-pages="2"
-              :click-handler="clickCallback"
+              :click-handler="clickCallbackClothing"
               :prev-text="'←'"
               :next-text="'→'"
               :container-class="'pagination'"
@@ -136,13 +156,13 @@
             >
             </paginate>
           </div> </the-product
-        ><the-product :isSelected="selected === 'Sản phẩm 400k'">
+        ><the-product :isSelected="selected === 'Phụ kiện'">
           <div class="blog_banner_area">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="single_banner">
                   <div class="banner_home_inner-2">
-                    <a href="">
+                    <a style="cursor: default">
                       <img
                         src="https://img.lovepik.com/photo/45000/2166.jpg_wh300.jpg"
                         alt=""
@@ -156,9 +176,18 @@
           <hr />
           <div class="product-router-item">
             <div class="fea-list row">
+              <div v-if="getSaleAccessory.length === 0" style="width: 100%">
+                <h3>Hiện chưa có sản phẩm nào</h3>
+                <img
+                  :src="img_svg"
+                  alt=""
+                  style="width: 50%; margin: auto; display: block"
+                />
+              </div>
               <div
+                v-else
                 class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12"
-                v-for="featuredItem in getSaleMax"
+                v-for="featuredItem in getSaleAccessory"
                 :key="featuredItem.id"
               >
                 <featured-item :featuredItem="featuredItem" />
@@ -168,10 +197,128 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
-              :page-count="getPaginationCountSaleMax"
+              :page-count="getPaginationCountSaleAccessory"
               :page-range="2"
               :margin-pages="2"
-              :click-handler="clickCallback"
+              :click-handler="clickCallbackAccessory"
+              :prev-text="'←'"
+              :next-text="'→'"
+              :container-class="'pagination'"
+              :page-class="'page-item'"
+              :page-link-class="'page-link'"
+              :prev-class="'page-item'"
+              :prev-link-class="'page-link'"
+              :next-class="'page-item'"
+              :next-link-class="'page-link'"
+              :hide-prev-next="true"
+            >
+            </paginate>
+          </div>
+        </the-product>
+        <the-product :isSelected="selected === 'Túi xách'">
+          <div class="blog_banner_area">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="single_banner">
+                  <div class="banner_home_inner-2">
+                    <a style="cursor: default">
+                      <img
+                        src="https://cdn.chanhtuoi.com/uploads/2016/07/juno.png"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="product-router-item">
+            <div class="fea-list row">
+              <div v-if="getSaleBag.length === 0" style="width: 100%">
+                <h3>Hiện chưa có sản phẩm nào</h3>
+                <img
+                  :src="img_svg"
+                  alt=""
+                  style="width: 50%; margin: auto; display: block"
+                />
+              </div>
+              <div
+                v-else
+                class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12"
+                v-for="featuredItem in getSaleBag"
+                :key="featuredItem.id"
+              >
+                <featured-item :featuredItem="featuredItem" />
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="pagination shop_paginatin">
+            <paginate
+              :page-count="getPaginationCountSaleBag"
+              :page-range="2"
+              :margin-pages="2"
+              :click-handler="clickCallbackBag"
+              :prev-text="'←'"
+              :next-text="'→'"
+              :container-class="'pagination'"
+              :page-class="'page-item'"
+              :page-link-class="'page-link'"
+              :prev-class="'page-item'"
+              :prev-link-class="'page-link'"
+              :next-class="'page-item'"
+              :next-link-class="'page-link'"
+              :hide-prev-next="true"
+            >
+            </paginate>
+          </div>
+        </the-product>
+        <the-product :isSelected="selected === 'Giày'">
+          <div class="blog_banner_area">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="single_banner">
+                  <div class="banner_home_inner-2">
+                    <a style="cursor: default">
+                      <img
+                        src="https://laruki.com/wp-content/uploads/2019/08/juno-running-sale.jpg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="product-router-item">
+            <div class="fea-list row">
+              <div v-if="getSaleShoe.length === 0" style="width: 100%">
+                <h3>Hiện chưa có sản phẩm nào</h3>
+                <img
+                  :src="img_svg"
+                  alt=""
+                  style="width: 50%; margin: auto; display: block"
+                />
+              </div>
+              <div
+                v-else
+                class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12"
+                v-for="featuredItem in getSaleShoe"
+                :key="featuredItem.id"
+              >
+                <featured-item :featuredItem="featuredItem" />
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="pagination shop_paginatin">
+            <paginate
+              :page-count="getPaginationCountSaleShoe"
+              :page-range="2"
+              :margin-pages="2"
+              :click-handler="clickCallbackShoe"
               :prev-text="'←'"
               :next-text="'→'"
               :container-class="'pagination'"
@@ -192,6 +339,7 @@
 </template>
 
 <script>
+import error from "../../public/image/error.svg";
 import TabProduct from "./TabProduct.vue";
 import TheProduct from "./TheProduct.vue";
 import Paginate from "vuejs-paginate-next";
@@ -207,6 +355,7 @@ export default {
       perPage: 9,
       selected: "Tất cả",
       selectedcolor: "",
+      img_svg: error,
     };
   },
   components: {
@@ -221,24 +370,36 @@ export default {
     }),
     ...mapGetters({
       productListSale: "productListSale",
-      productListSaleMin: "productListSaleMin",
-      productListSaleMax: "productListSaleMax",
       productListShoe: "productListShoe",
+      productListSaleClothing: "productListSaleClothing",
+      productListSaleAccessory: "productListSaleAccessory",
+      productListSaleBag: "productListSaleBag",
+      productListSaleShoe: "productListSaleShoe",
     }),
     getSale() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
       return this.productListSale.slice(start, end);
     },
-    getSaleMin() {
+    getSaleClothing() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
-      return this.productListSaleMin.slice(start, end);
+      return this.productListSaleClothing.slice(start, end);
     },
-    getSaleMax() {
+    getSaleAccessory() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
-      return this.productListSaleMax.slice(start, end);
+      return this.productListSaleAccessory.slice(start, end);
+    },
+    getSaleBag() {
+      let start = (this.currentPage - 1) * this.perPage;
+      let end = this.currentPage * this.perPage;
+      return this.productListSaleBag.slice(start, end);
+    },
+    getSaleShoe() {
+      let start = (this.currentPage - 1) * this.perPage;
+      let end = this.currentPage * this.perPage;
+      return this.productListSaleShoe.slice(start, end);
     },
     getShoe() {
       let start = (this.currentPage - 1) * this.perPage;
@@ -248,11 +409,17 @@ export default {
     getPaginationCountSale() {
       return Math.ceil(this.productListSale.length / this.perPage);
     },
-    getPaginationCountSaleMin() {
-      return Math.ceil(this.productListSaleMin.length / this.perPage);
+    getPaginationCountSaleClothing() {
+      return Math.ceil(this.productListSaleClothing.length / this.perPage);
     },
-    getPaginationCountSaleMax() {
-      return Math.ceil(this.productListSaleMax.length / this.perPage);
+    getPaginationCountSaleAccessory() {
+      return Math.ceil(this.productListSaleAccessory.length / this.perPage);
+    },
+    getPaginationCountSaleBag() {
+      return Math.ceil(this.productListSaleBag.length / this.perPage);
+    },
+    getPaginationCountSaleShoe() {
+      return Math.ceil(this.productListSaleShoe.length / this.perPage);
     },
     getPaginationCountShoe() {
       return Math.ceil(this.productListShoe.length / this.perPage);
@@ -262,10 +429,10 @@ export default {
     this.productListSale.map((item) => {
       this.items.push(item);
     });
-    this.productListSaleMin.map((item) => {
+    this.productListSaleClothing.map((item) => {
       this.items.push(item);
     });
-    this.productListSaleMax.map((item) => {
+    this.productListSaleAccessory.map((item) => {
       this.items.push(item);
     });
     this.productListShoe.map((item) => {
@@ -278,6 +445,38 @@ export default {
       getAllProduct: "getAllProductsAction",
     }),
     clickCallback(pagenum) {
+      this.currentPage = Number(pagenum);
+      window.scrollTo({
+        top: 100,
+        left: 100,
+        behavior: "smooth",
+      });
+    },
+    clickCallbackClothing(pagenum) {
+      this.currentPage = Number(pagenum);
+      window.scrollTo({
+        top: 100,
+        left: 100,
+        behavior: "smooth",
+      });
+    },
+    clickCallbackAccessory(pagenum) {
+      this.currentPage = Number(pagenum);
+      window.scrollTo({
+        top: 100,
+        left: 100,
+        behavior: "smooth",
+      });
+    },
+    clickCallbackBag(pagenum) {
+      this.currentPage = Number(pagenum);
+      window.scrollTo({
+        top: 100,
+        left: 100,
+        behavior: "smooth",
+      });
+    },
+    clickCallbackShoe(pagenum) {
       this.currentPage = Number(pagenum);
       window.scrollTo({
         top: 100,

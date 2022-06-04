@@ -4,7 +4,7 @@
       <img :src="featuredDetail.image" class="img" alt="" />
     </div>
     <div class="text-detail">
-      <h5>{{ featuredDetail.name }}</h5>
+      <h4>{{ featuredDetail.name }}</h4>
       <h2 class="text-danger" v-if="!isSaleDetail">{{ formatPrice }}</h2>
       <h2 class="text-danger" v-else>
         {{ formatOldPrice }}<span class="oldPrice ml-1">{{ formatPrice }}</span>
@@ -15,7 +15,7 @@
         >
       </p>
       <hr />
-      <h6>{{ featuredDetail.description }}</h6>
+      <pre>{{ featuredDetail.description }}</pre>
       <hr />
     </div>
   </div>
@@ -97,6 +97,15 @@ export default {
   width: 10%;
   padding: 4px;
   border-radius: 4px;
+}
+pre {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: left;
+  line-height: 1.6;
+  font-size: 16px;
+  word-wrap: break-word;
+  max-width: 100%;
+  text-indent: 0px;
 }
 </style>
 <style scoped>

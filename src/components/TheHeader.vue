@@ -18,7 +18,11 @@
             </p>
             <div class="navbar__contact-icon">
               <div class="navbar__contact-account">
-                <a href="" class="mr-3 header__btn account__btn">
+                <a
+                  href=""
+                  @click.prevent=""
+                  class="mr-3 header__btn account__btn"
+                >
                   <span v-if="userInfo._id"
                     ><i class="far fa-user-circle mr-1"></i>Hi,
                     {{ userInfo.lastName }}</span

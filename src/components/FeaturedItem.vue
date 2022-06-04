@@ -161,6 +161,7 @@ export default {
   min-height: 315px;
   transition-duration: 0.8s;
   -webkit-transition-duration: 0.8s;
+  object-fit: fill;
 }
 /* .pro-img:hover{
     transform: scale(1.2); 

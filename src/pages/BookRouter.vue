@@ -24,17 +24,28 @@
             ></tab-product>
           </div>
         </div>
-        <div class="add_r_sidebar-2 mt-3">
-          <h2 class="blog__right-title-5">bestsellers</h2>
-          <p class="banner_block-2">
-            <a href="">
+        <h2 class="blog__right-title-5">featured</h2>
+        <div class="add_r_sidebar">
+          <div class="banner_block">
+            <a>
               <img
                 class="sidebar-image"
-                src="https://file.hstatic.net/1000003969/file/179-700x1010_a59c249c185d4259a3c1b3537ebe6f6d.jpg"
+                src="https://toplist.vn/images/800px/chuong-trinh-khuyen-mai-2010-cua-giay-juno-552660.jpg"
                 alt=""
               />
             </a>
-          </p>
+          </div>
+        </div>
+        <div class="add_r_sidebar">
+          <div class="banner_block">
+            <a>
+              <img
+                class="sidebar-image"
+                src="https://img.cdnki.com/juno-bien-hoa-khuyen-mai---d41e7cf07bb416f45943aef89115bd1d.wepb"
+                alt=""
+              />
+            </a>
+          </div>
         </div>
       </div>
       <div class="col-lg-9">
@@ -44,7 +55,7 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="single_banner">
                   <div class="banner_home_inner-2">
-                    <a href="">
+                    <a>
                       <img
                         src="https://file.hstatic.net/1000003969/file/kv-walkfreely-ldp_166a960e7eb840da93ab012caaf3f8dd.jpg"
                         alt=""
@@ -133,7 +144,7 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="single_banner">
                   <div class="banner_home_inner-2">
-                    <a href="">
+                    <a>
                       <img
                         src="https://file.hstatic.net/1000003969/file/banner-web_them-phu-kien_-them-phong-cach_1920x400_03ec7df4907a4c6fa58458c66da8b463.jpg"
                         alt=""
@@ -221,7 +232,7 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="single_banner">
                   <div class="banner_home_inner-2">
-                    <a href="">
+                    <a>
                       <img
                         src="https://fahashop.com/wp-content/uploads/2020/12/banner-sl-1.jpg"
                         alt=""
@@ -309,7 +320,7 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="single_banner">
                   <div class="banner_home_inner-2">
-                    <a href="">
+                    <a>
                       <img
                         src="https://file.hstatic.net/1000003969/file/cover_986822cf61e4497ab178e92efb22f14c.jpg"
                         alt=""

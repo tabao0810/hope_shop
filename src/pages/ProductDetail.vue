@@ -24,7 +24,6 @@
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
-          <span style="color: black"> Đánh giá</span>
         </h6>
         <hr />
         <h6>
@@ -32,21 +31,21 @@
             >Còn hàng ({{ productDetail.quantity }} sản phẩm)</span
           ><span style="color: red" v-else>Hết hàng</span>
         </h6>
-        <div class="">
+        <div class="d-flex align-items-center">
           <p class="product-detail-price">
             {{ formatPriceDetailNew(productDetail) }}
           </p>
           <p
             v-if="productDetail.isSale == true"
-            class="product-detail-price-sale"
+            class="product-detail-price-sale m-0 pl-2"
           >
             {{ formatDetailOldPrice(productDetail.price) }}
           </p>
         </div>
         <div>
-          <p class="product-detail-des">
+          <pre class="product-detail-des">
             {{ productDetail.description }}
-          </p>
+          </pre>
         </div>
         <div class="product-detail-option">
           <div class="product-detail">
@@ -171,11 +170,11 @@
         </the-tab>
         <the-tab :isSelected="selected === 'Thông tin sản phẩm'">
           <div class="tab-pane">
-            <p>{{ productDetail.description }}</p>
+            <pre>{{ productDetail.description }}</pre>
           </div>
         </the-tab>
         <the-tab :isSelected="selected === 'Đánh giá sản phẩm'">
-          <div class="tab-pane">
+          <div class="tab-pane text-center">
             <h4>Customer Reviews</h4>
             <img :src="img_svg" style="width: 50%" alt="" />
           </div>
@@ -221,7 +220,7 @@
         </div>
       </div>
       <div class="col-lg-12" v-if="productDetail.typeProduct === 'Phụ kiện'">
-        <h1 class="blog__heading">Related Product</h1>
+        <h1 class="blog__heading">Sản phẩm tương tự</h1>
         <div class="product-slide">
           <swiper
             :slidesPerView="setCount"
@@ -258,7 +257,7 @@
         </div>
       </div>
       <div class="col-lg-12" v-if="productDetail.typeProduct === 'Túi'">
-        <h1 class="blog__heading">Related Product</h1>
+        <h1 class="blog__heading">Sản phẩm tương tự</h1>
         <div class="product-slide">
           <swiper
             :slidesPerView="setCount"
@@ -292,7 +291,7 @@
         </div>
       </div>
       <div class="col-lg-12" v-if="productDetail.typeProduct === 'Giày'">
-        <h1 class="blog__heading">Related Product</h1>
+        <h1 class="blog__heading">Sản phẩm tương tự</h1>
         <div class="product-slide">
           <swiper
             :slidesPerView="setCount"
@@ -444,7 +443,7 @@ export default {
   width: 100%;
 }
 .product-detail-price {
-  font-size: 24px;
+  font-size: 26px;
   color: #ff343b;
   font-weight: 500;
   margin-bottom: 0;
@@ -522,6 +521,8 @@ export default {
   padding: 30px;
   width: 100%;
   background-color: #e5e5e5;
+  text-align: left;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 .tab-pane td {
   background: #fff none repeat scroll 0 0;
@@ -534,7 +535,6 @@ export default {
 .tab-pane > p {
   text-align: left;
   width: 100%;
-  text-indent: 50px;
   text-align: justify;
 }
 </style>
@@ -707,6 +707,11 @@ export default {
   display: flex;
   margin-left: 10px;
 }
+@media (max-width: 580px) {
+  .blog__heading {
+    font-size: 28px;
+  }
+}
 </style>
 <style lang="scss" scoped>
 $colors: (
@@ -759,7 +764,10 @@ $colors: (
 }
 .product-detail-des {
   width: 100%;
-  text-indent: 50px;
   text-align: justify;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 10px;
 }
 </style>

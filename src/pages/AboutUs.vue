@@ -62,7 +62,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="about_skills">
-            <h2>our <strong>products</strong></h2>
+            <h2>sản phẩm của <strong>chúng tôi</strong></h2>
             <p>The difference between style and fashion is quality.</p>
           </div>
         </div>
@@ -71,8 +71,8 @@
         <div class="col-lg-3">
           <div class="single-skill-about">
             <div class="progress-circular">
-              <div class="pie animate" style="--p: 50; --c: rgb(255, 52, 59)">
-                50%
+              <div class="pie animate" style="--p: 80; --c: rgb(255, 52, 59)">
+                80%
               </div>
               <h4 class="progress-h4 mt-3">Marketing</h4>
             </div>
@@ -81,30 +81,30 @@
         <div class="col-lg-3">
           <div class="single-skill-about">
             <div class="progress-circular">
-              <div class="pie animate" style="--p: 65; --c: rgb(255, 52, 59)">
-                65%
+              <div class="pie animate" style="--p: 75; --c: rgb(255, 52, 59)">
+                75%
               </div>
-              <h4 class="progress-h4 mt-3">Product Quality</h4>
+              <h4 class="progress-h4 mt-3">Tốc độ sản xuất</h4>
             </div>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="single-skill-about">
             <div class="progress-circular">
-              <div class="pie animate" style="--p: 85; --c: rgb(255, 52, 59)">
-                85%
+              <div class="pie animate" style="--p: 95; --c: rgb(255, 52, 59)">
+                95%
               </div>
-              <h4 class="progress-h4 mt-3">Production Speed</h4>
+              <h4 class="progress-h4 mt-3">Chất lượng sản phẩm</h4>
             </div>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="single-skill-about">
             <div class="progress-circular">
-              <div class="pie animate" style="--p: 45; --c: rgb(255, 52, 59)">
-                45%
+              <div class="pie animate" style="--p: 90; --c: rgb(255, 52, 59)">
+                90%
               </div>
-              <h4 class="progress-h4 mt-3">Product Accuracy</h4>
+              <h4 class="progress-h4 mt-3">Độ chính xác của sản phẩm</h4>
             </div>
           </div>
         </div>
@@ -116,7 +116,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="creative_member_text">
-            <h2>our creative <strong>member</strong></h2>
+            <h2>Kết nối với <strong>chúng tôi</strong></h2>
             <p>
               Fashion is a form of ugliness so intolerable that we have to alter
               it every six months.

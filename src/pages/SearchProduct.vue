@@ -79,9 +79,9 @@
                 </p>
 
                 <div>
-                  <p class="blog_texts">
+                  <pre class="blog_texts">
                     {{ featured.description }}
-                  </p>
+                  </pre>
                   <a
                     class="learn_more"
                     href=""

@@ -37,9 +37,9 @@
                 }}</a>
               </h2>
 
-              <p class="blog_info_text-detail">
+              <pre class="blog_info_text-detail">
                 {{ blogDetail.text }}
-              </p>
+              </pre>
             </div>
           </div>
           <hr />
@@ -127,10 +127,10 @@
           </div>
           <div class="add_r_sidebar">
             <p class="banner_block">
-              <a href="">
+              <a>
                 <img
                   class="sidebar-image"
-                  src="https://cdn.chanhtuoi.com/uploads/2016/03/balo-JUNO.jpg.webp"
+                  src="https://file.hstatic.net/1000003969/file/5_4e8bbd11e68d4e08a72d2d9b4738f03b.jpg"
                   alt=""
                 />
               </a>
@@ -138,7 +138,7 @@
           </div>
           <div class="add_r_sidebar">
             <p class="banner_block">
-              <a href="">
+              <a>
                 <img
                   class="sidebar-image"
                   src="https://file.hstatic.net/1000003969/file/3_bdbb2eb57de648dabcdb98fb58fb360d.jpg"
@@ -146,6 +146,17 @@
                 />
               </a>
             </p>
+          </div>
+          <div class="add_r_sidebar">
+            <div class="banner_block">
+              <a>
+                <img
+                  class="sidebar-image"
+                  src="https://file.hstatic.net/1000003969/file/1_bd94c2d5fef549f2ae4465bb6732fc0f.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -157,7 +168,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="banner_home_inner">
             <div class="banner_home_effect">
-              <a href="">
+              <a>
                 <img
                   src="https://file.hstatic.net/200000355547/file/headline_juno_1_71eab1e1bf874661802a268e5d04c300.jpeg"
                   alt=""
@@ -261,7 +272,6 @@ export default {
   margin: 15px 0px 25px 0px;
   line-height: 1.6;
   width: 100%;
-  text-indent: 50px;
   text-align: justify;
 }
 .blog__detail-btn {

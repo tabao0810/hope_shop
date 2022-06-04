@@ -160,8 +160,9 @@ export default {
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
+  line-height: 1.6;
   cursor: pointer;
-  max-height: 15px;
+  max-height: 20px;
   overflow: hidden;
   -webkit-line-clamp: 1; /* số dòng hiển thị */
   -webkit-box-orient: vertical;
