@@ -215,15 +215,38 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { createNamespacedHelpers, useStore } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("user");
-import { ref } from "vue";
+import { useStore } from "vuex";
+import { ref, computed } from "vue";
 
 export default {
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const searchName = ref("");
+    store.dispatch("user/loadUserLoginFromLocalStorage");
+    const LogoutPage = () => {
+      store.dispatch("user/logoutUser");
+      router.push("/");
+    };
+    const handleClickSearch = () => {
+      const data = searchName.value;
+      store.dispatch("products/searchNameAction", { data, router });
+    };
+    const userInfo = computed(() => store.state.user.userInfo);
+    const userCarts = computed(() => store.state.user.userCarts);
+    const handleDelete = (data) => {
+      store.dispatch("user/removeCartAction", data);
+    };
+    return {
+      LogoutPage,
+      handleClickSearch,
+      userInfo,
+      userCarts,
+      handleDelete,
+      searchName: searchName,
+    };
+  },
   methods: {
-    ...mapActions({
-      handleDelete: "removeCartAction",
-    }),
     FormatSale(cartItem) {
       if (cartItem.isSale === true) {
         let x = cartItem.price - cartItem.price * (cartItem.sale / 100);
@@ -241,33 +264,9 @@ export default {
     },
   },
   computed: {
-    ...mapState({
-      userInfo: (state) => state.userInfo,
-      userCarts: (state) => state.userCarts,
-    }),
     sumCart() {
       return this.userCarts.reduce((sum, cart) => (sum += cart.amount), 0);
     },
-  },
-  setup() {
-    const store = useStore();
-    const router = useRouter();
-    const searchName = ref("");
-    store.dispatch("user/loadUserLoginFromLocalStorage");
-    const LogoutPage = () => {
-      store.dispatch("user/logoutUser");
-      router.push("/");
-    };
-
-    const handleClickSearch = () => {
-      const data = searchName.value;
-      store.dispatch("products/searchNameAction", { data, router });
-    };
-    return {
-      LogoutPage,
-      handleClickSearch,
-      searchName: searchName,
-    };
   },
 };
 </script>

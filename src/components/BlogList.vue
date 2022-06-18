@@ -41,8 +41,8 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 
 import BlogItem from "./BlogItem.vue";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("blogs");
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
   data() {
     return {
@@ -55,14 +55,15 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const store = useStore();
+    store.dispatch("blogs/getAllBlogAction");
+    const blogList = computed(() => store.state.blogs.blogList);
     return {
       modules: [Pagination, Navigation],
+      blogList,
     };
   },
   computed: {
-    ...mapState({
-      blogList: (state) => state.blogList.slice(0, 5),
-    }),
     setCount() {
       let x = screen.width;
       let count;
@@ -87,14 +88,6 @@ export default {
       }
       return y;
     },
-  },
-  methods: {
-    ...mapActions({
-      getAllBlog: "getAllBlogAction",
-    }),
-  },
-  created() {
-    this.getAllBlog();
   },
 };
 </script>

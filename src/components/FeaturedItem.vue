@@ -75,8 +75,7 @@
 
 <script>
 import FeaturedDetail from "./FeaturedDetail.vue";
-import { createNamespacedHelpers } from "vuex";
-const { mapActions } = createNamespacedHelpers("user");
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -94,6 +93,19 @@ export default {
       isOpenDetail: false,
     };
   },
+  setup() {
+    const store = useStore();
+    const handleBuy = (data) => {
+      store.dispatch("user/addCartAction", data);
+    };
+    const handleWishList = (data) => {
+      store.dispatch("user/addWishListAction", data);
+    };
+    return {
+      handleBuy,
+      handleWishList,
+    };
+  },
   methods: {
     mouseOver() {
       this.isActive = false;
@@ -107,10 +119,6 @@ export default {
     handleCloseDetail() {
       this.isOpenDetail = false;
     },
-    ...mapActions({
-      handleBuy: "addCartAction",
-      handleWishList: "addWishListAction",
-    }),
 
     handleToDetail(a) {
       this.$router.push(`/product-detail/${a}`);

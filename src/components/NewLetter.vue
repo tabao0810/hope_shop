@@ -79,11 +79,16 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("user");
+import { useStore } from "vuex";
+import { computed } from "vue";
 import shopping from "../../public/image/shopping.svg";
 import visa from "../assets/images/visa.png";
 export default {
+  setup() {
+    const store = useStore();
+    const userInfo = computed(() => store.state.user.userInfo);
+    return { userInfo };
+  },
   data() {
     return {
       listImg: [
@@ -120,11 +125,6 @@ export default {
         totop.classList.remove("activeTop");
       }
     });
-  },
-  computed: {
-    ...mapState({
-      userInfo: (state) => state.userInfo,
-    }),
   },
 };
 </script>

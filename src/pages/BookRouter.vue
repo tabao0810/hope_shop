@@ -413,11 +413,66 @@ import TabProduct from "./TabProduct.vue";
 import TheProduct from "./TheProduct.vue";
 import Paginate from "vuejs-paginate-next";
 import FeaturedItem from "../components/FeaturedItem.vue";
-import { createNamespacedHelpers } from "vuex";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
-const { mapState, mapGetters, mapActions } =
-  createNamespacedHelpers("products");
 export default {
+  setup() {
+    const store = useStore();
+    store.dispatch("products/getAllProductsAction");
+    const featuredList = computed(() => store.state.products.productList);
+    const productListClothing = computed(
+      () => store.getters["products/productListClothing"]
+    );
+    const productListAccessory = computed(
+      () => store.getters["products/productListAccessory"]
+    );
+    const productListBag = computed(
+      () => store.getters["products/productListBag"]
+    );
+    const productListShoe = computed(
+      () => store.getters["products/productListShoe"]
+    );
+    const productListClothingSortAsc = computed(
+      () => store.getters["products/productListClothingSortAsc"]
+    );
+    const productListClothingSortDesc = computed(
+      () => store.getters["products/productListClothingSortDesc"]
+    );
+    const productListAccessorySortAsc = computed(
+      () => store.getters["products/productListAccessorySortAsc"]
+    );
+    const productListAccessorySortDesc = computed(
+      () => store.getters["products/productListAccessorySortDesc"]
+    );
+    const productListBagSortAsc = computed(
+      () => store.getters["products/productListBagSortAsc"]
+    );
+    const productListBagSortDesc = computed(
+      () => store.getters["products/productListBagSortDesc"]
+    );
+    const productListShoeSortAsc = computed(
+      () => store.getters["products/productListShoeSortAsc"]
+    );
+    const productListShoeSortDesc = computed(
+      () => store.getters["products/productListShoeSortDesc"]
+    );
+    return {
+      featuredList,
+      productListClothing,
+      productListAccessory,
+      productListBag,
+      productListShoe,
+      productListClothingSortAsc,
+      productListClothingSortDesc,
+      productListAccessorySortAsc,
+      productListAccessorySortDesc,
+      productListBagSortAsc,
+      productListBagSortDesc,
+      productListShoeSortAsc,
+      productListShoeSortDesc,
+    };
+  },
   data() {
     return {
       items: [],
@@ -441,23 +496,6 @@ export default {
     TheProduct,
   },
   computed: {
-    ...mapState({
-      featuredList: (state) => state.productList,
-    }),
-    ...mapGetters({
-      productListClothing: "productListClothing",
-      productListAccessory: "productListAccessory",
-      productListBag: "productListBag",
-      productListShoe: "productListShoe",
-      productListClothingSortAsc: "productListClothingSortAsc",
-      productListClothingSortDesc: "productListClothingSortDesc",
-      productListAccessorySortAsc: "productListAccessorySortAsc",
-      productListAccessorySortDesc: "productListAccessorySortDesc",
-      productListBagSortAsc: "productListBagSortAsc",
-      productListBagSortDesc: "productListBagSortDesc",
-      productListShoeSortAsc: "productListShoeSortAsc",
-      productListShoeSortDesc: "productListShoeSortDesc",
-    }),
     getClothings() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
@@ -529,12 +567,8 @@ export default {
     this.productListShoe.map((item) => {
       this.items.push(item);
     });
-    this.getAllProduct();
   },
   methods: {
-    ...mapActions({
-      getAllProduct: "getAllProductsAction",
-    }),
     clickCallback(pagenum) {
       this.currentPage = Number(pagenum);
       window.scrollTo({

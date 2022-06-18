@@ -56,16 +56,19 @@ import "swiper/css/effect-creative";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("banners");
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
-  data() {
-    return {};
+  setup() {
+    const store = useStore();
+    store.dispatch("banners/getAllBannerAction");
+    const listBanner = computed(() => store.state.banners.listBanner);
+    return {
+      listBanner,
+      modules: [Autoplay, Pagination, Navigation, EffectCreative],
+    };
   },
   computed: {
-    ...mapState({
-      listBanner: (state) => state.listBanner,
-    }),
     setNavigation() {
       let x = screen.width;
       let y = this.isNavigation;
@@ -83,19 +86,6 @@ export default {
     Swiper,
     SwiperSlide,
     SlideItem,
-  },
-  methods: {
-    ...mapActions({
-      getAllBanner: "getAllBannerAction",
-    }),
-  },
-  created() {
-    this.getAllBanner();
-  },
-  setup() {
-    return {
-      modules: [Autoplay, Pagination, Navigation, EffectCreative],
-    };
   },
 };
 </script>

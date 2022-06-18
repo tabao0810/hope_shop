@@ -23,17 +23,19 @@
 
 <script>
 import SaleItem from "./SaleItem.vue";
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("sales");
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
+  setup() {
+    const store = useStore();
+    const saleList = computed(() => store.state.sales.saleList);
+    return {
+      saleList,
+    };
+  },
   components: {
     SaleItem,
-  },
-  computed: {
-    ...mapState({
-      saleList: (state) => state.saleList,
-    }),
   },
 };
 </script>

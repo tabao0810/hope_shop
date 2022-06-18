@@ -43,8 +43,8 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper";
 
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("brands");
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
   components: {
@@ -52,14 +52,15 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const store = useStore();
+    store.dispatch("brands/getAllBrandAction");
+    const listBrand = computed(() => store.state.brands.listBrand);
     return {
       modules: [Pagination, Navigation],
+      listBrand,
     };
   },
   computed: {
-    ...mapState({
-      listBrand: (state) => state.listBrand,
-    }),
     setCount() {
       let x = screen.width;
       let count;
@@ -84,14 +85,6 @@ export default {
       }
       return y;
     },
-  },
-  methods: {
-    ...mapActions({
-      getAllBrand: "getAllBrandAction",
-    }),
-  },
-  created() {
-    this.getAllBrand();
   },
 };
 </script>

@@ -109,7 +109,7 @@
               </div>
             </div>
             <div class="blog__detail-link">
-              <a href="" @click.prevent="postComment(cmt)">Đăng</a>
+              <a href="" @click.prevent="postComment()">Đăng</a>
             </div>
           </div>
         </div>
@@ -186,16 +186,11 @@
 <script>
 import Paginate from "vuejs-paginate-next";
 import { useRoute } from "vue-router";
-import { createNamespacedHelpers, useStore } from "vuex";
-const { mapState } = createNamespacedHelpers("blogs");
+import { useStore } from "vuex";
+import { computed, reactive } from "vue";
 export default {
   data() {
     return {
-      cmt: {
-        id: Math.floor(Math.random() * 10000),
-        name: "",
-        content: "",
-      },
       items: [],
       currentPage: 1,
       perPage: 3,
@@ -204,17 +199,39 @@ export default {
   setup() {
     const store = useStore();
     const route = useRoute();
+    const cmt = reactive({
+      id: Math.floor(Math.random() * 10000),
+      name: "",
+      content: "",
+    });
     store.dispatch("blogs/getSingleBlogAction", route.params.blogId);
+    const blogDetail = computed(() => store.state.blogs.blogDetail);
+    const blogComments = computed(() => store.state.blogs.blogDetail.comments);
+    const postComment = () => {
+      const data = {
+        id: cmt.id,
+        name: cmt.name,
+        content: cmt.content,
+      };
+      if (data.name.length > 0) {
+        if (data.content.length > 0) {
+          store.dispatch("blogs/addCommentAction", data);
+          (cmt.name = ""), (cmt.content = "");
+        } else {
+          alert("Vui lòng nhập bình luận");
+        }
+      } else {
+        alert("Vui lòng điền tên trước khi bình luận");
+      }
+    };
+    return {
+      blogDetail,
+      blogComments,
+      cmt: cmt,
+      postComment,
+    };
   },
   methods: {
-    postComment(cmt) {
-      window.scrollTo({
-        bottom: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-      this.$store.dispatch("blogs/addCommentAction", cmt);
-    },
     formatDateDetail(a) {
       const time = new Date(a);
       return time.toDateString().slice(3);
@@ -229,10 +246,6 @@ export default {
     },
   },
   computed: {
-    ...mapState({
-      blogDetail: (state) => state.blogDetail,
-      blogComments: (state) => state.blogDetail.comments,
-    }),
     getComments() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;

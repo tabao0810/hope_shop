@@ -147,9 +147,15 @@
 
 <script>
 import Paginate from "vuejs-paginate-next";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("blogs");
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
+  setup() {
+    const store = useStore();
+    store.dispatch("blogs/getAllBlogAction");
+    const blogList = computed(() => store.state.blogs.blogList);
+    return { blogList };
+  },
   data() {
     return {
       items: [],
@@ -161,9 +167,6 @@ export default {
     Paginate,
   },
   computed: {
-    ...mapState({
-      blogList: (state) => state.blogList,
-    }),
     getItems() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
@@ -174,9 +177,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      getAllBlog: "getAllBlogAction",
-    }),
     handleBlogDetail(a) {
       this.$router.push(`/blog-detail/${a}`);
       window.scrollTo({
@@ -202,7 +202,6 @@ export default {
     this.blogList.map((item) => {
       this.items.push(item);
     });
-    this.getAllBlog();
   },
 };
 </script>

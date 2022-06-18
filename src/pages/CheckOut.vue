@@ -189,13 +189,11 @@
 
 <script>
 import { reactive } from "@vue/reactivity";
-import { createNamespacedHelpers, useStore } from "vuex";
+import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
-const { mapState } = createNamespacedHelpers("user");
-const CityState = createNamespacedHelpers("places");
-const DistrictState = createNamespacedHelpers("places");
-const WardState = createNamespacedHelpers("places");
+
+import { computed } from "vue";
 
 export default {
   setup() {
@@ -255,6 +253,10 @@ export default {
       }
     };
     store.dispatch("places/getAllCitiesAction");
+    const listCities = computed(() => store.state.places.listCities);
+    const listDistricts = computed(() => store.state.places.listDistricts);
+    const listWards = computed(() => store.state.places.listWards);
+    const cartList = computed(() => store.state.user.userCarts);
     const ChangeCity = () => {
       store.dispatch("places/getAllDistrictsAction", order.city);
       order.district = "";
@@ -263,21 +265,18 @@ export default {
     const ChangeDistrict = () => {
       store.dispatch("places/getAllWardsAction", order.district);
     };
-    return { order: order, handleToPayment, ChangeCity, ChangeDistrict };
+    return {
+      order: order,
+      handleToPayment,
+      ChangeCity,
+      ChangeDistrict,
+      listCities,
+      listDistricts,
+      listWards,
+      cartList,
+    };
   },
   computed: {
-    ...mapState({
-      cartList: (state) => state.userCarts,
-    }),
-    ...CityState.mapState({
-      listCities: (state) => state.listCities,
-    }),
-    ...DistrictState.mapState({
-      listDistricts: (state) => state.listDistricts,
-    }),
-    ...WardState.mapState({
-      listWards: (state) => state.listWards,
-    }),
     sumTotalCart() {
       let x = this.cartList.reduce(
         (sum, cart) => (sum += cart.amount * this.format_sale(cart)),
@@ -299,9 +298,6 @@ export default {
         currency: "VND",
       }));
     },
-  },
-  created() {
-    console.log();
   },
   methods: {
     formatShip(x) {

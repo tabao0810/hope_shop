@@ -28,16 +28,21 @@
 
 <script>
 import FeaturedItem from "./FeaturedItem.vue";
-import { createNamespacedHelpers } from "vuex";
-const { mapActions, mapGetters } = createNamespacedHelpers("products");
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
   components: {
     FeaturedItem,
   },
-  computed: {
-    ...mapGetters({
-      featuredList: "productListfeatured",
-    }),
+  setup() {
+    const store = useStore();
+    store.dispatch("products/getAllProductsAction");
+    const featuredList = computed(
+      () => store.getters["products/productListfeatured"]
+    );
+    return {
+      featuredList,
+    };
   },
   methods: {
     handleToShop() {
@@ -48,12 +53,6 @@ export default {
       });
       return this.$router.push("/lookbook");
     },
-    ...mapActions({
-      getAllProduct: "getAllProductsAction",
-    }),
-  },
-  created() {
-    this.getAllProduct();
   },
 };
 </script>

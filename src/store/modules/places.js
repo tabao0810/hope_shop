@@ -4,7 +4,7 @@ const state = () => {
   return {
     listCities: [],
     listDistricts: [],
-    listWards:[],
+    listWards: [],
   };
 };
 
