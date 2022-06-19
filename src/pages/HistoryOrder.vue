@@ -116,8 +116,9 @@
 
 <script>
 import Paginate from "vuejs-paginate-next";
-import { useStore, createNamespacedHelpers } from "vuex";
-const { mapActions, mapGetters } = createNamespacedHelpers("order");
+import { useStore } from "vuex";
+import { computed } from "vue";
+
 export default {
   components: {
     Paginate,
@@ -132,11 +133,14 @@ export default {
   setup() {
     const store = useStore();
     store.dispatch("order/getAllOrdersActions");
+    const listOrder = computed(() => store.getters["order/getOrderByUser"]);
+    const checkedStatus = (ord) => {
+      ord.mess = "Giao hàng thành công";
+      store.dispatch("order/updateOrderActions", ord);
+    };
+    return { listOrder, checkedStatus };
   },
   methods: {
-    ...mapActions({
-      getAllOrder: "getAllOrdersActions",
-    }),
     totalPrice(list) {
       const sub = list.carts.reduce(
         (sum, cart) => (sum += cart.amount * this.format_sale(cart)),
@@ -174,15 +178,8 @@ export default {
         behavior: "smooth",
       });
     },
-    checkedStatus(ord) {
-      ord.mess = "Giao hàng thành công";
-      this.$store.dispatch("order/updateOrderActions", ord);
-    },
   },
   computed: {
-    ...mapGetters({
-      listOrder: "getOrderByUser",
-    }),
     getOrders() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
@@ -193,7 +190,6 @@ export default {
     },
   },
   created() {
-    this.getAllOrder();
     this.listOrder.map((item) => {
       this.items.push(item);
     });

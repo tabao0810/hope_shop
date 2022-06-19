@@ -339,12 +339,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import RelatedProduct from "../components/RelatedProduct.vue";
-import { createNamespacedHelpers, useStore } from "vuex";
+import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-
-const { mapState, mapGetters } = createNamespacedHelpers("products");
-const { mapActions } = createNamespacedHelpers("user");
-
+import { computed } from "vue";
 export default {
   data() {
     return {
@@ -355,11 +352,32 @@ export default {
   setup() {
     const route = useRoute();
     const store = useStore();
-
     store.dispatch("products/getSingleProductsAction", route.params.productId);
     store.dispatch("products/getAllProductsAction");
+    const productDetail = computed(() => store.state.products.productDetail);
+    const productListClothing = computed(
+      () => store.getters["products/productListClothing"]
+    );
+    const productListAccessory = computed(
+      () => store.getters["products/productListAccessory"]
+    );
+    const productListBag = computed(
+      () => store.getters["products/productListBag"]
+    );
+    const productListShoe = computed(
+      () => store.getters["products/productListShoe"]
+    );
+    const handleWishList = (data) => {
+      store.dispatch("user/addWishListAction", data);
+    };
     return {
       modules: [Pagination, Navigation],
+      productDetail,
+      productListClothing,
+      productListAccessory,
+      productListBag,
+      productListShoe,
+      handleWishList,
     };
   },
   components: {
@@ -370,15 +388,6 @@ export default {
     TheTab,
   },
   computed: {
-    ...mapState({
-      productDetail: (state) => state.productDetail,
-    }),
-    ...mapGetters({
-      productListClothing: "productListClothing",
-      productListAccessory: "productListAccessory",
-      productListBag: "productListBag",
-      productListShoe: "productListShoe",
-    }),
     setCount() {
       let x = screen.width;
       let count;
@@ -415,9 +424,6 @@ export default {
     setSelected(tab) {
       this.selected = tab;
     },
-    ...mapActions({
-      handleWishList: "addWishListAction",
-    }),
     handleBuy(pro) {
       this.$store.dispatch("user/addCartAction", pro);
       this.$router.push("/my-cart");

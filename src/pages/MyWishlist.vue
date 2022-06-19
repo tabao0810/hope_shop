@@ -149,10 +149,24 @@
 <script>
 import wishlistSVG from "../../public/image/wishlist.gif";
 import Paginate from "vuejs-paginate-next";
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("user");
-const { mapActions } = createNamespacedHelpers("user");
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
+  setup() {
+    const store = useStore();
+    const wishlist = computed(() => store.state.user.userWishes);
+    const handleDeleteWish = (data) => {
+      store.dispatch("user/removeWishAction", data);
+    };
+    const handleBuy = (data) => {
+      store.dispatch("user/addCartAction", data);
+    };
+    return {
+      wishlist,
+      handleDeleteWish,
+      handleBuy,
+    };
+  },
   data() {
     return {
       items: [],
@@ -165,9 +179,6 @@ export default {
     Paginate,
   },
   computed: {
-    ...mapState({
-      wishlist: (state) => state.userWishes,
-    }),
     getItems() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
@@ -183,10 +194,6 @@ export default {
     });
   },
   methods: {
-    ...mapActions({
-      handleDeleteWish: "removeWishAction",
-      handleBuy: "addCartAction",
-    }),
     FormatSale(featured) {
       if (featured.isSale === true) {
         let x = featured.price - featured.price * (featured.sale / 100);

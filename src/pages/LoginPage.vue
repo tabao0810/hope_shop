@@ -94,12 +94,10 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { useLoading } from "vue-loading-overlay";
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("user");
 export default {
   setup() {
     const $loading = useLoading();
@@ -127,15 +125,12 @@ export default {
         store.dispatch("user/LoginPageAction", { data, router });
       }, 1500);
     };
+    const errMes = computed(() => store.state.user.errMes);
     return {
       userLogin,
       handleLogin,
+      errMes,
     };
-  },
-  computed: {
-    ...mapState({
-      errMes: (state) => state.errMes,
-    }),
   },
 };
 </script>

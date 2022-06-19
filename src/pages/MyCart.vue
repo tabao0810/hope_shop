@@ -129,19 +129,34 @@
 
 <script>
 import shopping from "../../public/image/shopping.gif";
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("user");
-const { mapActions } = createNamespacedHelpers("user");
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
+  setup() {
+    const store = useStore();
+    const cartList = computed(() => store.state.user.userCarts);
+    const handleDelete = (data) => {
+      store.dispatch("user/removeCartAction", data);
+    };
+    const handleDown = (data) => {
+      store.dispatch("user/handleDownAction", data);
+    };
+    const handleUp = (data) => {
+      store.dispatch("user/handleUpAction", data);
+    };
+    return {
+      cartList,
+      handleDelete,
+      handleDown,
+      handleUp,
+    };
+  },
   data() {
     return {
       img_svg: shopping,
     };
   },
   computed: {
-    ...mapState({
-      cartList: (state) => state.userCarts,
-    }),
     sumTotal() {
       let x = this.cartList.reduce(
         (sum, cart) => (sum += cart.amount * this.format_sale(cart)),
@@ -193,11 +208,6 @@ export default {
         return cartItem.price;
       }
     },
-    ...mapActions({
-      handleDelete: "removeCartAction",
-      handleDown: "handleDownAction",
-      handleUp: "handleUpAction",
-    }),
     handleToCheckOut() {
       this.$router.push("/check-out");
       window.scrollTo({

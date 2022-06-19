@@ -125,12 +125,18 @@
 <script>
 import findIt from "../../public/image/find.svg";
 import Paginate from "vuejs-paginate-next";
-import { createNamespacedHelpers, useStore } from "vuex";
-const { mapGetters } = createNamespacedHelpers("products");
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
   setup() {
     const store = useStore();
     store.dispatch("products/getAllProductsAction");
+    const productListByName = computed(
+      () => store.getters["products/productListByName"]
+    );
+    return {
+      productListByName,
+    };
   },
   data() {
     return {
@@ -144,9 +150,6 @@ export default {
     Paginate,
   },
   computed: {
-    ...mapGetters({
-      productListByName: "productListByName",
-    }),
     getSearch() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;

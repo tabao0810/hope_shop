@@ -344,10 +344,41 @@ import TabProduct from "./TabProduct.vue";
 import TheProduct from "./TheProduct.vue";
 import Paginate from "vuejs-paginate-next";
 import FeaturedItem from "../components/FeaturedItem.vue";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapGetters, mapActions } =
-  createNamespacedHelpers("products");
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
+  setup() {
+    const store = useStore();
+    store.dispatch("products/getAllProductsAction");
+    const featuredList = computed(() => store.state.products.productList);
+    const productListSale = computed(
+      () => store.getters["products/productListSale"]
+    );
+    const productListShoe = computed(
+      () => store.getters["products/productListShoe"]
+    );
+    const productListSaleClothing = computed(
+      () => store.getters["products/productListSaleClothing"]
+    );
+    const productListSaleAccessory = computed(
+      () => store.getters["products/productListSaleAccessory"]
+    );
+    const productListSaleBag = computed(
+      () => store.getters["products/productListSaleBag"]
+    );
+    const productListSaleShoe = computed(
+      () => store.getters["products/productListSaleShoe"]
+    );
+    return {
+      featuredList,
+      productListSale,
+      productListShoe,
+      productListSaleClothing,
+      productListSaleAccessory,
+      productListSaleBag,
+      productListSaleShoe,
+    };
+  },
   data() {
     return {
       items: [],
@@ -365,17 +396,6 @@ export default {
     TheProduct,
   },
   computed: {
-    ...mapState({
-      featuredList: (state) => state.productList,
-    }),
-    ...mapGetters({
-      productListSale: "productListSale",
-      productListShoe: "productListShoe",
-      productListSaleClothing: "productListSaleClothing",
-      productListSaleAccessory: "productListSaleAccessory",
-      productListSaleBag: "productListSaleBag",
-      productListSaleShoe: "productListSaleShoe",
-    }),
     getSale() {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
@@ -438,12 +458,8 @@ export default {
     this.productListShoe.map((item) => {
       this.items.push(item);
     });
-    this.getAllProduct();
   },
   methods: {
-    ...mapActions({
-      getAllProduct: "getAllProductsAction",
-    }),
     clickCallback(pagenum) {
       this.currentPage = Number(pagenum);
       window.scrollTo({
