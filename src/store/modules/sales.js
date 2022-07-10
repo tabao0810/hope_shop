@@ -4,19 +4,19 @@ const state = function () {
       {
         id: 1,
         image:
-          "https://cdn.shopify.com/s/files/1/1309/3901/t/2/assets/h-banner-1.jpg?v=13228227290046841073",
+          "https://img3.thuthuatphanmem.vn/uploads/2019/10/14/banner-thoi-trang-hien-dai-dep-nhat_113857069.jpg",
         sale: "-35% SALE OFF",
       },
       {
         id: 2,
         image:
-          "https://cdn.shopify.com/s/files/1/1309/3901/t/2/assets/h-banner-2.jpg?v=2161217510346950624",
+          "https://img3.thuthuatphanmem.vn/uploads/2019/10/14/anh-lookbook-thoi-trang_113854100.jpg",
         sale: "-35% SALE OFF",
       },
       {
         id: 3,
         image:
-          "https://cdn.shopify.com/s/files/1/1309/3901/t/2/assets/h-banner-3.jpg?v=10860493920640028538",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxG9AH9-Qx_PN8td6LguylG8OsXzio6gNTA0lYSuIqIDFxDc9AtLTy15UYWvCWci-xcTI&usqp=CAU",
         sale: "-35% SALE OFF",
       },
     ],

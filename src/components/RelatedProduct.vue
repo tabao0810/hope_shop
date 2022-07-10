@@ -12,13 +12,13 @@
         productItem.name
       }}</a>
     </h2>
-    <h6 class="card-title small text-warning">
+    <!-- <h6 class="card-title small text-warning">
       <i class="fa fa-star"></i>
       <i class="fa fa-star"></i>
       <i class="fa fa-star"></i>
       <i class="fa fa-star"></i>
       <i class="fa fa-star"></i>
-    </h6>
+    </h6> -->
     <div class="product-item-price">
       <p class="product-item-price-new">
         {{ formatPriceDetail(productItem) }}

@@ -71,7 +71,7 @@
               <i class="fa fa-video-camera"></i>
               <div class="blog_details_list">
                 <div class="blog_details-icon">
-                  <i class="fa fa-user px-1"></i>hope shop
+                  <i class="fa fa-user px-1"></i>h&m
                   <i class="fa fa-clock-o px-1 ml-1"></i>
                   {{ formatBlogRouterDate(blog.createdAt) }}
                 </div>
@@ -109,6 +109,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCount > 1"
               :page-count="getPaginationCount"
               :page-range="2"
               :margin-pages="2"

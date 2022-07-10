@@ -18,13 +18,13 @@
         <h2 class="product-heading">
           {{ productDetail.name }}
         </h2>
-        <h6 class="card-title small text-warning">
+        <!-- <h6 class="card-title small text-warning">
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
-        </h6>
+        </h6> -->
         <hr />
         <h6>
           Tình trạng:<span style="color: red" v-if="productDetail.quantity > 0"

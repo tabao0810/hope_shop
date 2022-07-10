@@ -36,25 +36,25 @@
           }}</span>
         </p>
       </div>
-      <div class="card-body" v-else>
-        <h6 class="card-title small text-warning">
+      <div class="card-body mt-3" v-else>
+        <!-- <h6 class="card-title small text-warning">
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
-        </h6>
+        </h6> -->
         <p class="card-text feature-cart">
           <button
             class="btn mx-1 feature-btn"
             @click="handleBuy(featuredItem)"
             :disabled="featuredItem.quantity === 0"
           >
-            MUA NGAY
+            THÊM VÀO GIỎ HÀNG
           </button>
-          <button class="btn feature-btn" @click="handleOpenDetail">
+          <!-- <button class="btn feature-btn" @click="handleOpenDetail">
             <i class="fa fa-eye"></i>
-          </button>
+          </button> -->
           <button
             class="btn ml-1 feature-btn"
             @click="handleWishList(featuredItem)"

@@ -120,6 +120,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountClothing > 1"
               :page-count="getPaginationCountClothing"
               :page-range="2"
               :margin-pages="2"
@@ -209,6 +210,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountAccesory > 1"
               :page-count="getPaginationCountAccesory"
               :page-range="2"
               :margin-pages="2"
@@ -297,6 +299,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountBag > 1"
               :page-count="getPaginationCountBag"
               :page-range="2"
               :margin-pages="2"
@@ -385,6 +388,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountShoe > 1"
               :page-count="getPaginationCountShoe"
               :page-range="2"
               :margin-pages="2"
@@ -664,6 +668,9 @@ export default {
 }
 .toolbar .form-horizontal {
   float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .toolbar .form-horizontal label {
   color: #666;

@@ -97,6 +97,7 @@
       <hr />
       <div class="pagination shop_paginatin">
         <paginate
+          v-if="getPaginationCountSearch > 1"
           :page-count="getPaginationCountSearch"
           :page-range="2"
           :margin-pages="2"

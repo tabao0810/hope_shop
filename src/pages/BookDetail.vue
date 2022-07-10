@@ -129,7 +129,7 @@
                       featured.name
                     }}</a>
                   </h2>
-                  <div class="product_rating">
+                  <!-- <div class="product_rating">
                     <span class="spr-badge"
                       ><span class="spr-starrating spr-badge-starrating"
                         ><i
@@ -159,7 +159,7 @@
                         ></i></span
                       ><span class="spr-badge-caption ml-2">No reviews</span>
                     </span>
-                  </div>
+                  </div> -->
 
                   <div class="pricing_rate">
                     <p class="rating_dollor">

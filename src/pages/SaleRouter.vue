@@ -80,6 +80,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountSale > 1"
               :page-count="getPaginationCountSale"
               :page-range="2"
               :margin-pages="2"
@@ -139,6 +140,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountSaleClothing > 1"
               :page-count="getPaginationCountSaleClothing"
               :page-range="2"
               :margin-pages="2"
@@ -155,6 +157,7 @@
               :hide-prev-next="true"
             >
             </paginate>
+            <div v-else></div>
           </div> </the-product
         ><the-product :isSelected="selected === 'Phụ kiện'">
           <div class="blog_banner_area">
@@ -197,6 +200,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountSaleAccessory > 1"
               :page-count="getPaginationCountSaleAccessory"
               :page-range="2"
               :margin-pages="2"
@@ -213,6 +217,7 @@
               :hide-prev-next="true"
             >
             </paginate>
+            <div v-else></div>
           </div>
         </the-product>
         <the-product :isSelected="selected === 'Túi xách'">
@@ -256,6 +261,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountSaleBag > 1"
               :page-count="getPaginationCountSaleBag"
               :page-range="2"
               :margin-pages="2"
@@ -272,6 +278,7 @@
               :hide-prev-next="true"
             >
             </paginate>
+            <div v-else></div>
           </div>
         </the-product>
         <the-product :isSelected="selected === 'Giày'">
@@ -315,6 +322,7 @@
           <hr />
           <div class="pagination shop_paginatin">
             <paginate
+              v-if="getPaginationCountSaleShoe > 1"
               :page-count="getPaginationCountSaleShoe"
               :page-range="2"
               :margin-pages="2"
@@ -331,6 +339,7 @@
               :hide-prev-next="true"
             >
             </paginate>
+            <div v-else></div>
           </div>
         </the-product>
       </div>

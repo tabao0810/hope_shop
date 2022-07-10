@@ -25,7 +25,7 @@
             <i class="fa fa-picture-o"></i>
             <div class="blog_details_list">
               <div class="blog_details-icon">
-                <i class="fa fa-user px-1"></i>hope shop
+                <i class="fa fa-user px-1"></i>h&m
                 <i class="fa fa-clock-o px-1 ml-1"></i>
                 {{ formatDateDetail(blogDetail.createdAt) }}
               </div>
@@ -69,6 +69,7 @@
           <hr />
           <div class="pagination shop_paginatin clearfix">
             <paginate
+              v-if="getPaginationCountComment > 1"
               :page-count="getPaginationCountComment"
               :page-range="2"
               :margin-pages="2"

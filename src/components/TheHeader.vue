@@ -1,20 +1,21 @@
 <template>
-  <nav class="nav">
+  <nav class="nav" ref="srTop">
     <div class="container">
       <div class="row">
         <div class="navbar__header col-lg-3">
           <router-link to="/thehome" class="navbar__link">
             <img
-              src="https://cdn.shopify.com/s/files/1/1309/3901/t/2/assets/logo-home-2.png?v=3954688773146649554"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1024px-H%26M-Logo.svg.png"
               alt=""
               class="navbar__image"
+              style="width: 193px; height: 80px"
             />
           </router-link>
         </div>
         <div class="col-lg-9 navbar-home">
           <div class="navbar__contact">
             <p class="navbar__contact-text">
-              Liên hệ: 036.7773.541 - 033.5480.569
+              Liên hệ: 038.6758.635 - 038.4464.564
             </p>
             <div class="navbar__contact-icon">
               <div class="navbar__contact-account">
@@ -134,7 +135,7 @@
                   </li>
                   <li class="navbar-item">
                     <router-link to="/aboutus" href="" class="navbar-item-link"
-                      ><span>Về Hope</span></router-link
+                      ><span>Về H&M</span></router-link
                     >
                   </li>
                 </ul>
@@ -268,10 +269,29 @@ export default {
       return this.userCarts.reduce((sum, cart) => (sum += cart.amount), 0);
     },
   },
+  mounted() {
+    const totop = this.$refs.srTop;
+    window.addEventListener("scroll", () => {
+      let y = scrollY;
+      if (y > 50) {
+        totop.classList.add("activeHeader");
+      } else {
+        totop.classList.remove("activeHeader");
+      }
+    });
+  },
 };
 </script>
 
 <style>
+.activeHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: auto;
+}
 .badge-danger {
   position: absolute;
   top: 0;
@@ -301,6 +321,7 @@ export default {
 @media (max-width: 767.98px) {
   .navbar__image {
     padding: 16px 0 0;
+    width: 100%;
   }
   .navbar__contact {
     display: none;
@@ -322,7 +343,8 @@ export default {
 /* Tablet */
 @media (min-width: 768px) and (max-width: 991.98px) {
   .navbar__image {
-    padding: 32px;
+    width: 100%;
+    padding: 10px 0px;
   }
   .navbar__contact {
     margin-top: 12px;
@@ -345,6 +367,7 @@ export default {
 /* PC */
 .nav {
   background-color: #282828;
+  width: 100%;
 }
 .navbar__header {
   display: flex;
@@ -521,7 +544,7 @@ export default {
   float: left;
   overflow: hidden;
   width: 100%;
-  padding: 20px;
+  padding: 10px 0;
 }
 .account_single_item > h2 {
   border-bottom: 1px solid #eee;

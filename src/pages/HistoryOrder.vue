@@ -93,6 +93,7 @@
       </table>
       <div class="pagination shop_paginatin">
         <paginate
+          v-if="getPaginationCountOrder > 1"
           :page-count="getPaginationCountOrder"
           :page-range="2"
           :margin-pages="2"

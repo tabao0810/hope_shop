@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-12">
           <div class="about_hope_text">
-            <h1>welcome to <strong>hope</strong></h1>
+            <h1>welcome to <strong>H&M</strong></h1>
             <p>
               "Không có phụ nữ xấu, chỉ có phụ nữ không biết làm đẹp "- Trích
               câu danh ngôn nổi tiếng của LaBruyere để thay lời của Juno - những

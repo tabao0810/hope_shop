@@ -1,6 +1,11 @@
 <template>
   <div class="card text-left mt-3">
-    <img class="card-img-top card__img" :src="saleItem.image" alt="" />
+    <img
+      class="card-img-top card__img"
+      :src="saleItem.image"
+      alt=""
+      style="width: 100%; height: 100%"
+    />
     <div class="card__title text-center">
       <div>
         <a href="" @click="handleToSale">FLASH SALE</a>
