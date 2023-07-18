@@ -10,10 +10,11 @@
           class="card-img-top pro-img"
           :src="featuredItem.image"
           alt=""
-          @click="handleToDetail(featuredItem._id)"
+          @click.prevent="handleToDetail(featuredItem._id)"
+          loading="lazy"
         />
       </div>
-      <div class="sale" :class="{ isSale: !isSale }">
+      <div class="sale" v-if="featuredItem.isSale">
         <div class="box-sale">
           <p class="text-sale">sale</p>
         </div>
@@ -21,18 +22,15 @@
       <div class="card-body" v-if="isActive === true">
         <h4 class="card-title card-title_name">{{ featuredItem.name }}</h4>
         <p
-          :class="{ isSale: isSale }"
+          v-if="!featuredItem.isSale"
           class="card-text text-danger font-weight-bold"
         >
-          {{ formatPrice }}
+          {{ FormatPrice(featuredItem.price) }}
         </p>
-        <p
-          :class="{ isSale: !isSale }"
-          class="card-text text-danger font-weight-bold"
-        >
-          {{ formatOldPrice
+        <p v-else class="card-text text-danger font-weight-bold">
+          {{ FormatOldPrice(featuredItem.price, featuredItem.sale)
           }}<span class="oldPrice ml-1 font-weight-light">{{
-            formatPrice
+            FormatPrice(featuredItem.price)
           }}</span>
         </p>
       </div>
@@ -65,87 +63,54 @@
       </div>
     </div>
   </section>
-  <teleport to="#app">
-    <app-modal :isOpen="isOpenDetail" :handleCloseDetail="handleCloseDetail">
-      <featured-detail :featuredDetail="featuredItem" :isSaleDetail="isSale">
-      </featured-detail>
-    </app-modal>
-  </teleport>
 </template>
 
 <script>
-import FeaturedDetail from "./FeaturedDetail.vue";
 import { useStore } from "vuex";
+import { FormatPrice, FormatOldPrice } from "@/utils/constant";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
-  components: {
-    FeaturedDetail,
-  },
   props: {
     featuredItem: {
       type: Object,
     },
   },
-  data() {
-    return {
-      isActive: true,
-      isSale: this.featuredItem.isSale,
-      isOpenDetail: false,
-    };
-  },
   setup() {
     const store = useStore();
+    const router = useRouter();
+    const isActive = ref(true);
     const handleBuy = (data) => {
       store.dispatch("user/addCartAction", data);
     };
     const handleWishList = (data) => {
       store.dispatch("user/addWishListAction", data);
     };
-    return {
-      handleBuy,
-      handleWishList,
+    const mouseOver = () => {
+      isActive.value = false;
     };
-  },
-  methods: {
-    mouseOver() {
-      this.isActive = false;
-    },
-    mouseLeave() {
-      this.isActive = true;
-    },
-    handleOpenDetail() {
-      this.isOpenDetail = true;
-    },
-    handleCloseDetail() {
-      this.isOpenDetail = false;
-    },
-
-    handleToDetail(a) {
-      this.$router.push(`/product-detail/${a}`);
+    const mouseLeave = () => {
+      isActive.value = true;
+    };
+    const handleToDetail = (_id) => {
+      router.push(`/product-detail/${_id}`);
       window.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth",
       });
-    },
-  },
-  computed: {
-    formatPrice() {
-      let x = this.featuredItem.price;
-      return (x = x.toLocaleString("vi", {
-        style: "currency",
-        currency: "VND",
-      }));
-    },
-    formatOldPrice() {
-      let x =
-        this.featuredItem.price -
-        this.featuredItem.price * (this.featuredItem.sale / 100);
-      return (x = x.toLocaleString("vi", {
-        style: "currency",
-        currency: "VND",
-      }));
-    },
+    };
+    return {
+      isActive,
+      handleBuy,
+      handleWishList,
+      FormatPrice,
+      FormatOldPrice,
+      mouseOver,
+      mouseLeave,
+      handleToDetail,
+    };
   },
 };
 </script>
@@ -222,7 +187,7 @@ export default {
   border: 1px solid #ff3441;
   color: #ff3441;
 }
-.isSale {
+.is-sale {
   display: none;
 }
 .oldPrice {

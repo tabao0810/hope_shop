@@ -37,9 +37,9 @@
                 }}</a>
               </h2>
 
-              <pre class="blog_info_text-detail">
+              <div class="blog_info_text-detail">
                 {{ blogDetail.text }}
-              </pre>
+              </div>
             </div>
           </div>
           <hr />
@@ -287,6 +287,7 @@ export default {
   line-height: 1.6;
   width: 100%;
   text-align: justify;
+  white-space: pre-line;
 }
 .blog__detail-btn {
   display: flex;

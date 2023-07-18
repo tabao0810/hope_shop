@@ -178,9 +178,9 @@
                     </p>
 
                     <div>
-                      <pre class="blog_texts">
+                      <div class="blog_texts">
                         {{ featured.description }}
-                      </pre>
+                      </div>
                       <a
                         class="learn_more"
                         href=""
@@ -735,9 +735,9 @@
                     </p>
 
                     <div>
-                      <pre class="blog_texts">
+                      <div class="blog_texts">
                         {{ featured.description }}
-                      </pre>
+                      </div>
                       <a
                         class="learn_more"
                         href=""
@@ -1240,7 +1240,6 @@ option {
   color: #333;
 }
 .spr-badge {
-  *zoom: 1;
   min-height: auto;
   min-width: auto;
   display: block;
@@ -1295,6 +1294,8 @@ option {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  white-space: pre-line;
+  margin-bottom: 12px;
 }
 .learn_more {
   color: #000;
@@ -1349,6 +1350,7 @@ option {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
+    white-space: pre;
   }
   .blog_heading > a {
     max-height: 35px;

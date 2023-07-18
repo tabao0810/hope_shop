@@ -55,9 +55,9 @@
         <div class="col-sm letter-text">
           <h5 class="letter__header">STORE INFORMATION</h5>
           <div class="list-letter-2 mt-3">
-            <p>Địa chỉ: Hồng Minh, Hưng Hà, Thái Bình</p>
-            <p>Liên hệ: 038.6758.635</p>
-            <p>Email: huongtran16720@gmail.com</p>
+            <p>Địa chỉ: Minh Hòa, Hưng Hà, Thái Bình</p>
+            <p>Liên hệ: 036.7773.541</p>
+            <p>Email: tabao08102000@gmail.com</p>
           </div>
         </div>
       </div>
@@ -65,8 +65,8 @@
     </div>
     <div class="footer container">
       <p>
-        Copyright <a href="" class="text-danger">©Trần Thị Khánh Hường</a>.All
-        Rights Reserved
+        Copyright <a href="" class="text-danger">©Tạ Quốc Bảo</a>.All Rights
+        Reserved
       </p>
       <div class="icon">
         <img v-for="img in listImg" :key="img.id" :src="img.image" alt="" />

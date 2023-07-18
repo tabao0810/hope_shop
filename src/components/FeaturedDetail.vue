@@ -5,9 +5,14 @@
     </div>
     <div class="text-detail">
       <h4>{{ featuredDetail.name }}</h4>
-      <h2 class="text-danger" v-if="!isSaleDetail">{{ formatPrice }}</h2>
+      <h2 class="text-danger" v-if="!isSaleDetail">
+        {{ FormatPrice(featuredDetail.price) }}
+      </h2>
       <h2 class="text-danger" v-else>
-        {{ formatOldPrice }}<span class="oldPrice ml-1">{{ formatPrice }}</span>
+        {{ FormatOldPrice(featuredDetail.price, featuredDetail.sale)
+        }}<span class="oldPrice ml-1">{{
+          FormatPrice(featuredDetail.price)
+        }}</span>
       </h2>
       <p>
         <a href="" @click.prevent="handleToDetail(featuredDetail._id)"
@@ -22,10 +27,10 @@
 </template>
 
 <script>
+import { FormatPrice, FormatOldPrice } from "@/utils/constant";
 export default {
   data() {
     return {
-      saleDetail: this.isSaleDetail,
       size: this.featuredDetail.sizeClothing,
     };
   },
@@ -37,21 +42,11 @@ export default {
       type: Boolean,
     },
   },
-  computed: {
-    formatPrice() {
-      let x = this.featuredDetail.price;
-      return (x = x.toLocaleString("vi", {
-        style: "currency",
-        currency: "VND",
-      }));
-    },
-    formatOldPrice() {
-      let x = this.featuredDetail.price * (this.featuredDetail.sale / 100);
-      return (x = x.toLocaleString("vi", {
-        style: "currency",
-        currency: "VND",
-      }));
-    },
+  setup() {
+    return {
+      FormatPrice,
+      FormatOldPrice,
+    };
   },
   methods: {
     handleToDetail(a) {

@@ -368,10 +368,12 @@ export default {
       loading: EndTimeLoading,
     });
     watch(route, (to) => {
-      store.dispatch("products/getSingleProductsAction", {
-        id: to.params.productId,
-        loading: EndTimeLoading,
-      });
+      if (to.params.productId) {
+        store.dispatch("products/getSingleProductsAction", {
+          id: to.params.productId,
+          loading: EndTimeLoading,
+        });
+      }
     });
     store.dispatch("products/getAllProductsAction");
     const productDetail = computed(() => store.state.products.productDetail);
