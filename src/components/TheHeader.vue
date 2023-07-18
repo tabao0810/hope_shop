@@ -8,14 +8,14 @@
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1024px-H%26M-Logo.svg.png"
               alt=""
               class="navbar__image"
-              style="width: 193px; height: 80px"
+              style="width: 180px; height: 80px"
             />
           </router-link>
         </div>
         <div class="col-lg-9 navbar-home">
           <div class="navbar__contact">
             <p class="navbar__contact-text">
-              Liên hệ: 038.6758.635 - 038.4464.564
+              Liên hệ: 036.7773.541 - 033.5480.569
             </p>
             <div class="navbar__contact-icon">
               <div class="navbar__contact-account">

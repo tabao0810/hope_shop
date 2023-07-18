@@ -151,9 +151,17 @@ const actions = {
     context.commit("setProductsMutation", payload);
   },
   // Lấy 1 sản phẩm
-  async getSingleProductsAction(context, payload) {
-    const productDetail = await getSingleProductsApi(payload);
-    context.commit("setProductDetailMutation", productDetail);
+  async getSingleProductsAction({ commit }, { id, loading }) {
+    await getSingleProductsApi(id)
+      .then((res) => {
+        commit("setProductDetailMutation", res);
+      })
+      .catch((err) => {
+        console.log("Error: ", err)
+      })
+      .finally(() => {
+        loading();
+      })
   },
   // Tìm kiếm sản phẩm
   searchNameAction(context, { data, router }) {

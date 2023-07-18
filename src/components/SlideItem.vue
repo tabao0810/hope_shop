@@ -1,5 +1,10 @@
 <template>
-  <img :src="img.image" class="img-slide" alt="Responsive image" />
+  <img
+    :src="img.image"
+    class="img-slide"
+    alt="Responsive image"
+    loading="lazy"
+  />
 </template>
 
 <script>

@@ -5,10 +5,10 @@
         :src="productItem.image"
         alt=""
         class="product-item-image"
-        @click="handleToDetail(productItem._id)"
+        @click.prevent="handleToDetail(productItem._id)"
     /></a>
     <h2 class="product-item-name">
-      <a href="" @click="handleToDetail(productItem._id)">{{
+      <a href="" @click.prevent="handleToDetail(productItem._id)">{{
         productItem.name
       }}</a>
     </h2>

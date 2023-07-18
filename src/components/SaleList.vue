@@ -1,11 +1,11 @@
 <template>
   <section class="sale-list">
     <div class="row">
-      <h6
+      <h5
         class="container text-sale-list mt-3 col-xs-12 col-sm-12 col-12 text-uppercase"
       >
         Các sản phẩm bắt nhịp quốc tế, thời thượng không nên bỏ lỡ
-      </h6>
+      </h5>
       <div class="col-xs-12 col-sm-12 col-12">
         <div class="pro-list row">
           <div

@@ -1,10 +1,11 @@
 <template>
-  <div class="card text-left mt-3">
+  <div class="card text-left mt-3 sale-item">
     <img
       class="card-img-top card__img"
       :src="saleItem.image"
       alt=""
       style="width: 100%; height: 100%"
+      loading="lazy"
     />
     <div class="card__title text-center">
       <div>
@@ -131,7 +132,7 @@ figcaption {
 figcaption p {
   margin: 0;
 }
-.card:hover img {
+.sale-item:hover img {
   zoom: 1;
   filter: alpha(opacity=35);
   -webkit-opacity: 0.35;

@@ -26,9 +26,17 @@
     :modules="modules"
     class="mySwiper"
   >
-    <swiper-slide v-for="image in listBanner" :key="image._id"
-      ><slide-item :img="image"
-    /></swiper-slide>
+    <swiper-slide v-for="item in listBanner" :key="item._id">
+      <div v-if="isLoading" style="min-height: 500px"><image-skeleton /></div>
+      <div v-else>
+        <img
+          :src="item.image"
+          class="img-slide"
+          alt="Responsive image"
+          loading="lazy"
+        />
+      </div>
+    </swiper-slide>
     <div class="navigation-btn">
       <a class="slide-button-prev"
         ><i class="fa fa-angle-left slide-icon-left"></i
@@ -42,7 +50,6 @@
 </template>
 
 <script>
-import SlideItem from "./SlideItem.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { EffectCreative } from "swiper";
 
@@ -57,19 +64,15 @@ import "swiper/css/effect-creative";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 export default {
   setup() {
     const store = useStore();
-    store.dispatch("banners/getAllBannerAction");
-    const listBanner = computed(() => store.state.banners.listBanner);
-    return {
-      listBanner,
-      modules: [Autoplay, Pagination, Navigation, EffectCreative],
+    const isLoading = ref(true);
+    const EndTimeLoading = () => {
+      isLoading.value = false;
     };
-  },
-  computed: {
-    setNavigation() {
+    const setNavigation = computed(() => {
       let x = screen.width;
       let y = this.isNavigation;
       if (x < 719) {
@@ -80,12 +83,20 @@ export default {
         y = false;
       }
       return y;
-    },
+    });
+    store.dispatch("banners/getAllBannerAction", { loading: EndTimeLoading });
+    const listBanner = computed(() => store.state.banners.listBanner);
+    return {
+      listBanner,
+      setNavigation,
+      isLoading,
+      EndTimeLoading,
+      modules: [Autoplay, Pagination, Navigation, EffectCreative],
+    };
   },
   components: {
     Swiper,
     SwiperSlide,
-    SlideItem,
   },
 };
 </script>

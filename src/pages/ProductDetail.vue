@@ -12,7 +12,13 @@
     </div>
     <div class="row mt-4">
       <div class="col-lg-5">
-        <img :src="productDetail.image" alt="" class="product-detail-image" />
+        <img
+          :src="productDetail.image"
+          alt=""
+          class="product-detail-image"
+          loading="lazy"
+          v-show="!isLoading"
+        /><image-skeleton v-if="isLoading" />
       </div>
       <div class="product-detail col-lg-7">
         <h2 class="product-heading">
@@ -43,9 +49,9 @@
           </p>
         </div>
         <div>
-          <pre class="product-detail-des">
+          <div class="product-detail-des">
             {{ productDetail.description }}
-          </pre>
+          </div>
         </div>
         <div class="product-detail-option">
           <div class="product-detail">
@@ -341,7 +347,8 @@ import { Pagination, Navigation } from "swiper";
 import RelatedProduct from "../components/RelatedProduct.vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
+import ImageSkeleton from "@/components/loading/ImageSkeleton.vue";
 export default {
   data() {
     return {
@@ -352,7 +359,20 @@ export default {
   setup() {
     const route = useRoute();
     const store = useStore();
-    store.dispatch("products/getSingleProductsAction", route.params.productId);
+    const isLoading = ref(true);
+    const EndTimeLoading = () => {
+      isLoading.value = false;
+    };
+    store.dispatch("products/getSingleProductsAction", {
+      id: route.params.productId,
+      loading: EndTimeLoading,
+    });
+    watch(route, (to) => {
+      store.dispatch("products/getSingleProductsAction", {
+        id: to.params.productId,
+        loading: EndTimeLoading,
+      });
+    });
     store.dispatch("products/getAllProductsAction");
     const productDetail = computed(() => store.state.products.productDetail);
     const productListClothing = computed(
@@ -377,7 +397,9 @@ export default {
       productListAccessory,
       productListBag,
       productListShoe,
+      isLoading,
       handleWishList,
+      EndTimeLoading,
     };
   },
   components: {
@@ -386,6 +408,7 @@ export default {
     RelatedProduct,
     TabNav,
     TheTab,
+    ImageSkeleton,
   },
   computed: {
     setCount() {
@@ -462,7 +485,8 @@ export default {
 .product-detail-option {
   background: #f4f9ea none repeat scroll 0 0;
   border: 1px solid #dddddd;
-  padding: 10px;
+  padding: 24px;
+  border-radius: 8px;
 }
 .product-detail > label {
   display: inline-block;
@@ -774,6 +798,7 @@ $colors: (
   font-family: Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  margin-top: 10px;
+  margin: 10px 0px;
+  white-space: pre-line;
 }
 </style>

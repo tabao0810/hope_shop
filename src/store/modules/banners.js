@@ -12,9 +12,17 @@ const mutations = {
 };
 
 const actions = {
-  async getAllBannerAction(context) {
-    const payload = await getAllBannerApi();
-    context.commit("setAllBannerMutation", payload);
+  async getAllBannerAction({ commit }, { loading }) {
+    await getAllBannerApi()
+      .then((res) => {
+        commit("setAllBannerMutation", res);
+      })
+      .catch((err) => {
+        console.log("Error: ", err)
+      })
+      .finally(() => {
+        loading();
+      })
   },
 };
 

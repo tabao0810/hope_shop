@@ -3,7 +3,7 @@ import axios from "axios";
 export const createOrderApi = async (order) => {
   const res = await axios({
     method: "POST",
-    url: "https://api-hope.herokuapp.com/api/order/create",
+    url: `${process.env.VUE_APP_API_URL}/api/order/create`,
     data: order,
   });
   return res.data;
@@ -11,14 +11,14 @@ export const createOrderApi = async (order) => {
 export const getAllOrdersApi = async () => {
   const res = await axios({
     method: "GET",
-    url: "https://api-hope.herokuapp.com/api/order/getOrder",
+    url: `${process.env.VUE_APP_API_URL}/api/order/getOrder`,
   });
   return res.data.Orders;
 };
 export const updateOrderApi = async (product) => {
   const res = await axios({
     method: "PUT",
-    url: `https://api-hope.herokuapp.com/api/order/update/${product._id}`,
+    url: `${process.env.VUE_APP_API_URL}/api/order/update/${product._id}`,
     data: product,
   });
   return res;
