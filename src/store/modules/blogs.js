@@ -25,9 +25,17 @@ const actions = {
     context.commit("getAllBlogMutation", payload);
   },
 
-  async getSingleBlogAction(context, payload) {
-    const blogDetail = await getSingleBlogApi(payload);
-    context.commit("setBlogDetailMutation", blogDetail);
+  async getSingleBlogAction(context, { id, loading }) {
+    await getSingleBlogApi(id)
+      .then((res) => {
+        context.commit("setBlogDetailMutation", res);
+      })
+      .catch((err) => {
+        console.log('Error: ', err);
+      })
+      .finally(() => {
+        loading()
+      })
   },
   async updateBlogAction({ state }) {
     await updateBlogApi(state.blogDetail);

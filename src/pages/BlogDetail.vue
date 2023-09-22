@@ -20,7 +20,17 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
-          <img :src="blogDetail.image" alt="" class="blog__router-detail" />
+          <div class="blog__router-detail">
+            <img
+              :src="blogDetail.image"
+              alt=""
+              class="h-100 w-100"
+              loading="lazy"
+              style="object-fit: cover"
+              v-show="!isLoading"
+            />
+            <image-skeleton v-if="isLoading" />
+          </div>
           <div class="blog-router-detail">
             <i class="fa fa-picture-o"></i>
             <div class="blog_details_list">
@@ -188,7 +198,7 @@
 import Paginate from "vuejs-paginate-next";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { computed, reactive } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 export default {
   data() {
     return {
@@ -205,7 +215,22 @@ export default {
       name: "",
       content: "",
     });
-    store.dispatch("blogs/getSingleBlogAction", route.params.blogId);
+    const isLoading = ref(true);
+    const EndTimeLoading = () => {
+      isLoading.value = false;
+    };
+    store.dispatch("blogs/getSingleBlogAction", {
+      id: route.params.blogId,
+      loading: EndTimeLoading,
+    });
+    watch(route, (to) => {
+      if (to.params.blogId) {
+        store.dispatch("blogs/getSingleBlogAction", {
+          id: to.params.blogId,
+          loading: EndTimeLoading,
+        });
+      }
+    });
     const blogDetail = computed(() => store.state.blogs.blogDetail);
     const blogComments = computed(() => store.state.blogs.blogDetail.comments);
     const postComment = () => {
@@ -229,7 +254,9 @@ export default {
       blogDetail,
       blogComments,
       cmt: cmt,
+      isLoading,
       postComment,
+      EndTimeLoading,
     };
   },
   methods: {
@@ -271,7 +298,7 @@ export default {
 <style>
 .blog__router-detail {
   width: 100%;
-  height: auto;
+  height: 480px;
 }
 .blog__icon-text-detail::before {
   content: "";

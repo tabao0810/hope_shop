@@ -64,7 +64,12 @@
           <div v-for="blog in getItems" :key="blog._id" class="single-blog">
             <div class="">
               <a href="" @click.prevent="handleBlogDetail(blog._id)">
-                <img :src="blog.image" class="blog_router-img" alt="" />
+                <img
+                  :src="blog.image"
+                  class="blog_router-img"
+                  alt=""
+                  loading="lazy"
+                />
               </a>
             </div>
             <div class="blog-router-detail">
@@ -81,7 +86,7 @@
                   <a
                     class="blog_info_heading"
                     href=""
-                    @click="handleBlogDetail(blog._id)"
+                    @click.prevent="handleBlogDetail(blog._id)"
                     >{{ blog.description }}</a
                   >
                 </h2>
@@ -131,78 +136,64 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-        <div class="blog_banner_area">
-          <img
-            src="https://file.hstatic.net/200000355547/file/headline_juno_1_71eab1e1bf874661802a268e5d04c300.jpeg"
-            alt=""
-            class="banner_home_img"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
 import Paginate from "vuejs-paginate-next";
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
-  setup() {
-    const store = useStore();
-    store.dispatch("blogs/getAllBlogAction");
-    const blogList = computed(() => store.state.blogs.blogList);
-    return { blogList };
-  },
-  data() {
-    return {
-      items: [],
-      currentPage: 1,
-      perPage: 3,
-    };
-  },
   components: {
     Paginate,
   },
-  computed: {
-    getItems() {
-      let start = (this.currentPage - 1) * this.perPage;
-      let end = this.currentPage * this.perPage;
-      return this.blogList.slice(start, end);
-    },
-    getPaginationCount() {
-      return Math.ceil(this.blogList.length / this.perPage);
-    },
-  },
-  methods: {
-    handleBlogDetail(a) {
-      this.$router.push(`/blog-detail/${a}`);
-      window.scrollTo({
-        top: 100,
-        left: 100,
-        behavior: "smooth",
-      });
-    },
-    clickCallback(pagenum) {
-      this.currentPage = Number(pagenum);
-      window.scrollTo({
-        top: 100,
-        left: 100,
-        behavior: "smooth",
-      });
-    },
-    formatBlogRouterDate(a) {
-      const time = new Date(a);
-      return time.toDateString().slice(3);
-    },
-  },
-  created() {
-    this.blogList.map((item) => {
-      this.items.push(item);
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const items = ref([]);
+    const currentPage = ref(1);
+    const perPage = ref(3);
+    store.dispatch("blogs/getAllBlogAction");
+    const blogList = computed(() => store.state.blogs.blogList);
+    const getItems = computed(() => {
+      let start = (currentPage.value - 1) * perPage.value;
+      let end = currentPage.value * perPage.value;
+      return blogList.value.slice(start, end);
     });
+    const getPaginationCount = computed(() => {
+      return Math.ceil(blogList.value.length / perPage.value);
+    });
+    const formatBlogRouterDate = (date) => {
+      const time = new Date(date);
+      return time.toDateString().slice(3);
+    };
+    const handleBlogDetail = (id) => {
+      router.push(`/blog-detail/${id}`);
+      window.scrollTo({
+        top: 0,
+        left: 100,
+        behavior: "smooth",
+      });
+    };
+    const clickCallback = (pagenum) => {
+      currentPage.value = Number(pagenum);
+      window.scrollTo({
+        top: 0,
+        left: 100,
+        behavior: "smooth",
+      });
+    };
+    return {
+      items,
+      currentPage,
+      perPage,
+      blogList,
+      getPaginationCount,
+      getItems,
+      formatBlogRouterDate,
+      handleBlogDetail,
+      clickCallback,
+    };
   },
 };
 </script>
@@ -210,21 +201,6 @@ export default {
 <style>
 :root {
   --blog-width: 90%;
-}
-.blog__icon-link {
-  text-transform: uppercase;
-  text-align: left;
-  position: relative;
-  padding: 30px 0 5px;
-  font-size: 10px;
-}
-.blog__icon-link::before {
-  content: "";
-  position: absolute;
-  height: 10px;
-  border-bottom: 0.5px solid #ccc;
-  top: 38px;
-  width: 100%;
 }
 .blog__icon-text {
   margin-right: 14px;
@@ -367,15 +343,15 @@ export default {
   color: #ff343b;
 }
 .blog_info_text {
-  margin: 15px 0px 25px 0px;
+  margin: 4px 0 8px 0;
   text-align: left;
   line-height: 1.6;
-  height: 72px;
+  height: 74px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  text-indent: 50px;
+  text-indent: 20px;
   text-align: justify;
 }
 .blog-router-btn {
@@ -542,16 +518,6 @@ export default {
   text-decoration: none;
   color: #fff;
 }
-.blog_banner_area {
-  margin-top: 10px;
-  margin-bottom: 40px;
-  width: 100%;
-}
-.banner_home_img {
-  width: 100%;
-  object-fit: fill;
-  cursor: default;
-}
 
 .latest-posts {
   text-align: left;
@@ -583,6 +549,13 @@ export default {
 }
 </style>
 <style scoped>
+.blog_info_heading {
+  height: 32px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
 @media (max-width: 991.98px) {
   .container {
     width: 100%;

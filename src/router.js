@@ -2,7 +2,6 @@ import TheHome from "./pages/TheHome.vue";
 import BlogNews from "./pages/BlogNews.vue";
 import SaleRouter from "./pages/SaleRouter.vue";
 import BookRouter from "./pages/BookRouter.vue";
-import BookDetail from "./pages/BookDetail.vue";
 import PageError from "./pages/PageError.vue";
 import AboutUs from "./pages/AboutUs.vue";
 import LoginPage from "./pages/LoginPage.vue";
@@ -37,12 +36,8 @@ const routes = [
     component: SaleRouter,
   },
   {
-    path: "/lookbook",
+    path: "/products/:typeProduct",
     component: BookRouter,
-  },
-  {
-    path: "/bookdetail",
-    component: BookDetail,
   },
   {
     path: "/pageerror",
@@ -73,7 +68,7 @@ const routes = [
     component: BlogDetail,
   },
   {
-    path: "/product-detail/:productId",
+    path: "/products/:typeProduct/:productId",
     component: ProductDetail,
   },
   {

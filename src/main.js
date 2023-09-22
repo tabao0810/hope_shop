@@ -5,6 +5,7 @@ import "../node_modules/jquery/dist/jquery.js";
 import "../node_modules/popper.js/dist/popper.js";
 import "../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
+import "@/assets/scss/GlobalStyle.scss";
 import router from "./router";
 import store from "./store";
 import VueLoading from "vue-loading-overlay";

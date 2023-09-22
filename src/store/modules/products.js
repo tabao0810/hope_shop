@@ -1,4 +1,8 @@
-import { getAllProductsApi, getSingleProductsApi } from "@/apis/products";
+import {
+  getAllProductsApi,
+  getRelatedProductsApi,
+  getSingleProductsApi,
+} from "@/apis/products";
 
 const state = () => {
   return {
@@ -9,88 +13,14 @@ const state = () => {
 };
 
 const getters = {
-  //Quần áo
-  productListClothing(state) {
-    return state.productList.filter(
-      (product) => product.typeProduct === "Quần áo"
-    );
+  productListSortAsc(state) {
+    const arr = state.productList.sort((a, b) => a.price - b.price);
+    return arr;
   },
-  productListClothingSortAsc(state) {
-    const arr = state.productList.filter(
-      (product) => product.typeProduct === "Quần áo"
-    );
-    const sort = arr.sort((a, b) => a.price - b.price);
-    return sort;
+  productListSortDesc(state) {
+    const arr = state.productList.sort((a, b) => b.price - a.price);
+    return arr;
   },
-  productListClothingSortDesc(state) {
-    const arr = state.productList.filter(
-      (product) => product.typeProduct === "Quần áo"
-    );
-    const sort = arr.sort((a, b) => a.price - b.price);
-    return sort.reverse();
-  },
-
-  // Phụ kiện
-  productListAccessory(state) {
-    return state.productList.filter(
-      (product) => product.typeProduct === "Phụ kiện"
-    );
-  },
-  productListAccessorySortAsc(state) {
-    const arr = state.productList.filter(
-      (product) => product.typeProduct === "Phụ kiện"
-    );
-    const sort = arr.sort((a, b) => a.price - b.price);
-    return sort;
-  },
-  productListAccessorySortDesc(state) {
-    const arr = state.productList.filter(
-      (product) => product.typeProduct === "Phụ kiện"
-    );
-    const sort = arr.sort((a, b) => a.price - b.price);
-    return sort.reverse();
-  },
-
-  // Túi xách
-  productListBag(state) {
-    return state.productList.filter((product) => product.typeProduct === "Túi");
-  },
-  productListBagSortAsc(state) {
-    const arr = state.productList.filter(
-      (product) => product.typeProduct === "Túi"
-    );
-    const sort = arr.sort((a, b) => a.price - b.price);
-    return sort;
-  },
-  productListBagSortDesc(state) {
-    const arr = state.productList.filter(
-      (product) => product.typeProduct === "Túi"
-    );
-    const sort = arr.sort((a, b) => a.price - b.price);
-    return sort.reverse();
-  },
-
-  // Giày
-  productListShoe(state) {
-    return state.productList.filter(
-      (product) => product.typeProduct === "Giày"
-    );
-  },
-  productListShoeSortAsc(state) {
-    const arr = state.productList.filter(
-      (product) => product.typeProduct === "Giày"
-    );
-    const sort = arr.sort((a, b) => a.price - b.price);
-    return sort;
-  },
-  productListShoeSortDesc(state) {
-    const arr = state.productList.filter(
-      (product) => product.typeProduct === "Giày"
-    );
-    const sort = arr.sort((a, b) => a.price - b.price);
-    return sort.reverse();
-  },
-
   productListfeatured(state) {
     return state.productList.filter((product) => product.color === "gray");
   },
@@ -146,9 +76,17 @@ const mutations = {
 
 const actions = {
   // Lấy toàn bộ sản phẩm
-  async getAllProductsAction(context) {
-    const payload = await getAllProductsApi();
-    context.commit("setProductsMutation", payload);
+  async getAllProductsAction(context, { loading }) {
+    await getAllProductsApi()
+      .then((res) => {
+        context.commit("setProductsMutation", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        loading();
+      });
   },
   // Lấy 1 sản phẩm
   async getSingleProductsAction({ commit }, { id, loading }) {
@@ -157,16 +95,28 @@ const actions = {
         commit("setProductDetailMutation", res);
       })
       .catch((err) => {
-        console.log("Error: ", err)
+        console.log("Error: ", err);
       })
       .finally(() => {
         loading();
-      })
+      });
   },
   // Tìm kiếm sản phẩm
   searchNameAction(context, { data, router }) {
     context.commit("searchNameMutation", data);
     router.push("/search");
+  },
+  async getRelatedProductsAction(context, { loading, type }) {
+    await getRelatedProductsApi(type)
+      .then((res) => {
+        context.commit("setProductsMutation", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        loading();
+      });
   },
 };
 

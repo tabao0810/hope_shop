@@ -13,7 +13,7 @@
             v-for="featuredItem in featuredList"
             :key="featuredItem.id"
           >
-            <featured-item :featuredItem="featuredItem" />
+            <featured-item :productDetail="featuredItem" :Loading="loading" />
           </div>
         </div>
       </div>
@@ -29,19 +29,26 @@
 <script>
 import FeaturedItem from "./FeaturedItem.vue";
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 export default {
   components: {
     FeaturedItem,
   },
   setup() {
     const store = useStore();
-    store.dispatch("products/getAllProductsAction");
+    const loading = ref(true);
+    const EndTimeLoading = () => {
+      loading.value = false;
+    };
+    store.dispatch("products/getAllProductsAction", {
+      loading: EndTimeLoading,
+    });
     const featuredList = computed(
       () => store.getters["products/productListfeatured"]
     );
     return {
       featuredList,
+      loading,
     };
   },
   methods: {
@@ -51,7 +58,7 @@ export default {
         left: 0,
         behavior: "smooth",
       });
-      return this.$router.push("/lookbook");
+      return this.$router.push("/products");
     },
   },
 };

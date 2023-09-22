@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="navbar__header col-lg-3">
-          <router-link to="/thehome" class="navbar__link">
+          <router-link to="/" class="navbar__link">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1024px-H%26M-Logo.svg.png"
               alt=""
@@ -119,7 +119,7 @@
                     >
                   </li>
                   <li class="navbar-item">
-                    <router-link to="/lookbook" class="navbar-item-link"
+                    <router-link to="/products/all" class="navbar-item-link"
                       ><span>Sản phẩm</span></router-link
                     >
                   </li>
@@ -178,7 +178,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav">
             <li class="navbar-item">
-              <router-link to="/thehone" class="navbar-item-link"
+              <router-link to="/" class="navbar-item-link"
                 ><span>Trang chủ</span></router-link
               >
             </li>
@@ -188,7 +188,7 @@
               >
             </li>
             <li class="navbar-item">
-              <router-link to="/lookbook" class="navbar-item-link"
+              <router-link to="/products/all" class="navbar-item-link"
                 ><span>Sản phẩm</span></router-link
               >
             </li>

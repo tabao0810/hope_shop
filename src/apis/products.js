@@ -22,3 +22,10 @@ export const updateProductApi = async (product) => {
   });
   return res;
 };
+export const getRelatedProductsApi = async (type) => {
+  const res = await axios({
+    method: "GET",
+    url: `${process.env.VUE_APP_API_URL}/api/product/type/${type}`,
+  });
+  return res.data.Product;
+};

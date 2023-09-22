@@ -24,29 +24,26 @@
         <h2 class="product-heading">
           {{ productDetail.name }}
         </h2>
-        <!-- <h6 class="card-title small text-warning">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </h6> -->
         <hr />
         <h6>
           Tình trạng:<span style="color: red" v-if="productDetail.quantity > 0"
             >Còn hàng ({{ productDetail.quantity }} sản phẩm)</span
           ><span style="color: red" v-else>Hết hàng</span>
         </h6>
-        <div class="d-flex align-items-center">
-          <p class="product-detail-price">
-            {{ formatPriceDetailNew(productDetail) }}
+        <div class="product-detail-price">
+          <p>
+            {{
+              FormatPrice(
+                Number(
+                  productDetail.price -
+                    (productDetail.price * productDetail.sale) / 100
+                )
+              )
+            }}
           </p>
-          <p
-            v-if="productDetail.isSale == true"
-            class="product-detail-price-sale m-0 pl-2"
-          >
-            {{ formatDetailOldPrice(productDetail.price) }}
-          </p>
+          <span v-if="productDetail.isSale == true">
+            {{ FormatPrice(productDetail.price) }}
+          </span>
         </div>
         <div>
           <div class="product-detail-des">
@@ -188,7 +185,7 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-lg-12" v-if="productDetail.typeProduct === 'Quần áo'">
+      <div class="col-lg-12">
         <h1 class="blog__heading">Sản phẩm tương tự</h1>
         <div class="product-slide">
           <swiper
@@ -207,116 +204,8 @@
             :modules="modules"
             class="mySwiper"
           >
-            <swiper-slide
-              v-for="product in productListClothing"
-              :key="product.id"
-            >
-              <related-product :productItem="product" />
-            </swiper-slide>
-          </swiper>
-          <div class="product-btn">
-            <a class="blog-button-prev"
-              ><i class="fa-solid fa-arrow-left-long blog-icon-left"></i>
-            </a>
-
-            <a class="blog-button-next">
-              <i class="fa-solid fa-arrow-right-long blog-icon-right"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-12" v-if="productDetail.typeProduct === 'Phụ kiện'">
-        <h1 class="blog__heading">Sản phẩm tương tự</h1>
-        <div class="product-slide">
-          <swiper
-            :slidesPerView="setCount"
-            :spaceBetween="20"
-            :slidesPerGroup="1"
-            :loop="true"
-            :loopFillGroupWithBlank="true"
-            :pagination="{
-              clickable: true,
-            }"
-            :navigation="{
-              nextEl: '.blog-button-next',
-              prevEl: '.blog-button-prev',
-            }"
-            :modules="modules"
-            class="mySwiper"
-          >
-            <swiper-slide
-              v-for="product in productListAccessory"
-              :key="product.id"
-            >
-              <related-product :productItem="product" />
-            </swiper-slide>
-          </swiper>
-          <div class="product-btn">
-            <a class="blog-button-prev"
-              ><i class="fa-solid fa-arrow-left-long blog-icon-left"></i>
-            </a>
-
-            <a class="blog-button-next">
-              <i class="fa-solid fa-arrow-right-long blog-icon-right"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-12" v-if="productDetail.typeProduct === 'Túi'">
-        <h1 class="blog__heading">Sản phẩm tương tự</h1>
-        <div class="product-slide">
-          <swiper
-            :slidesPerView="setCount"
-            :spaceBetween="20"
-            :slidesPerGroup="1"
-            :loop="true"
-            :loopFillGroupWithBlank="true"
-            :pagination="{
-              clickable: true,
-            }"
-            :navigation="{
-              nextEl: '.blog-button-next',
-              prevEl: '.blog-button-prev',
-            }"
-            :modules="modules"
-            class="mySwiper"
-          >
-            <swiper-slide v-for="product in productListBag" :key="product.id">
-              <related-product :productItem="product" />
-            </swiper-slide>
-          </swiper>
-          <div class="product-btn">
-            <a class="blog-button-prev"
-              ><i class="fa-solid fa-arrow-left-long blog-icon-left"></i>
-            </a>
-
-            <a class="blog-button-next">
-              <i class="fa-solid fa-arrow-right-long blog-icon-right"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-12" v-if="productDetail.typeProduct === 'Giày'">
-        <h1 class="blog__heading">Sản phẩm tương tự</h1>
-        <div class="product-slide">
-          <swiper
-            :slidesPerView="setCount"
-            :spaceBetween="20"
-            :slidesPerGroup="1"
-            :loop="true"
-            :loopFillGroupWithBlank="true"
-            :pagination="{
-              clickable: true,
-            }"
-            :navigation="{
-              nextEl: '.blog-button-next',
-              prevEl: '.blog-button-prev',
-            }"
-            :modules="modules"
-            class="mySwiper"
-          >
-            <swiper-slide v-for="product in productListShoe" :key="product.id">
-              <related-product :productItem="product" />
+            <swiper-slide v-for="product in productRelated" :key="product.id">
+              <featured-item :productDetail="product" :Loading="isLoading" />
             </swiper-slide>
           </swiper>
           <div class="product-btn">
@@ -344,11 +233,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
-import RelatedProduct from "../components/RelatedProduct.vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import ImageSkeleton from "@/components/loading/ImageSkeleton.vue";
+import FeaturedItem from "@/components/FeaturedItem.vue";
+import { FormatPrice } from "@/utils/constant";
 export default {
   data() {
     return {
@@ -363,9 +253,15 @@ export default {
     const EndTimeLoading = () => {
       isLoading.value = false;
     };
-    store.dispatch("products/getSingleProductsAction", {
-      id: route.params.productId,
-      loading: EndTimeLoading,
+    onMounted(async () => {
+      await store.dispatch("products/getSingleProductsAction", {
+        id: route.params.productId,
+        loading: EndTimeLoading,
+      });
+      await store.dispatch("products/getRelatedProductsAction", {
+        loading: EndTimeLoading,
+        type: productDetail.value.typeProduct,
+      });
     });
     watch(route, (to) => {
       if (to.params.productId) {
@@ -375,42 +271,29 @@ export default {
         });
       }
     });
-    store.dispatch("products/getAllProductsAction");
+
     const productDetail = computed(() => store.state.products.productDetail);
-    const productListClothing = computed(
-      () => store.getters["products/productListClothing"]
-    );
-    const productListAccessory = computed(
-      () => store.getters["products/productListAccessory"]
-    );
-    const productListBag = computed(
-      () => store.getters["products/productListBag"]
-    );
-    const productListShoe = computed(
-      () => store.getters["products/productListShoe"]
-    );
+    const productRelated = computed(() => store.state.products.productList);
     const handleWishList = (data) => {
       store.dispatch("user/addWishListAction", data);
     };
     return {
       modules: [Pagination, Navigation],
       productDetail,
-      productListClothing,
-      productListAccessory,
-      productListBag,
-      productListShoe,
+      productRelated,
       isLoading,
       handleWishList,
       EndTimeLoading,
+      FormatPrice,
     };
   },
   components: {
     Swiper,
     SwiperSlide,
-    RelatedProduct,
     TabNav,
     TheTab,
     ImageSkeleton,
+    FeaturedItem,
   },
   computed: {
     setCount() {
@@ -427,25 +310,6 @@ export default {
     },
   },
   methods: {
-    formatPriceDetailNew(a) {
-      if (a.isSale === false) {
-        return a.price.toLocaleString("vi", {
-          style: "currency",
-          currency: "VND",
-        });
-      } else {
-        return (a.price - a.price * (a.sale / 100)).toLocaleString("vi", {
-          style: "currency",
-          currency: "VND",
-        });
-      }
-    },
-    formatDetailOldPrice(x) {
-      return x.toLocaleString("vi", {
-        style: "currency",
-        currency: "VND",
-      });
-    },
     setSelected(tab) {
       this.selected = tab;
     },

@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;700&display=swap");
+
+$mobile: 768px;
+$tablet: 992px;
+$desktop: 1024px;
+$color-primary: #ff343b;
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$mobile}) and (max-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+// Product item
+.single_product {
+    min-height: 400px;
+    position: relative;
+
+    @include mobile {
+        margin-bottom: 0px;
+    }
+
+    a {
+        display: block;
+        overflow: hidden;
+        position: relative;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        border: 2px solid transparent;
+        transition: all linear 0.3s;
+    }
+
+    .product_overlay {
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid #222;
+            -webkit-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            visibility: hidden;
+        }
+    }
+
+    .sale_product {
+        h5 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 42px;
+            height: 42px;
+            font-weight: 700;
+            font-size: 16px;
+            z-index: 2;
+            text-align: canter;
+            padding-top: 12px;
+            padding-left: 4px;
+
+            &::after {
+                content: "";
+                background: #fff;
+                border: 2px solid #222;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                z-index: -1;
+                border-radius: 8px;
+                -moz-transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    .product_detail {
+        text-align: center;
+        visibility: visible;
+        transition: all linear 0.3s;
+        -webkit-transform: translate(0px, -20px);
+        -ms-transform: translate(0px, -20px);
+        -o-transform: translate(0px, -20px);
+        transform: translate(0px, -20px);
+
+        h2 {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+
+            a {
+                color: #222;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+            }
+        }
+
+        p {
+            margin-bottom: 10px;
+
+            .product_price {
+                color: $color-primary;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .product_price_sale {
+                color: #898989;
+                text-decoration: line-through;
+                font-size: 13px;
+                font-weight: 500;
+                margin-left: 4px;
+            }
+        }
+    }
+
+    .product_feature {
+        visibility: hidden;
+        transition: all linear 0.3s;
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
+
+        .product_feature-detail {
+            margin-right: 8px;
+
+            button {
+                text-decoration: none;
+                color: #666;
+                font-size: 13px;
+                text-transform: uppercase;
+                border: 1px solid #666;
+                padding: 5px 10px;
+                background-color: transparent;
+
+                &:hover {
+                    border: 1px solid $color-primary;
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .product_overlay {
+            &::after {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        img {
+            border: 2px solid #222222;
+            -moz-transform: scale(1.15);
+            -webkit-transform: scale(1.15);
+            -o-transform: scale(1.15);
+            -ms-transform: scale(1.15);
+            transform: scale(1.15);
+        }
+
+        .product_detail {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .product_feature {
+            opacity: 1;
+            visibility: visible;
+            -webkit-transform: translate(0px, 36px);
+            -ms-transform: translate(0px, 36px);
+            -o-transform: translate(0px, 36px);
+            transform: translate(0px, 36px);
+        }
+
+        cursor: pointer;
+    }
+}
+// Breakcrum
+.blog__icon-link {
+    text-transform: uppercase;
+    text-align: left;
+    position: relative;
+    padding: 20px 0 5px;
+    font-size: 10px;
+    margin-bottom: 20px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        height: 10px;
+        border-bottom: 0.5px solid #ccc;
+        top: 32px;
+        width: 100%;
+    }
+
+    .blog__icon-text {
+        margin-right: 14px;
+        cursor: pointer;
+        color: black;
+        text-decoration: none;
+        transition: all linear 0.3s;
+
+        &:hover {
+            color: #ff343b;
+            text-decoration: none;
+        }
+    }
+
+    .blog__icon-text-active {
+        color: #ff343b;
+        &::before {
+            content: "";
+            position: absolute;
+            height: 10px;
+            top: 22px;
+            border-left: 1px solid #ff343b;
+            left: 40px;
+        }
+    }
+}
+.add_r_sidebar {
+    margin-top: 16px;
+    width: 100%;
+    .banner_block {
+        position: relative;
+        top: 0;
+        left: 0;
+        cursor: default;
+        width: 100%;
+        img{
+            width: 100%;
+        }
+    }
+
+    &:hover {
+        .banner_block {
+            cursor: pointer;
+            top: -10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            transition: all linear 0.3s;
+        }
+    }
+}
