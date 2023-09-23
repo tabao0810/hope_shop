@@ -17,7 +17,7 @@
         v-else
       />
     </router-link>
-    <div class="sale_product" v-if="productDetail.isSale">
+    <div class="sale_product" v-if="productDetail.isSale" v-show="!Loading">
       <h5>Sale</h5>
     </div>
     <div class="product_feature">
@@ -35,35 +35,41 @@
         </button>
       </div>
     </div>
-    <div class="product_detail">
-      <h2>
-        <router-link
-          :to="`/products/${typePackages[productDetail.typeProduct]}/${
-            productDetail._id
-          }`"
-          >{{ productDetail.name }}</router-link
-        >
-      </h2>
-      <p>
-        <span v-if="productDetail.isSale">
-          <span class="product_price">
-            {{
-              FormatPrice(
-                Number(
-                  productDetail.price -
-                    (productDetail.price * productDetail.sale) / 100
-                )
-              )
-            }}
-          </span>
-          <span class="product_price_sale">
-            {{ FormatPrice(productDetail.price) }}</span
+    <div>
+      <LoadingImageSkeleton
+        v-if="Loading"
+        style="min-height: 50px; margin-top: -20px"
+      />
+      <div class="product_detail" v-else>
+        <h2>
+          <router-link
+            :to="`/products/${typePackages[productDetail.typeProduct]}/${
+              productDetail._id
+            }`"
+            >{{ productDetail.name }}</router-link
           >
-        </span>
-        <span class="product_price" v-else>
-          {{ FormatPrice(productDetail.price) }}
-        </span>
-      </p>
+        </h2>
+        <p>
+          <span v-if="productDetail.isSale">
+            <span class="product_price">
+              {{
+                FormatPrice(
+                  Number(
+                    productDetail.price -
+                      (productDetail.price * productDetail.sale) / 100
+                  )
+                )
+              }}
+            </span>
+            <span class="product_price_sale">
+              {{ FormatPrice(productDetail.price) }}</span
+            >
+          </span>
+          <span class="product_price" v-else>
+            {{ FormatPrice(productDetail.price) }}
+          </span>
+        </p>
+      </div>
     </div>
   </div>
 </template>

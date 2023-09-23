@@ -1,3 +1,18 @@
+<script setup>
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
+const currentRoute = ref(route.params.type);
+watch(route, (to) => {
+  currentRoute.value = to.params.type;
+});
+
+const route_type = ref([
+  { route: "Tính size quần áo", to: "/tutorial/size_clothes" },
+  { route: "Tính size giày", to: "/tutorial/size_shoes" },
+]);
+</script>
+
 <template>
   <div class="container">
     <div class="row">
@@ -9,164 +24,133 @@
           <span class="blog__icon-text-active">PRODUCTS</span>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container blog-content col-12">
-    <div class="row">
       <div class="col-lg-3">
-        <div class="catagory_price_color">
+        <div class="catagory_all_products">
           <div class="catagory_area">
             <h2>collection</h2>
-            <tab-product
-              :tabs="[
-                'Hướng dẫn tính size quần áo',
-                'Hướng dẫn tính size giày',
-              ]"
-              :selected="selected"
-              @selected="setSelected"
-            ></tab-product>
+            <ul class="catagory_area-menu">
+              <li v-for="(item, index) in route_type" :key="index">
+                <router-link :to="item.to"
+                  ><span><i class="fa fa-angle-right"></i></span
+                  >{{ item.route }}</router-link
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </div>
       <div class="col-lg-9">
-        <the-product :isSelected="selected === 'Hướng dẫn tính size quần áo'">
-          <div class="blog_banner_area">
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="single_banner">
-                  <div class="banner_home_inner-2">
-                    <a href="">
-                      <img
-                        src="https://file.hstatic.net/1000003969/file/bang-size-juno_800-x-n_876ef0d4aedf452c9df5d266660a15bd.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
+        <div class="blog_banner_area" v-if="currentRoute === 'size_clothes'">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <img
+                src="https://file.hstatic.net/1000003969/file/bang-size-juno_800-x-n_876ef0d4aedf452c9df5d266660a15bd.jpg"
+                alt=""
+                style="width: 100%"
+              />
             </div>
           </div>
-        </the-product>
-        <the-product :isSelected="selected === 'Hướng dẫn tính size giày'">
-          <div class="sizeShoe">
-            <h2>Hướng dẫn chọn size giày</h2>
+        </div>
+        <div class="sizeShoe" v-if="currentRoute === 'size_shoes'">
+          <h2>Hướng dẫn chọn size giày</h2>
+          <p>
+            Để biết cỡ chân của bạn phù hợp với Size giày bao nhiêu của Juno,
+            bạn hãy thực hiện cách đo như sau.
+          </p>
+
+          <div class="mt-5">
+            <hr />
             <p>
-              Để biết cỡ chân của bạn phù hợp với Size giày bao nhiêu của Juno,
-              bạn hãy thực hiện cách đo như sau.
+              <span style="font-weight: bold">Bước 1:</span>Đặt bàn chân lên tờ
+              giấy trắng, rồi dùng bút vẽ bo hết bàn chân (để chính xác thì bạn
+              phải đặt bút thẳng đứng và vuông góc với tờ giấy)
             </p>
-
-            <div class="mt-5">
-              <hr />
-              <p>
-                <span style="font-weight: bold">Bước 1:</span>Đặt bàn chân lên
-                tờ giấy trắng, rồi dùng bút vẽ bo hết bàn chân (để chính xác thì
-                bạn phải đặt bút thẳng đứng và vuông góc với tờ giấy)
-              </p>
-              <img
-                src="https://hstatic.net/969/1000003969/10/2015/4-11/huong_dan_cach_do_size_giay_01.jpg"
-                alt=""
-              />
-            </div>
-
-            <div class="mt-5">
-              <hr />
-              <p>
-                <span style="font-weight: bold">Bước 2:</span>Dùng thước hay sợi
-                dây đo một vòng khớp ngón phần rộng nhất của bàn chân ở tư thế
-                ngồi hoặc đứng thẳng 2 chân.
-              </p>
-              <img
-                src="https://file.hstatic.net/1000003969/file/capture_grande.png"
-                alt=""
-              />
-            </div>
-            <div class="mt-5">
-              <hr />
-              <p>
-                <span style="font-weight: bold">Bước 3:</span>So sánh bảng dưới
-                đây để biết size giày của bạn nhé!
-              </p>
-              <table border="1" cellpadding="15" style="text-align: center">
-                <tr style="background-color: #ccc; font-weight: 600">
-                  <td>SIZE</td>
-                  <td>Chiều dài bàn chân</td>
-                  <td>Vòng khớp ngón (Đo ở tư thế ngồi ghế)</td>
-                  <td>Vòng khớp ngón (Đo ở tư thế đứng thẳng 2 chân)</td>
-                </tr>
-                <tr>
-                  <td>34</td>
-                  <td>21.2</td>
-                  <td>20.45</td>
-                  <td>20.65</td>
-                </tr>
-                <tr>
-                  <td>35</td>
-                  <td>21.9</td>
-                  <td>20.95</td>
-                  <td>21.15</td>
-                </tr>
-                <tr>
-                  <td>36</td>
-                  <td>22.5</td>
-                  <td>21.4</td>
-                  <td>21.6</td>
-                </tr>
-                <tr>
-                  <td>37</td>
-                  <td>23.2</td>
-                  <td>21.9</td>
-                  <td>22.1</td>
-                </tr>
-                <tr>
-                  <td>38</td>
-                  <td>23.9</td>
-                  <td>22.4</td>
-                  <td>22.6</td>
-                </tr>
-                <tr>
-                  <td>39</td>
-                  <td>24.5</td>
-                  <td>22.85</td>
-                  <td>23</td>
-                </tr>
-                <tr>
-                  <td>40</td>
-                  <td>25.2</td>
-                  <td>23.45</td>
-                  <td>23.55</td>
-                </tr>
-              </table>
-            </div>
+            <img
+              src="https://hstatic.net/969/1000003969/10/2015/4-11/huong_dan_cach_do_size_giay_01.jpg"
+              alt=""
+            />
           </div>
-        </the-product>
+
+          <div class="mt-5">
+            <hr />
+            <p>
+              <span style="font-weight: bold">Bước 2:</span>Dùng thước hay sợi
+              dây đo một vòng khớp ngón phần rộng nhất của bàn chân ở tư thế
+              ngồi hoặc đứng thẳng 2 chân.
+            </p>
+            <img
+              src="https://file.hstatic.net/1000003969/file/capture_grande.png"
+              alt=""
+            />
+          </div>
+          <div class="mt-5">
+            <hr />
+            <p>
+              <span style="font-weight: bold">Bước 3:</span>So sánh bảng dưới
+              đây để biết size giày của bạn nhé!
+            </p>
+            <table border="1" cellpadding="15" style="text-align: center">
+              <tr style="background-color: #ccc; font-weight: 600">
+                <td>SIZE</td>
+                <td>Chiều dài bàn chân</td>
+                <td>Vòng khớp ngón (Đo ở tư thế ngồi ghế)</td>
+                <td>Vòng khớp ngón (Đo ở tư thế đứng thẳng 2 chân)</td>
+              </tr>
+              <tr>
+                <td>34</td>
+                <td>21.2</td>
+                <td>20.45</td>
+                <td>20.65</td>
+              </tr>
+              <tr>
+                <td>35</td>
+                <td>21.9</td>
+                <td>20.95</td>
+                <td>21.15</td>
+              </tr>
+              <tr>
+                <td>36</td>
+                <td>22.5</td>
+                <td>21.4</td>
+                <td>21.6</td>
+              </tr>
+              <tr>
+                <td>37</td>
+                <td>23.2</td>
+                <td>21.9</td>
+                <td>22.1</td>
+              </tr>
+              <tr>
+                <td>38</td>
+                <td>23.9</td>
+                <td>22.4</td>
+                <td>22.6</td>
+              </tr>
+              <tr>
+                <td>39</td>
+                <td>24.5</td>
+                <td>22.85</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>40</td>
+                <td>25.2</td>
+                <td>23.45</td>
+                <td>23.55</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import TabProduct from "./TabProduct.vue";
-import TheProduct from "./TheProduct.vue";
-export default {
-  data() {
-    return {
-      selected: "Hướng dẫn tính size quần áo",
-    };
-  },
-  components: {
-    TabProduct,
-    TheProduct,
-  },
-  methods: {
-    setSelected(tab) {
-      this.selected = tab;
-    },
-  },
-};
-</script>
-
-<style>
+<style lang="scss" scoped>
 .sizeShoe {
   text-align: left;
+}
+.blog__icon-link .blog__icon-text-active::before {
+  left: 56px;
 }
 </style>

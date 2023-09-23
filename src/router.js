@@ -80,7 +80,7 @@ const routes = [
     component: SearchProduct,
   },
   {
-    path: "/tutorial",
+    path: "/tutorial/:type",
     component: TheTutorial,
   },
   {

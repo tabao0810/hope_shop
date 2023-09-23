@@ -11,7 +11,7 @@ const route_products = ref([
 </script>
 
 <template>
-  <div class="catagory_all_products">
+  <div class="catagory_all_products sidebar_products">
     <div class="catagory_area">
       <h2>collection</h2>
       <ul class="catagory_area-menu">
@@ -23,32 +23,31 @@ const route_products = ref([
         </li>
       </ul>
     </div>
-    <div class="sidebar_product_feature">
-      <h2>featured</h2>
-      <div class="add_r_sidebar">
-        <router-link to="/" class="banner_block">
-          <img
-            src="https://file.hstatic.net/1000003969/file/5_4e8bbd11e68d4e08a72d2d9b4738f03b.jpg"
-            alt=""
-          />
-        </router-link>
-      </div>
-      <div class="add_r_sidebar">
-        <router-link to="/" class="banner_block">
-          <img
-            src="https://file.hstatic.net/1000003969/file/3_bdbb2eb57de648dabcdb98fb58fb360d.jpg"
-            alt=""
-          />
-        </router-link>
-      </div>
-      <div class="add_r_sidebar">
-        <router-link to="/" class="banner_block">
-          <img
-            src="https://file.hstatic.net/1000003969/file/1_bd94c2d5fef549f2ae4465bb6732fc0f.jpg"
-            alt=""
-          />
-        </router-link>
-      </div>
+  </div>
+  <div class="sidebar_product_feature">
+    <div class="add_r_sidebar">
+      <router-link to="/" class="banner_block">
+        <img
+          src="https://file.hstatic.net/1000003969/file/5_4e8bbd11e68d4e08a72d2d9b4738f03b.jpg"
+          alt=""
+        />
+      </router-link>
+    </div>
+    <div class="add_r_sidebar">
+      <router-link to="/" class="banner_block">
+        <img
+          src="https://file.hstatic.net/1000003969/file/3_bdbb2eb57de648dabcdb98fb58fb360d.jpg"
+          alt=""
+        />
+      </router-link>
+    </div>
+    <div class="add_r_sidebar">
+      <router-link to="/" class="banner_block">
+        <img
+          src="https://file.hstatic.net/1000003969/file/1_bd94c2d5fef549f2ae4465bb6732fc0f.jpg"
+          alt=""
+        />
+      </router-link>
     </div>
   </div>
 </template>
@@ -89,31 +88,15 @@ const route_products = ref([
         color: red;
         left: 16px;
         font-weight: 600;
+        transition: all linear 0.3s;
       }
     }
     .active {
       color: red;
       left: 16px;
       font-weight: 600;
+      transition: all linear 0.3s;
     }
-  }
-}
-.sidebar_product_feature {
-  h2 {
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: left;
-    margin: 45px 0 20px;
-    padding: 0 0 15px;
-    // &::after {
-    //   content: "";
-    //   position: absolute;
-    //   border-bottom: 0.5px solid #ccc;
-    //   left: 15px;
-    //   top: 540px;
-    //   width: 100%;
-    // }
   }
 }
 </style>

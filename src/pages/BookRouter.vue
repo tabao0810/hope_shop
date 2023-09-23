@@ -12,7 +12,22 @@
       </div>
       <div class="col-lg-9">
         <div class="toolbar">
-          <div></div>
+          <div class="extend_sidebar">
+            <button
+              class="icon_extend"
+              @click.prevent="showMenuProduct = !showMenuProduct"
+              v-if="!showMenuProduct"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+            <button
+              class="icon_extend"
+              @click.prevent="showMenuProduct = !showMenuProduct"
+              v-else
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
           <div class="form-horizontal">
             <label class="hidden-xs mr-1" for="SortBy">Sắp xếp:</label>
             <select name="SortBy" id="SortBy" v-model="priceSort">
@@ -22,6 +37,16 @@
             </select>
           </div>
         </div>
+        <Transition>
+          <div class="menu_extend_product" v-if="showMenuProduct">
+            <ul>
+              <li v-for="(item, index) in route_products" :key="index">
+                <router-link :to="item.to">{{ item.route }}</router-link>
+              </li>
+            </ul>
+          </div></Transition
+        >
+
         <div class="product-router-item">
           <div class="fea-list row">
             <div
@@ -80,6 +105,14 @@ export default {
     const currentPage = ref(1);
     const perPage = ref(9);
     const priceSort = ref("");
+    const showMenuProduct = ref(false);
+    const route_products = ref([
+      { route: "Tất cả", to: "/products/all" },
+      { route: "Quần áo", to: "/products/clothes" },
+      { route: "Túi xách", to: "/products/bag" },
+      { route: "Phụ kiện", to: "/products/accessory" },
+      { route: "Giày cao gót", to: "/products/shoes" },
+    ]);
     const EndTimeLoading = () => {
       isLoading.value = false;
     };
@@ -102,6 +135,7 @@ export default {
       isLoading.value = true;
       currentPage.value = 1;
       priceSort.value = "";
+      showMenuProduct.value = false;
       if (to.params.typeProduct === "all") {
         store.dispatch("products/getAllProductsAction", {
           loading: EndTimeLoading,
@@ -159,6 +193,8 @@ export default {
       clickCallback,
       getPaginationCount,
       typePackages,
+      route_products,
+      showMenuProduct,
     };
   },
   data() {
@@ -183,7 +219,8 @@ export default {
     float: right;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    width: 100%;
     select {
       background: #f0f0f0 none repeat scroll 0 0;
       border: 1px solid #e5e5e5;

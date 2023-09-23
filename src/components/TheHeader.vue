@@ -124,7 +124,10 @@
                     >
                   </li>
                   <li class="navbar-item">
-                    <router-link to="/tutorial" href="" class="navbar-item-link"
+                    <router-link
+                      to="/tutorial/size_clothes"
+                      href=""
+                      class="navbar-item-link"
                       ><span>Chọn size</span></router-link
                     >
                   </li>
@@ -193,7 +196,7 @@
               >
             </li>
             <li class="navbar-item">
-              <router-link to="/tutorial" class="navbar-item-link"
+              <router-link to="/tutorial/size_clothes" class="navbar-item-link"
                 ><span>Chọn size</span></router-link
               >
             </li>
