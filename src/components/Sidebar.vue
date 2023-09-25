@@ -1,21 +1,25 @@
 <script setup>
-import { ref } from "vue";
-
-const route_products = ref([
-  { route: "Tất cả", to: "/products/all" },
-  { route: "Quần áo", to: "/products/clothes" },
-  { route: "Túi xách", to: "/products/bag" },
-  { route: "Phụ kiện", to: "/products/accessory" },
-  { route: "Giày cao gót", to: "/products/shoes" },
-]);
+import { defineProps } from "vue";
+const props = defineProps({
+  routes: {
+    type: Array,
+    required: true,
+  },
+  images: {
+    type: Array,
+  },
+  title: {
+    type: String,
+  },
+});
 </script>
 
 <template>
   <div class="catagory_all_products sidebar_products">
     <div class="catagory_area">
-      <h2>collection</h2>
+      <h2>{{ props.title }}</h2>
       <ul class="catagory_area-menu">
-        <li v-for="(item, index) in route_products" :key="index">
+        <li v-for="(item, index) in props.routes" :key="index">
           <router-link :to="item.to"
             ><span><i class="fa fa-angle-right"></i></span
             >{{ item.route }}</router-link
@@ -25,28 +29,13 @@ const route_products = ref([
     </div>
   </div>
   <div class="sidebar_product_feature">
-    <div class="add_r_sidebar">
+    <div
+      class="add_r_sidebar"
+      v-for="(_img, index) in props.images"
+      :key="index"
+    >
       <router-link to="/" class="banner_block">
-        <img
-          src="https://file.hstatic.net/1000003969/file/5_4e8bbd11e68d4e08a72d2d9b4738f03b.jpg"
-          alt=""
-        />
-      </router-link>
-    </div>
-    <div class="add_r_sidebar">
-      <router-link to="/" class="banner_block">
-        <img
-          src="https://file.hstatic.net/1000003969/file/3_bdbb2eb57de648dabcdb98fb58fb360d.jpg"
-          alt=""
-        />
-      </router-link>
-    </div>
-    <div class="add_r_sidebar">
-      <router-link to="/" class="banner_block">
-        <img
-          src="https://file.hstatic.net/1000003969/file/1_bd94c2d5fef549f2ae4465bb6732fc0f.jpg"
-          alt=""
-        />
+        <img :src="_img.image" alt="" />
       </router-link>
     </div>
   </div>

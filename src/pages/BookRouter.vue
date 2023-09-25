@@ -8,26 +8,14 @@
         </div>
       </div>
       <div class="col-lg-3">
-        <SidebarProduct />
+        <SidebarProduct
+          :routes="route_products"
+          :images="image_products"
+          :title="'Collection'"
+        />
       </div>
       <div class="col-lg-9">
-        <div class="toolbar">
-          <div class="extend_sidebar">
-            <button
-              class="icon_extend"
-              @click.prevent="showMenuProduct = !showMenuProduct"
-              v-if="!showMenuProduct"
-            >
-              <i class="fas fa-bars"></i>
-            </button>
-            <button
-              class="icon_extend"
-              @click.prevent="showMenuProduct = !showMenuProduct"
-              v-else
-            >
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
+        <menu-extend :routes="route_products">
           <div class="form-horizontal">
             <label class="hidden-xs mr-1" for="SortBy">Sắp xếp:</label>
             <select name="SortBy" id="SortBy" v-model="priceSort">
@@ -36,16 +24,7 @@
               <option value="price-descending">Giảm dần</option>
             </select>
           </div>
-        </div>
-        <Transition>
-          <div class="menu_extend_product" v-if="showMenuProduct">
-            <ul>
-              <li v-for="(item, index) in route_products" :key="index">
-                <router-link :to="item.to">{{ item.route }}</router-link>
-              </li>
-            </ul>
-          </div></Transition
-        >
+        </menu-extend>
 
         <div class="product-router-item">
           <div class="fea-list row">
@@ -89,14 +68,16 @@ import Paginate from "vuejs-paginate-next";
 import FeaturedItem from "@/components/FeaturedItem.vue";
 import { useStore } from "vuex";
 import { computed, ref, watch } from "vue";
-import SidebarProduct from "@/components/SidebarProduct.vue";
+import SidebarProduct from "@/components/Sidebar.vue";
 import { useRoute } from "vue-router";
 import { typePackages } from "@/utils/type-product";
+import MenuExtend from "@/components/MenuExtend.vue";
 export default {
   components: {
     FeaturedItem,
     Paginate,
     SidebarProduct,
+    MenuExtend,
   },
   setup() {
     const store = useStore();
@@ -105,13 +86,26 @@ export default {
     const currentPage = ref(1);
     const perPage = ref(9);
     const priceSort = ref("");
-    const showMenuProduct = ref(false);
     const route_products = ref([
       { route: "Tất cả", to: "/products/all" },
       { route: "Quần áo", to: "/products/clothes" },
       { route: "Túi xách", to: "/products/bag" },
       { route: "Phụ kiện", to: "/products/accessory" },
       { route: "Giày cao gót", to: "/products/shoes" },
+    ]);
+    const image_products = ref([
+      {
+        image:
+          "https://file.hstatic.net/1000003969/file/5_4e8bbd11e68d4e08a72d2d9b4738f03b.jpg",
+      },
+      {
+        image:
+          "https://file.hstatic.net/1000003969/file/1_bd94c2d5fef549f2ae4465bb6732fc0f.jpg",
+      },
+      {
+        image:
+          "https://file.hstatic.net/1000003969/file/3_bdbb2eb57de648dabcdb98fb58fb360d.jpg",
+      },
     ]);
     const EndTimeLoading = () => {
       isLoading.value = false;
@@ -135,7 +129,6 @@ export default {
       isLoading.value = true;
       currentPage.value = 1;
       priceSort.value = "";
-      showMenuProduct.value = false;
       if (to.params.typeProduct === "all") {
         store.dispatch("products/getAllProductsAction", {
           loading: EndTimeLoading,
@@ -194,7 +187,7 @@ export default {
       getPaginationCount,
       typePackages,
       route_products,
-      showMenuProduct,
+      image_products,
     };
   },
   data() {
@@ -209,31 +202,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.toolbar {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  overflow: hidden;
-  .form-horizontal {
-    float: right;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    select {
-      background: #f0f0f0 none repeat scroll 0 0;
-      border: 1px solid #e5e5e5;
-      border-radius: 0;
-      padding: 5px 10px;
-      cursor: pointer;
-      outline: none;
-      option {
-        color: #111;
-        background-color: #fff;
-        padding: 50px;
-      }
-    }
-  }
-}
-</style>

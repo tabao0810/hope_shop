@@ -3,7 +3,7 @@
     <div class="row">
       <div class="blog__icon col-lg-12">
         <div class="blog__icon-link">
-          <router-link to="/thehome" class="blog__icon-text"
+          <router-link to="/" class="blog__icon-text"
             ><i class="fa fa-home px-1"></i>home</router-link
           >
           <span class="blog__icon-text-active">About us</span>

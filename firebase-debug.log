@@ -1,13 +1,13 @@
-[debug] [2023-07-18T04:07:16.795Z] ----------------------------------------------------------------------
-[debug] [2023-07-18T04:07:16.797Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
-[debug] [2023-07-18T04:07:16.798Z] CLI Version:   12.4.4
-[debug] [2023-07-18T04:07:16.798Z] Platform:      win32
-[debug] [2023-07-18T04:07:16.798Z] Node Version:  v18.15.0
-[debug] [2023-07-18T04:07:16.799Z] Time:          Tue Jul 18 2023 11:07:16 GMT+0700 (Indochina Time)
-[debug] [2023-07-18T04:07:16.799Z] ----------------------------------------------------------------------
+[debug] [2023-09-25T11:00:23.044Z] ----------------------------------------------------------------------
+[debug] [2023-09-25T11:00:23.046Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-09-25T11:00:23.047Z] CLI Version:   12.5.4
+[debug] [2023-09-25T11:00:23.047Z] Platform:      win32
+[debug] [2023-09-25T11:00:23.047Z] Node Version:  v18.15.0
+[debug] [2023-09-25T11:00:23.048Z] Time:          Mon Sep 25 2023 18:00:23 GMT+0700 (Indochina Time)
+[debug] [2023-09-25T11:00:23.048Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2023-07-18T04:07:16.871Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-07-18T04:07:16.871Z] > authorizing via signed-in user (tabao08102000@gmail.com)
+[debug] [2023-09-25T11:00:23.118Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-09-25T11:00:23.118Z] > authorizing via signed-in user (tabao08102000@gmail.com)
 [info] 
      ######## #### ########  ######## ########     ###     ######  ########
      ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
@@ -30,178 +30,56 @@ Before we get started, keep in mind:
 [info] You can create multiple project aliases by running firebase use --add, 
 [info] but for now we'll just set up a default project.
 [info] 
-[debug] [2023-07-18T04:07:24.826Z] Using project from CLI flag: hope-shop-k13
-[debug] [2023-07-18T04:07:24.827Z] > refreshing access token with scopes: []
-[debug] [2023-07-18T04:07:24.829Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2023-07-18T04:07:24.829Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:07:25.028Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
-[debug] [2023-07-18T04:07:25.028Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:07:25.028Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 [none]
-[debug] [2023-07-18T04:07:25.150Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 401
-[debug] [2023-07-18T04:07:25.151Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
-[debug] [2023-07-18T04:07:25.151Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-[debug] [2023-07-18T04:07:25.274Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-09-25T11:00:31.936Z] Using project from CLI flag: hope-shop-k13
+[debug] [2023-09-25T11:00:31.937Z] > refreshing access token with scopes: []
+[debug] [2023-09-25T11:00:31.939Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-09-25T11:00:31.939Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-25T11:00:32.118Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-09-25T11:00:32.118Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-25T11:00:32.119Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 [none]
+[debug] [2023-09-25T11:00:32.231Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 401
+[debug] [2023-09-25T11:00:32.231Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2023-09-25T11:00:32.231Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-09-25T11:00:32.333Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
     at responseToError (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
-    at RetryOperation._fn (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:289:77)
+    at RetryOperation._fn (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:285:77)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 [error] 
 [error] Error: Failed to get Firebase project hope-shop-k13. Please make sure the project exists and your account has permission to access it.
-[debug] [2023-07-18T04:08:18.909Z] ----------------------------------------------------------------------
-[debug] [2023-07-18T04:08:18.911Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
-[debug] [2023-07-18T04:08:18.912Z] CLI Version:   12.4.4
-[debug] [2023-07-18T04:08:18.912Z] Platform:      win32
-[debug] [2023-07-18T04:08:18.912Z] Node Version:  v18.15.0
-[debug] [2023-07-18T04:08:18.913Z] Time:          Tue Jul 18 2023 11:08:18 GMT+0700 (Indochina Time)
-[debug] [2023-07-18T04:08:18.913Z] ----------------------------------------------------------------------
+[debug] [2023-09-25T11:04:55.748Z] ----------------------------------------------------------------------
+[debug] [2023-09-25T11:04:55.750Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-09-25T11:04:55.750Z] CLI Version:   12.5.4
+[debug] [2023-09-25T11:04:55.750Z] Platform:      win32
+[debug] [2023-09-25T11:04:55.750Z] Node Version:  v18.15.0
+[debug] [2023-09-25T11:04:55.755Z] Time:          Mon Sep 25 2023 18:04:55 GMT+0700 (Indochina Time)
+[debug] [2023-09-25T11:04:55.755Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2023-07-18T04:08:18.983Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-07-18T04:08:18.983Z] > authorizing via signed-in user (tabao08102000@gmail.com)
-[info] 
-     ######## #### ########  ######## ########     ###     ######  ########
-     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
-     ######    ##  ########  ######   ########  #########  ######  ######
-     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
-     ##       #### ##     ## ######## ########  ##     ##  ######  ########
-
-You're about to initialize a Firebase project in this directory:
-
-  D:\VueJS\hope_shop
-
-Before we get started, keep in mind:
-
-  * You are initializing within an existing Firebase project directory
-
-[info] 
-=== Project Setup
-[info] 
-[info] First, let's associate this project directory with a Firebase project.
-[info] You can create multiple project aliases by running firebase use --add, 
-[info] but for now we'll just set up a default project.
-[info] 
-[debug] [2023-07-18T04:09:01.140Z] Using project from CLI flag: hope-shop-k13
-[debug] [2023-07-18T04:09:01.141Z] > refreshing access token with scopes: []
-[debug] [2023-07-18T04:09:01.143Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2023-07-18T04:09:01.143Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:01.334Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
-[debug] [2023-07-18T04:09:01.334Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:01.335Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 [none]
-[debug] [2023-07-18T04:09:01.526Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 401
-[debug] [2023-07-18T04:09:01.526Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
-[debug] [2023-07-18T04:09:01.527Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-[debug] [2023-07-18T04:09:01.837Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-09-25T11:04:55.825Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-09-25T11:04:55.825Z] > authorizing via signed-in user (tabao08102000@gmail.com)
+[debug] [2023-09-25T11:04:55.825Z] [iam] checking project hope-shop-k13 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-09-25T11:04:55.826Z] > refreshing access token with scopes: []
+[debug] [2023-09-25T11:04:55.828Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-09-25T11:04:55.828Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-25T11:04:56.195Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-09-25T11:04:56.196Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-25T11:04:56.197Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions [none]
+[debug] [2023-09-25T11:04:56.197Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions x-goog-quota-user=projects/hope-shop-k13
+[debug] [2023-09-25T11:04:56.197Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-09-25T11:04:56.488Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions 401
+[debug] [2023-09-25T11:04:56.488Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"service":"cloudresourcemanager.googleapis.com","method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions"}}]}}
+[debug] [2023-09-25T11:04:56.489Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-09-25T11:04:56.490Z] > refreshing access token with scopes: []
+[debug] [2023-09-25T11:04:56.491Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-09-25T11:04:56.491Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-25T11:04:56.601Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-09-25T11:04:56.601Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-25T11:04:56.602Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 [none]
+[debug] [2023-09-25T11:04:56.717Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 401
+[debug] [2023-09-25T11:04:56.717Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2023-09-25T11:04:56.718Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-09-25T11:04:56.834Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
     at responseToError (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
-    at RetryOperation._fn (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:289:77)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-[error] 
-[error] Error: Failed to get Firebase project hope-shop-k13. Please make sure the project exists and your account has permission to access it.
-[debug] [2023-07-18T04:09:17.682Z] ----------------------------------------------------------------------
-[debug] [2023-07-18T04:09:17.684Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
-[debug] [2023-07-18T04:09:17.685Z] CLI Version:   12.4.4
-[debug] [2023-07-18T04:09:17.685Z] Platform:      win32
-[debug] [2023-07-18T04:09:17.685Z] Node Version:  v18.15.0
-[debug] [2023-07-18T04:09:17.686Z] Time:          Tue Jul 18 2023 11:09:17 GMT+0700 (Indochina Time)
-[debug] [2023-07-18T04:09:17.687Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2023-07-18T04:09:17.753Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-07-18T04:09:17.754Z] > authorizing via signed-in user (tabao08102000@gmail.com)
-[debug] [2023-07-18T04:09:17.754Z] [iam] checking project hope-shop-k13 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
-[debug] [2023-07-18T04:09:17.755Z] > refreshing access token with scopes: []
-[debug] [2023-07-18T04:09:17.757Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2023-07-18T04:09:17.757Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:18.100Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
-[debug] [2023-07-18T04:09:18.101Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:18.102Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions [none]
-[debug] [2023-07-18T04:09:18.102Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions x-goog-quota-user=projects/hope-shop-k13
-[debug] [2023-07-18T04:09:18.102Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
-[debug] [2023-07-18T04:09:18.997Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions 401
-[debug] [2023-07-18T04:09:18.998Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"service":"cloudresourcemanager.googleapis.com","method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions"}}]}}
-[debug] [2023-07-18T04:09:18.998Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-[debug] [2023-07-18T04:09:18.999Z] > refreshing access token with scopes: []
-[debug] [2023-07-18T04:09:19.000Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2023-07-18T04:09:19.000Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:19.143Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
-[debug] [2023-07-18T04:09:19.143Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:19.144Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 [none]
-[debug] [2023-07-18T04:09:19.254Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 401
-[debug] [2023-07-18T04:09:19.254Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
-[debug] [2023-07-18T04:09:19.254Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-[debug] [2023-07-18T04:09:19.363Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-    at responseToError (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
-    at RetryOperation._fn (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:289:77)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-[error] 
-[error] Error: Failed to get Firebase project hope-shop-k13. Please make sure the project exists and your account has permission to access it.
-[debug] [2023-07-18T04:09:27.450Z] ----------------------------------------------------------------------
-[debug] [2023-07-18T04:09:27.452Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2023-07-18T04:09:27.453Z] CLI Version:   12.4.4
-[debug] [2023-07-18T04:09:27.453Z] Platform:      win32
-[debug] [2023-07-18T04:09:27.453Z] Node Version:  v18.15.0
-[debug] [2023-07-18T04:09:27.454Z] Time:          Tue Jul 18 2023 11:09:27 GMT+0700 (Indochina Time)
-[debug] [2023-07-18T04:09:27.454Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2023-07-18T04:09:27.566Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-07-18T04:09:27.567Z] > authorizing via signed-in user (tabao08102000@gmail.com)
-[debug] [2023-07-18T04:09:27.567Z] [iam] checking project hope-shop-k13 for permissions ["firebase.projects.get"]
-[debug] [2023-07-18T04:09:27.568Z] > refreshing access token with scopes: []
-[debug] [2023-07-18T04:09:27.570Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2023-07-18T04:09:27.570Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:27.862Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
-[debug] [2023-07-18T04:09:27.863Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:27.863Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions [none]
-[debug] [2023-07-18T04:09:27.864Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions x-goog-quota-user=projects/hope-shop-k13
-[debug] [2023-07-18T04:09:27.864Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions {"permissions":["firebase.projects.get"]}
-[debug] [2023-07-18T04:09:28.788Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions 401
-[debug] [2023-07-18T04:09:28.788Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"service":"cloudresourcemanager.googleapis.com","method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions"}}]}}
-[debug] [2023-07-18T04:09:28.789Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-[debug] [2023-07-18T04:09:28.790Z] > refreshing access token with scopes: []
-[debug] [2023-07-18T04:09:28.790Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2023-07-18T04:09:28.790Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:28.963Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
-[debug] [2023-07-18T04:09:28.963Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:09:28.963Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 [none]
-[debug] [2023-07-18T04:09:29.107Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 401
-[debug] [2023-07-18T04:09:29.107Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
-[debug] [2023-07-18T04:09:29.108Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-[debug] [2023-07-18T04:09:29.234Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-    at responseToError (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
-    at RetryOperation._fn (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:289:77)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-[error] 
-[error] Error: Failed to get Firebase project hope-shop-k13. Please make sure the project exists and your account has permission to access it.
-[debug] [2023-07-18T04:13:46.302Z] ----------------------------------------------------------------------
-[debug] [2023-07-18T04:13:46.304Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
-[debug] [2023-07-18T04:13:46.305Z] CLI Version:   12.4.4
-[debug] [2023-07-18T04:13:46.305Z] Platform:      win32
-[debug] [2023-07-18T04:13:46.305Z] Node Version:  v18.15.0
-[debug] [2023-07-18T04:13:46.310Z] Time:          Tue Jul 18 2023 11:13:46 GMT+0700 (Indochina Time)
-[debug] [2023-07-18T04:13:46.310Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2023-07-18T04:13:46.377Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-07-18T04:13:46.378Z] > authorizing via signed-in user (tabao08102000@gmail.com)
-[debug] [2023-07-18T04:13:46.378Z] [iam] checking project hope-shop-k13 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
-[debug] [2023-07-18T04:13:46.379Z] > refreshing access token with scopes: []
-[debug] [2023-07-18T04:13:46.381Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2023-07-18T04:13:46.381Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:13:46.782Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
-[debug] [2023-07-18T04:13:46.783Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:13:46.784Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions [none]
-[debug] [2023-07-18T04:13:46.784Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions x-goog-quota-user=projects/hope-shop-k13
-[debug] [2023-07-18T04:13:46.784Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
-[debug] [2023-07-18T04:13:47.065Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions 401
-[debug] [2023-07-18T04:13:47.065Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hope-shop-k13:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
-[debug] [2023-07-18T04:13:47.066Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-[debug] [2023-07-18T04:13:47.066Z] > refreshing access token with scopes: []
-[debug] [2023-07-18T04:13:47.067Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2023-07-18T04:13:47.067Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:13:47.267Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
-[debug] [2023-07-18T04:13:47.267Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2023-07-18T04:13:47.267Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 [none]
-[debug] [2023-07-18T04:13:47.427Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 401
-[debug] [2023-07-18T04:13:47.427Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hope-shop-k13 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
-[debug] [2023-07-18T04:13:47.428Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-[debug] [2023-07-18T04:13:47.548Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
-    at responseToError (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
-    at RetryOperation._fn (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:289:77)
+    at RetryOperation._fn (C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:285:77)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 [error] 
 [error] Error: Failed to get Firebase project hope-shop-k13. Please make sure the project exists and your account has permission to access it.

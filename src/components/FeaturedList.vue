@@ -58,7 +58,7 @@ export default {
         left: 0,
         behavior: "smooth",
       });
-      return this.$router.push("/products");
+      return this.$router.push("/products/all");
     },
   },
 };

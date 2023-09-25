@@ -109,12 +109,12 @@
               <div class="navbar__menu-link col-lg-8">
                 <ul class="navbar-list">
                   <li class="navbar-item">
-                    <router-link to="/thehome" class="navbar-item-link"
+                    <router-link to="/" class="navbar-item-link"
                       ><span>Trang chủ</span></router-link
                     >
                   </li>
                   <li class="navbar-item">
-                    <router-link to="/shop" class="navbar-item-link"
+                    <router-link to="/sale/all" class="navbar-item-link"
                       ><span>Sale</span></router-link
                     >
                   </li>
@@ -186,7 +186,7 @@
               >
             </li>
             <li class="navbar-item">
-              <router-link to="/shop" class="navbar-item-link"
+              <router-link to="/sale/all" class="navbar-item-link"
                 ><span>Sale</span></router-link
               >
             </li>

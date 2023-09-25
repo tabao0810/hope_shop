@@ -15,7 +15,7 @@
     <figcaption>
       <p>{{ saleItem.sale }}</p>
     </figcaption>
-    <a href="" @click="this.$router.push('/shop')"></a>
+    <a href="" @click="this.$router.push('/sale/all')"></a>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     handleToSale() {
-      this.$router.push("/shop");
+      this.$router.push("/sale/all");
       window.scrollTo({
         top: 100,
         left: 100,

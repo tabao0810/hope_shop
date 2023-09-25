@@ -85,9 +85,7 @@
                 </thead>
                 <tr height="80px">
                   <td colspan="7" align="left">
-                    <router-link
-                      to="/thehome"
-                      class="cart_table-btn cart_table-margin"
+                    <router-link to="/" class="cart_table-btn cart_table-margin"
                       >Tiếp tục mua sắm</router-link
                     >
                   </td>
@@ -120,7 +118,7 @@
     <div class="my-cart-empty" v-else>
       <p class="my-cart-heading-2">Your cart is currently empty.</p>
       <p class="my-cart-heading-2">
-        Continue browsing <router-link to="/thehome" href="">here</router-link>.
+        Continue browsing <router-link to="/" href="">here</router-link>.
       </p>
       <img :src="img_svg" alt="" />
     </div>

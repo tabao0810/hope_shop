@@ -322,21 +322,35 @@ $color-primary: #ff343b;
     margin: 0;
     padding: 0;
     text-align: left;
+    display: flex;
+@include mobile() {
+  flex-direction: column;
+}
     @include tablet {
-            display: flex;
+           flex-direction: row;
             padding-bottom: 12px;
         }
     li {
         width: 100%;
+        padding: 0;
+        margin: 0;
         a {
-          padding: 12px;
+          padding: 8px;
         color: #333;
         width: 100%;
+        display: block;
+        text-align: center;
+        @include mobile() {
+              text-align: left;
+          }
+        &:hover{
+          background-color: #efefef;
+        }
     }
     .active{
         color:$color-primary;
         text-decoration: underline;
-        
+        font-weight: 600
     }
     }
   }

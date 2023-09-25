@@ -1,6 +1,8 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import Sidebar from "@/components/Sidebar.vue";
+import MenuExtend from "@/components/MenuExtend.vue";
 const route = useRoute();
 const currentRoute = ref(route.params.type);
 watch(route, (to) => {
@@ -18,28 +20,19 @@ const route_type = ref([
     <div class="row">
       <div class="blog__icon col-lg-12">
         <div class="blog__icon-link">
-          <router-link to="/thehome" class="blog__icon-text"
+          <router-link to="/" class="blog__icon-text"
             ><i class="fa fa-home px-1"></i>home</router-link
           >
-          <span class="blog__icon-text-active">PRODUCTS</span>
+          <span class="blog__icon-text-active">Tutorial</span>
         </div>
       </div>
       <div class="col-lg-3">
-        <div class="catagory_all_products">
-          <div class="catagory_area">
-            <h2>collection</h2>
-            <ul class="catagory_area-menu">
-              <li v-for="(item, index) in route_type" :key="index">
-                <router-link :to="item.to"
-                  ><span><i class="fa fa-angle-right"></i></span
-                  >{{ item.route }}</router-link
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+        <sidebar :routes="route_type" :title="'Tutorial'"></sidebar>
       </div>
       <div class="col-lg-9">
+        <menu-extend :routes="route_type"
+          ><div class="w-100"></div
+        ></menu-extend>
         <div class="blog_banner_area" v-if="currentRoute === 'size_clothes'">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

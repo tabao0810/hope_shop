@@ -23,7 +23,7 @@ function lazyLoad(view) {
 
 const routes = [
   {
-    path: "/thehome",
+    path: "/",
     component: TheHome,
     alias: "/",
   },
@@ -32,7 +32,7 @@ const routes = [
     component: BlogNews,
   },
   {
-    path: "/shop",
+    path: "/sale/:type",
     component: SaleRouter,
   },
   {
