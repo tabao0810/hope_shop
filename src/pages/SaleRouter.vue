@@ -18,8 +18,8 @@
         <menu-extend :routes="route_sale">
           <div style="width: 100%"></div>
         </menu-extend>
-        <div class="product-router-item" v-if="getSale?.length">
-          <div class="fea-list row">
+        <div class="product-router-item">
+          <div class="fea-list row" v-if="getSale?.length">
             <div
               class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12"
               v-for="_product in getSale"
@@ -28,10 +28,11 @@
               <featured-item :productDetail="_product" :Loading="isLoading" />
             </div>
           </div>
+          <div v-else v-show="!isLoading">
+            <h2>Không tìm thấy sản phẩm</h2>
+          </div>
         </div>
-        <div v-else>
-          <h2>Không tìm thấy sản phẩm</h2>
-        </div>
+
         <hr />
         <div class="pagination shop_paginatin">
           <paginate

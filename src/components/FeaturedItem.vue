@@ -6,7 +6,7 @@
       }`"
       class="product_overlay"
     >
-      <LoadingImageSkeleton v-if="Loading" style="min-height: 300px" />
+      <LoadingImageSkeleton v-if="Loading" style="min-height: 250px" />
       <img
         class=""
         :src="productDetail.image"

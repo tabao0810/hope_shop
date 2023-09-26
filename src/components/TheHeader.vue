@@ -2,17 +2,16 @@
   <nav class="nav" ref="srTop">
     <div class="container">
       <div class="row">
-        <div class="navbar__header col-lg-3">
-          <router-link to="/" class="navbar__link">
+        <div class="navbar__header col-3">
+          <router-link to="/">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1024px-H%26M-Logo.svg.png"
               alt=""
-              class="navbar__image"
-              style="width: 180px; height: 80px"
+              loading="lazy"
             />
           </router-link>
         </div>
-        <div class="col-lg-9 navbar-home">
+        <div class="col-9 navbar-home">
           <div class="navbar__contact">
             <p class="navbar__contact-text">
               Liên hệ: 036.7773.541 - 033.5480.569
@@ -143,74 +142,29 @@
                   </li>
                 </ul>
               </div>
-              <div class="navbar__menu-input col-lg-4">
-                <div class="navbar__menu-search">
-                  <input
-                    type="text"
-                    class="navbar-search"
-                    placeholder="Search our store"
-                    v-model="searchName"
-                  />
-                  <button
-                    class="navbar-icon"
-                    @click="handleClickSearch(searchName)"
-                  >
-                    <i class="fa fa-search"></i>
-                  </button>
+              <div class="col-lg-4">
+                <div class="navbar_search_mobile">
+                  <div class="navbar__menu-search">
+                    <input
+                      type="text"
+                      class="navbar-search"
+                      placeholder="Search our store"
+                      v-model="searchName"
+                    />
+                    <button
+                      class="navbar-icon"
+                      @click="handleClickSearch(searchName)"
+                    >
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                  <div class="navbar-mobile">
+                    <button><i class="fas fa-bars"></i></button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="navbar-mobile">
-        <div class="navbar-mobile-main">
-          <h5 style="padding: 6px 16px">MENU</h5>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggle-icon"><i class="fa fa-bars"></i></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <ul class="navbar-nav">
-            <li class="navbar-item">
-              <router-link to="/" class="navbar-item-link"
-                ><span>Trang chủ</span></router-link
-              >
-            </li>
-            <li class="navbar-item">
-              <router-link to="/sale/all" class="navbar-item-link"
-                ><span>Sale</span></router-link
-              >
-            </li>
-            <li class="navbar-item">
-              <router-link to="/products/all" class="navbar-item-link"
-                ><span>Sản phẩm</span></router-link
-              >
-            </li>
-            <li class="navbar-item">
-              <router-link to="/tutorial/size_clothes" class="navbar-item-link"
-                ><span>Chọn size</span></router-link
-              >
-            </li>
-            <li class="navbar-item">
-              <router-link to="/blognew" class="navbar-item-link"
-                ><span>Tin tức</span></router-link
-              >
-            </li>
-            <li class="navbar-item">
-              <router-link to="/aboutus" class="navbar-item-link"
-                ><span>Về HOPE</span></router-link
-              >
-            </li>
-          </ul>
         </div>
       </div>
     </div>
@@ -315,19 +269,11 @@ export default {
 .navbar__contact-icon {
   display: flex;
 }
-.navbar-mobile {
-  background-color: red;
-  border-radius: 5px;
-  display: none;
-}
 /* Mobile */
 @media (max-width: 767.98px) {
   .navbar__image {
     padding: 16px 0 0;
     width: 100%;
-  }
-  .navbar__contact {
-    display: none;
   }
   .navbar__contact-text,
   .navbar__contact-icon {
@@ -338,9 +284,6 @@ export default {
   }
   .navbar__menu::before {
     display: none;
-  }
-  .navbar-mobile {
-    display: block;
   }
 }
 /* Tablet */
@@ -382,7 +325,7 @@ export default {
   display: flex;
 }
 .navbar__contact {
-  padding: 20px 0 20px;
+  padding: 20px 0 0px;
 }
 .navbar__contact-text {
   color: #aaaaaa;

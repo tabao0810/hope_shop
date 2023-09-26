@@ -25,17 +25,53 @@ $color-primary: #ff343b;
 // Transiton
 .v-enter-active,
 .v-leave-active {
-    transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
 }
 
 .v-enter-from,
 .v-leave-to {
-    opacity: 0;
-    
+  opacity: 0;
+}
+// Header
+.navbar__header {
+  a {
+    img {
+      width: 180px;
+      height: 80px;
+      @include mobile {
+        width: 70px;
+        height: auto;
+      }
+    }
+  }
+}
+.navbar__contact {
+  @include mobile {
+    display: none;
+  }
+}
+
+.navbar_search_mobile{
+  @include mobile {
+      display: flex;
+      align-items: center;
+    }
+}
+.navbar-mobile {
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+  button {
+    background-color: transparent;
+    color: white;
+    border: none;
+  }
 }
 // Product item
 .single_product {
-  min-height: 400px;
+  min-height: 300px;
   position: relative;
 
   @include mobile {
@@ -113,10 +149,10 @@ $color-primary: #ff343b;
     text-align: center;
     visibility: visible;
     transition: all linear 0.3s;
-    -webkit-transform: translate(0px, -20px);
-    -ms-transform: translate(0px, -20px);
-    -o-transform: translate(0px, -20px);
-    transform: translate(0px, -20px);
+    -webkit-transform: translate(0px, -28px);
+    -ms-transform: translate(0px, -28px);
+    -o-transform: translate(0px, -28px);
+    transform: translate(0px, -28px);
 
     h2 {
       font-weight: bold;
@@ -323,35 +359,35 @@ $color-primary: #ff343b;
     padding: 0;
     text-align: left;
     display: flex;
-@include mobile() {
-  flex-direction: column;
-}
+    @include mobile() {
+      flex-direction: column;
+    }
     @include tablet {
-           flex-direction: row;
-            padding-bottom: 12px;
-        }
+      flex-direction: row;
+      padding-bottom: 12px;
+    }
     li {
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        a {
-          padding: 8px;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      a {
+        padding: 8px;
         color: #333;
         width: 100%;
         display: block;
         text-align: center;
         @include mobile() {
-              text-align: left;
-          }
-        &:hover{
+          text-align: left;
+        }
+        &:hover {
           background-color: #efefef;
         }
-    }
-    .active{
-        color:$color-primary;
+      }
+      .active {
+        color: $color-primary;
         text-decoration: underline;
-        font-weight: 600
-    }
+        font-weight: 600;
+      }
     }
   }
 }

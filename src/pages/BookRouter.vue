@@ -29,7 +29,7 @@
         <div class="product-router-item">
           <div class="fea-list row">
             <div
-              class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12"
+              class="col-lg-4 col-md-6 col-sm-6 col-xs-6 col-6"
               v-for="_product in getProducts"
               :key="_product.id"
             >

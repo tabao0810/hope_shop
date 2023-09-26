@@ -15,6 +15,9 @@ import SearchProduct from "./pages/SearchProduct.vue";
 import TheTutorial from "./pages/TheTutorial.vue";
 import PaymentSuccess from "./pages/PaymentSuccess.vue";
 
+// Middleware
+import checkTypeProduct from "@/middleware/products";
+
 import { createRouter, createWebHistory } from "vue-router";
 
 function lazyLoad(view) {
@@ -38,9 +41,11 @@ const routes = [
   {
     path: "/products/:typeProduct",
     component: BookRouter,
+    beforeEnter: checkTypeProduct,
   },
   {
     path: "/pageerror",
+    name: "PageError",
     component: PageError,
   },
   {
@@ -70,6 +75,7 @@ const routes = [
   {
     path: "/products/:typeProduct/:productId",
     component: ProductDetail,
+    beforeEnter: checkTypeProduct,
   },
   {
     path: "/check-out",
@@ -90,6 +96,11 @@ const routes = [
   {
     path: "/success",
     component: PaymentSuccess,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "PageError",
+    component: PageError,
   },
 ];
 

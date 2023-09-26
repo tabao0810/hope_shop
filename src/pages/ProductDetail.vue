@@ -3,31 +3,29 @@
     <div class="row">
       <div class="blog__icon col-lg-12">
         <div class="blog__icon-link">
-          <router-link to="/" class="blog__icon-text"
-            ><i class="fa fa-home px-1"></i>home</router-link
-          >
+          <router-link to="/" class="blog__icon-text">home</router-link>
           <span class="blog__icon-text-active">{{ productDetail.name }}</span>
         </div>
       </div>
-    </div>
-    <div class="row mt-4">
       <div class="col-lg-5">
+        <image-skeleton v-if="isLoading" style="min-height: 350px" />
         <img
           :src="productDetail.image"
           alt=""
-          class="product-detail-image"
+          class="w-100"
           loading="lazy"
+          @load="isLoading = false"
           v-show="!isLoading"
-        /><image-skeleton v-if="isLoading" />
+          v-else
+        />
       </div>
       <div class="product-detail col-lg-7">
-        <h2 class="product-heading">
+        <h2 class="border-bottom">
           {{ productDetail.name }}
         </h2>
-        <hr />
         <h6>
-          Tình trạng:<span style="color: red" v-if="productDetail.quantity > 0"
-            >Còn hàng ({{ productDetail.quantity }} sản phẩm)</span
+          Tình trạng:<span style="color: red" v-if="productDetail.quantity > 0">
+            Còn hàng ({{ productDetail.quantity }} sản phẩm)</span
           ><span style="color: red" v-else>Hết hàng</span>
         </h6>
         <div class="product-detail-price">
@@ -146,77 +144,42 @@
         </div>
       </div>
     </div>
-
-    <div class="row mt-5">
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <tab-nav
-          :tabs="['Cửa hàng', 'Thông tin sản phẩm', 'Đánh giá sản phẩm']"
-          :selected="selected"
-          @selected="setSelected"
-        >
-        </tab-nav>
-        <the-tab :isSelected="selected === 'Cửa hàng'">
-          <div class="tab-pane">
-            <table width="100%">
-              <tr>
-                <td align="left">Tên sản phẩm</td>
-                <td align="left">
-                  {{ productDetail.name }}
-                </td>
-              </tr>
-              <tr>
-                <td align="left">Cửa hàng</td>
-                <td align="left">Hope</td>
-              </tr>
-            </table>
-          </div>
-        </the-tab>
-        <the-tab :isSelected="selected === 'Thông tin sản phẩm'">
-          <div class="tab-pane">
-            <pre>{{ productDetail.description }}</pre>
-          </div>
-        </the-tab>
-        <the-tab :isSelected="selected === 'Đánh giá sản phẩm'">
-          <div class="tab-pane text-center">
-            <h4>Customer Reviews</h4>
-            <img :src="img_svg" style="width: 50%" alt="" />
-          </div>
-        </the-tab>
-      </div>
+    <div class="tab-pane text-center mt-4">
+      <h4>Đánh giá sản phẩm</h4>
+      <img :src="img_svg" style="width: 50%" alt="" />
     </div>
-    <div class="row mt-5">
-      <div class="col-lg-12">
-        <h1 class="blog__heading">Sản phẩm tương tự</h1>
-        <div class="product-slide">
-          <swiper
-            :slidesPerView="setCount"
-            :spaceBetween="20"
-            :slidesPerGroup="1"
-            :loop="true"
-            :loopFillGroupWithBlank="true"
-            :pagination="{
-              clickable: true,
-            }"
-            :navigation="{
-              nextEl: '.blog-button-next',
-              prevEl: '.blog-button-prev',
-            }"
-            :modules="modules"
-            class="mySwiper"
-          >
-            <swiper-slide v-for="product in productRelated" :key="product.id">
-              <featured-item :productDetail="product" :Loading="isLoading" />
-            </swiper-slide>
-          </swiper>
-          <div class="product-btn">
-            <a class="blog-button-prev"
-              ><i class="fa-solid fa-arrow-left-long blog-icon-left"></i>
-            </a>
 
-            <a class="blog-button-next">
-              <i class="fa-solid fa-arrow-right-long blog-icon-right"></i
-            ></a>
-          </div>
+    <div class="col-lg-12 mt-5">
+      <h1 class="blog__heading">Sản phẩm tương tự</h1>
+      <div class="product-slide">
+        <swiper
+          :slidesPerView="1"
+          :spaceBetween="20"
+          :slidesPerGroup="1"
+          :loop="true"
+          :loopFillGroupWithBlank="true"
+          :pagination="{
+            clickable: true,
+          }"
+          :navigation="{
+            nextEl: '.blog-button-next',
+            prevEl: '.blog-button-prev',
+          }"
+          :modules="modules"
+          class="mySwiper"
+        >
+          <swiper-slide v-for="product in productRelated" :key="product.id">
+            <featured-item :productDetail="product" :Loading="isLoading" />
+          </swiper-slide>
+        </swiper>
+        <div class="product-btn">
+          <a class="blog-button-prev"
+            ><i class="fa-solid fa-arrow-left-long blog-icon-left"></i>
+          </a>
+
+          <a class="blog-button-next">
+            <i class="fa-solid fa-arrow-right-long blog-icon-right"></i
+          ></a>
         </div>
       </div>
     </div>
@@ -225,8 +188,6 @@
 
 <script>
 import theReview from "../../public/image/reviews.svg";
-import TabNav from "./TabNav.vue";
-import TheTab from "./TheTab.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 // Import Swiper styles
 import "swiper/css";
@@ -242,7 +203,6 @@ import { FormatPrice } from "@/utils/constant";
 export default {
   data() {
     return {
-      selected: "Cửa hàng",
       img_svg: theReview,
     };
   },
@@ -290,8 +250,6 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    TabNav,
-    TheTab,
     ImageSkeleton,
     FeaturedItem,
   },
@@ -310,130 +268,14 @@ export default {
     },
   },
   methods: {
-    setSelected(tab) {
-      this.selected = tab;
-    },
     handleBuy(pro) {
       this.$store.dispatch("user/addCartAction", pro);
       this.$router.push("/my-cart");
     },
-    handleToDetail(a) {
-      this.$router.push(`/product-detail/${a}`);
-      window.scrollTo({
-        top: 100,
-        left: 100,
-        behavior: "smooth",
-      });
-    },
   },
-  created() {},
 };
 </script>
 
-<style>
-.product-detail {
-  text-align: left;
-}
-.product-detail-image {
-  width: 100%;
-}
-.product-detail-price {
-  font-size: 26px;
-  color: #ff343b;
-  font-weight: 500;
-  margin-bottom: 0;
-}
-.product-detail-price-sale {
-  font-size: 18px;
-  text-decoration: line-through;
-  color: #8f8f8f;
-}
-.product-detail-option {
-  background: #f4f9ea none repeat scroll 0 0;
-  border: 1px solid #dddddd;
-  padding: 24px;
-  border-radius: 8px;
-}
-.product-detail > label {
-  display: inline-block;
-  width: 100%;
-}
-.product-detail > select {
-  display: block;
-  width: 100%;
-  background: #fff none repeat scroll 0 0;
-  padding: 8px 10px;
-  outline: none;
-}
-.product-detail-button > button {
-  display: block;
-  min-width: 180px;
-  padding: 10px 20px;
-  margin-top: 20px;
-  background-color: #fff;
-  border: black 1px solid;
-  cursor: pointer;
-}
-.product-detail-button > button:hover {
-  color: #ff343b;
-  border: #ff343b 1px solid;
-  transition: all 0.3s linear;
-}
-.tablist {
-  text-align: left;
-  margin: 0;
-  padding: 0;
-}
-.tablist li {
-  margin-left: 4px;
-  list-style: none;
-  display: inline-flex;
-  color: #ccc;
-  margin-top: 4px;
-}
-.tablist li a {
-  text-transform: uppercase;
-  padding: 8px 10px;
-  border: 2px solid #ccc;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-}
-.tablist li.active a {
-  color: #222222;
-  border: 2px solid #222222;
-  transition: all linear 0.5s;
-}
-.tablist li.active a:hover {
-  color: #222222;
-}
-
-.tab-content {
-  margin-top: 30px;
-  width: 100%;
-  background-color: #f3f3f3;
-}
-.tab-pane {
-  padding: 30px;
-  width: 100%;
-  background-color: #e5e5e5;
-  text-align: left;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-}
-.tab-pane td {
-  background: #fff none repeat scroll 0 0;
-  border: 1px solid #e5e5e5;
-  color: #222;
-  height: 42px;
-  padding-left: 11px;
-  text-transform: capitalize;
-}
-.tab-pane > p {
-  text-align: left;
-  width: 100%;
-  text-align: justify;
-}
-</style>
 <style scoped>
 :root {
   --white: #ffffff;
@@ -618,6 +460,74 @@ $colors: (
   gray: gray,
   white: white,
 );
+.blog__icon-text-active {
+  &::before {
+    left: 40px !important;
+  }
+}
+.tab-pane {
+  padding: 30px;
+  width: 100%;
+  background-color: #e5e5e5;
+  text-align: left;
+}
+.product-detail {
+  text-align: left;
+
+  select {
+    display: block;
+    width: 100%;
+    background: #fff none repeat scroll 0 0;
+    padding: 8px 10px;
+    outline: none;
+  }
+}
+.product-detail-price {
+  display: flex;
+  align-items: center;
+  p {
+    font-size: 26px;
+    color: #ff343b;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  span {
+    font-size: 18px;
+    text-decoration: line-through;
+    color: #8f8f8f;
+    margin-left: 8px;
+  }
+}
+.product-detail-des {
+  width: 100%;
+  text-align: justify;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 8px 0px;
+  white-space: pre-line;
+}
+.product-detail-option {
+  background: #f4f9ea none repeat scroll 0 0;
+  border: 1px solid #dddddd;
+  padding: 24px;
+  border-radius: 8px;
+}
+.product-detail-button {
+  button {
+    display: block;
+    min-width: 180px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #fff;
+    border: black 1px solid;
+    cursor: pointer;
+    &:hover {
+      color: #ff343b;
+      border: #ff343b 1px solid;
+      transition: all 0.3s linear;
+    }
+  }
+}
 
 .pickColor {
   display: none;
@@ -657,14 +567,5 @@ $colors: (
       }
     }
   }
-}
-.product-detail-des {
-  width: 100%;
-  text-align: justify;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 10px 0px;
-  white-space: pre-line;
 }
 </style>
