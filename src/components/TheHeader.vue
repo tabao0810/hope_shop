@@ -1,7 +1,37 @@
 <template>
   <nav class="nav" ref="srTop">
     <div class="container">
-      <div class="row">
+      <!-- Header mobile -->
+      <div class="navbar-mobile">
+        <div class="navbar-mobile-left">
+          <button @click="toggleMenu = !toggleMenu">
+            <i class="fas fa-bars" v-if="!toggleMenu"></i>
+            <i class="fas fa-times" v-else></i>
+          </button>
+          <div class="nav-menu-extend" :class="{ active: toggleMenu }">
+            <ul>
+              <li v-for="(item, index) in routeMenu" :key="index">
+                <router-link :to="item.route">{{ item.title }}</router-link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <router-link to="/">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1024px-H%26M-Logo.svg.png"
+              alt=""
+              loading="lazy"
+              style="width: 50px"
+            />
+          </router-link>
+        </div>
+        <div>
+          <the-cart :userInfo="userInfo" :userCarts="userCarts"></the-cart>
+        </div>
+      </div>
+
+      <div class="row navbar-pc">
         <div class="navbar__header col-3">
           <router-link to="/">
             <img
@@ -16,151 +46,37 @@
             <p class="navbar__contact-text">
               Liên hệ: 036.7773.541 - 033.5480.569
             </p>
-            <div class="navbar__contact-icon">
-              <div class="navbar__contact-account">
-                <a
-                  href=""
-                  @click.prevent=""
-                  class="mr-3 header__btn account__btn"
-                >
-                  <span v-if="userInfo._id"
-                    ><i class="far fa-user-circle mr-1"></i>Hi,
-                    {{ userInfo.lastName }}</span
-                  >
-                  <span v-else><i class="fa fa-key mr-1"></i>Account</span>
-                </a>
-                <div class="account_menu_list">
-                  <div class="account_single_item">
-                    <!-- <h2>setting</h2> -->
-                    <ul class="account_single_nav_3">
-                      <!-- <li v-if="userInfo._id">
-                        <a href="">Thông tin cá nhân</a>
-                      </li> -->
-                      <li v-if="userInfo._id">
-                        <router-link href="" to="my-cart">giỏ hàng</router-link>
-                      </li>
-                      <li v-if="userInfo._id">
-                        <router-link href="" to="/history"
-                          >Đơn hàng</router-link
-                        >
-                      </li>
-                      <li v-if="userInfo._id">
-                        <router-link href="" to="/my-wishlist"
-                          >danh sách yêu thích</router-link
-                        >
-                      </li>
-                      <li v-if="userInfo._id">
-                        <a href="" @click.prevent="LogoutPage">Đăng xuất</a>
-                      </li>
-                      <li v-else>
-                        <router-link to="/login">Đăng nhập</router-link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="navbar__contact-cart">
-                <router-link href="" to="/my-cart" class="header__btn cart-btn"
-                  ><i class="fa fa-shopping-cart mr-1"></i>Cart
-                  <span
-                    class="badge badge-pill badge-danger"
-                    style="font-size: 10px"
-                    >{{ sumCart }}</span
-                  >
-                </router-link>
-                <div class="cart_down_area">
-                  <div class="cart_single" v-if="sumCart === 0">
-                    Hiện chưa có sản phẩm nào trong giỏ hàng
-                  </div>
-                  <div
-                    class="cart_single"
-                    v-else
-                    v-for="cartItem in userCarts"
-                    :key="cartItem._id"
-                  >
-                    <div class="cart_single-image">
-                      <a href=""><img :src="cartItem.image" alt="" /></a>
-                    </div>
-                    <div class="cart_single-text">
-                      <router-link
-                        href=""
-                        to="/my-cart"
-                        class="cart_single__name"
-                        >{{ cartItem.name }}</router-link
-                      >
-                      <p>{{ cartItem.amount }} x {{ FormatSale(cartItem) }}</p>
-                    </div>
-                    <div class="cart_single-remove">
-                      <a title="Remove" @click="handleDelete(cartItem)">
-                        <span><i class="fa fa-trash"></i></span>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="cart_shoptings">
-                    <router-link to="/my-cart">Thanh toán</router-link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <the-cart :userInfo="userInfo" :userCarts="userCarts"></the-cart>
           </div>
           <div class="navbar__menu">
             <div class="row">
               <div class="navbar__menu-link col-lg-8">
                 <ul class="navbar-list">
-                  <li class="navbar-item">
-                    <router-link to="/" class="navbar-item-link"
-                      ><span>Trang chủ</span></router-link
-                    >
-                  </li>
-                  <li class="navbar-item">
-                    <router-link to="/sale/all" class="navbar-item-link"
-                      ><span>Sale</span></router-link
-                    >
-                  </li>
-                  <li class="navbar-item">
-                    <router-link to="/products/all" class="navbar-item-link"
-                      ><span>Sản phẩm</span></router-link
-                    >
-                  </li>
-                  <li class="navbar-item">
-                    <router-link
-                      to="/tutorial/size_clothes"
-                      href=""
-                      class="navbar-item-link"
-                      ><span>Chọn size</span></router-link
-                    >
-                  </li>
-                  <li class="navbar-item">
-                    <router-link to="/blognew" class="navbar-item-link"
-                      ><span>Tin tức</span></router-link
-                    >
-                  </li>
-                  <li class="navbar-item">
-                    <router-link to="/aboutus" href="" class="navbar-item-link"
-                      ><span>Về H&M</span></router-link
+                  <li
+                    class="navbar-item"
+                    v-for="(item, index) in routeMenu"
+                    :key="index"
+                  >
+                    <router-link :to="item.route" class="navbar-item-link"
+                      ><span>{{ item.title }}</span></router-link
                     >
                   </li>
                 </ul>
               </div>
               <div class="col-lg-4">
-                <div class="navbar_search_mobile">
-                  <div class="navbar__menu-search">
-                    <input
-                      type="text"
-                      class="navbar-search"
-                      placeholder="Search our store"
-                      v-model="searchName"
-                    />
-                    <button
-                      class="navbar-icon"
-                      @click="handleClickSearch(searchName)"
-                    >
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </div>
-                  <div class="navbar-mobile">
-                    <button><i class="fas fa-bars"></i></button>
-                  </div>
+                <div class="navbar__menu-search">
+                  <input
+                    type="text"
+                    class="navbar-search"
+                    placeholder="Search our store"
+                    v-model="searchName"
+                  />
+                  <button
+                    class="navbar-icon"
+                    @click="handleClickSearch(searchName)"
+                  >
+                    <i class="fa fa-search"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -172,59 +88,67 @@
 </template>
 
 <script>
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
+import TheCart from "./TheCart.vue";
 
 export default {
+  components: {
+    TheCart,
+  },
   setup() {
     const store = useStore();
     const router = useRouter();
+    const route = useRoute();
     const searchName = ref("");
+    const toggleMenu = ref(false);
+    const routeMenu = ref([
+      {
+        route: "/",
+        title: "Trang chủ",
+      },
+      {
+        route: "/sale/all",
+        title: "Sale",
+      },
+      {
+        route: "/products/all",
+        title: "Sản phẩm",
+      },
+      {
+        route: "/tutorial/size_clothes",
+        title: "Chọn size",
+      },
+      {
+        route: "/blognew",
+        title: "Tin tức",
+      },
+      {
+        route: "/aboutus",
+        title: "Về H&M",
+      },
+    ]);
+    watch(route, () => {
+      toggleMenu.value = false;
+    });
     store.dispatch("user/loadUserLoginFromLocalStorage");
-    const LogoutPage = () => {
-      store.dispatch("user/logoutUser");
-      router.push("/");
-    };
+
     const handleClickSearch = () => {
       const data = searchName.value;
       store.dispatch("products/searchNameAction", { data, router });
     };
     const userInfo = computed(() => store.state.user.userInfo);
     const userCarts = computed(() => store.state.user.userCarts);
-    const handleDelete = (data) => {
-      store.dispatch("user/removeCartAction", data);
-    };
+
     return {
-      LogoutPage,
       handleClickSearch,
       userInfo,
       userCarts,
-      handleDelete,
-      searchName: searchName,
+      searchName,
+      routeMenu,
+      toggleMenu,
     };
-  },
-  methods: {
-    FormatSale(cartItem) {
-      if (cartItem.isSale === true) {
-        let x = cartItem.price - cartItem.price * (cartItem.sale / 100);
-        return (x = x.toLocaleString("vi", {
-          style: "currency",
-          currency: "VND",
-        }));
-      } else {
-        let x = cartItem.price;
-        return x.toLocaleString("vi", {
-          style: "currency",
-          currency: "VND",
-        });
-      }
-    },
-  },
-  computed: {
-    sumCart() {
-      return this.userCarts.reduce((sum, cart) => (sum += cart.amount), 0);
-    },
   },
   mounted() {
     const totop = this.$refs.srTop;
@@ -268,6 +192,7 @@ export default {
 }
 .navbar__contact-icon {
   display: flex;
+  margin-right: 12px;
 }
 /* Mobile */
 @media (max-width: 767.98px) {
@@ -275,8 +200,7 @@ export default {
     padding: 16px 0 0;
     width: 100%;
   }
-  .navbar__contact-text,
-  .navbar__contact-icon {
+  .navbar__contact-text {
     display: none;
   }
   .navbar__menu-link {

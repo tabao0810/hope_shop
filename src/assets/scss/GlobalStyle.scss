@@ -51,23 +51,70 @@ $color-primary: #ff343b;
   }
 }
 
-.navbar_search_mobile{
+.navbar_search_mobile {
   @include mobile {
-      display: flex;
-      align-items: center;
-    }
+    display: flex;
+    align-items: center;
+  }
 }
 .navbar-mobile {
   display: none;
-
+  padding: 16px 0;
   @include mobile {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+}
+.navbar-mobile-left {
   button {
     background-color: transparent;
     color: white;
     border: none;
+    i{
+      font-size: 22px;
+    }
   }
+}
+.nav-menu-extend {
+  background-color: #282828;
+  position: fixed;
+  left: -100vw;
+  top:62px;
+  width: 100vw;
+  height: calc(100vh - 62px);
+  transition: 1s;
+  z-index: 999999999;
+  &.active {
+    left: 0;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      width: 100%;
+      a {
+       display: block;
+        width: 100%;
+        padding: 8px;
+        color: white;
+      }
+    }
+  }
+}
+.navbar-pc{
+  @include mobile {
+      display: none;
+    }
+}.navbar__contact-account-mobile{
+  @include mobile {
+      display: none;
+    }
 }
 // Product item
 .single_product {
