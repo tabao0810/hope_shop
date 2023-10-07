@@ -82,7 +82,7 @@ const routes = [
     component: CheckOut,
   },
   {
-    path: "/search",
+    path: "/search/s=:title",
     component: SearchProduct,
   },
   {

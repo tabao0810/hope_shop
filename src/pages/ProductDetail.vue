@@ -153,7 +153,7 @@
       <h1 class="blog__heading">Sản phẩm tương tự</h1>
       <div class="product-slide">
         <swiper
-          :slidesPerView="1"
+          :slidesPerView="4"
           :spaceBetween="20"
           :slidesPerGroup="1"
           :loop="true"

@@ -14,6 +14,21 @@
                 <router-link :to="item.route">{{ item.title }}</router-link>
               </li>
             </ul>
+            <div class="navbar__menu-search">
+              <input
+                type="text"
+                class="navbar-search"
+                placeholder="Search our store"
+                v-model="searchName"
+                @keyup.enter="handleClickSearch(searchName)"
+              />
+              <button
+                class="navbar-icon"
+                @click="handleClickSearch(searchName)"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
           </div>
         </div>
         <div>
@@ -30,7 +45,7 @@
           <the-cart :userInfo="userInfo" :userCarts="userCarts"></the-cart>
         </div>
       </div>
-
+      <!-- Header PC -->
       <div class="row navbar-pc">
         <div class="navbar__header col-3">
           <router-link to="/">
@@ -70,6 +85,7 @@
                     class="navbar-search"
                     placeholder="Search our store"
                     v-model="searchName"
+                    @keyup.enter="handleClickSearch(searchName)"
                   />
                   <button
                     class="navbar-icon"
@@ -136,7 +152,7 @@ export default {
 
     const handleClickSearch = () => {
       const data = searchName.value;
-      store.dispatch("products/searchNameAction", { data, router });
+      router.push(`/search/s=${data}`);
     };
     const userInfo = computed(() => store.state.user.userInfo);
     const userCarts = computed(() => store.state.user.userCarts);

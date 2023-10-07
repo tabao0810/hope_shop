@@ -21,10 +21,18 @@
             <div class="error-form">
               <p>To find a product, please type its name in the field below.</p>
 
-              <form class="error-ser-form" style="position: relative">
+              <form
+                class="error-ser-form"
+                style="position: relative"
+                @submit.prevent="handleClickSearch(searchName)"
+              >
                 <div class="error-form-group form-group">
                   <span>Search our product catalog :</span>
-                  <input type="text" class="form-control input-feild" />
+                  <input
+                    type="text"
+                    class="form-control input-feild"
+                    v-model="searchName"
+                  />
                   <input
                     type="submit"
                     class="error-search"
@@ -56,7 +64,22 @@
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+export default {
+  setup() {
+    const router = useRouter();
+    const searchName = ref("");
+    const handleClickSearch = () => {
+      const data = searchName.value;
+      router.push(`/search/s=${data}`);
+    };
+    return {
+      searchName,
+      handleClickSearch,
+    };
+  },
+};
 </script>
 
 <style>

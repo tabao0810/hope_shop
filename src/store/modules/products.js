@@ -1,6 +1,7 @@
 import {
   getAllProductsApi,
   getRelatedProductsApi,
+  getSearchProductsApi,
   getSingleProductsApi,
 } from "@/apis/products";
 
@@ -8,7 +9,7 @@ const state = () => {
   return {
     productList: [],
     productDetail: {},
-    searchName: "",
+    searchName: [],
   };
 };
 
@@ -23,12 +24,6 @@ const getters = {
   },
   productListfeatured(state) {
     return state.productList.filter((product) => product.color === "gray");
-  },
-  productListByName(state) {
-    const { productList, searchName } = state;
-    return productList.filter((product) =>
-      product.name.toLowerCase().includes(searchName.toLowerCase())
-    );
   },
   productListSale(state) {
     return state.productList.filter((product) => product.isSale === true);
@@ -62,7 +57,7 @@ const getters = {
 
 const mutations = {
   searchNameMutation(state, payload) {
-    state.searchName = payload;
+    state.productList = payload;
   },
 
   setProductsMutation(state, payload) {
@@ -102,9 +97,17 @@ const actions = {
       });
   },
   // Tìm kiếm sản phẩm
-  searchNameAction(context, { data, router }) {
-    context.commit("searchNameMutation", data);
-    router.push("/search");
+  async searchNameAction(context, { route, loading }) {
+    await getSearchProductsApi(route)
+      .then((res) => {
+        context.commit("searchNameMutation", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        loading();
+      });
   },
   async getRelatedProductsAction(context, { loading, type }) {
     await getRelatedProductsApi(type)

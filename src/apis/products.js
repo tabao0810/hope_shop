@@ -29,3 +29,10 @@ export const getRelatedProductsApi = async (type) => {
   });
   return res.data.Product;
 };
+export const getSearchProductsApi = async (search) => {
+  const res = await axios({
+    method: "GET",
+    url: `${process.env.VUE_APP_API_URL}/api/product/search/s=${search}`,
+  });
+  return res.data.Product;
+};
