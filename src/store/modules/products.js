@@ -28,31 +28,6 @@ const getters = {
   productListSale(state) {
     return state.productList.filter((product) => product.isSale === true);
   },
-
-  productListSaleClothing(state) {
-    const saleArr = state.productList.filter(
-      (product) => product.isSale === true
-    );
-    return saleArr.filter((product) => product.typeProduct === "Quần áo");
-  },
-  productListSaleAccessory(state) {
-    const saleArr = state.productList.filter(
-      (product) => product.isSale === true
-    );
-    return saleArr.filter((product) => product.typeProduct === "Phụ kiện");
-  },
-  productListSaleBag(state) {
-    const saleArr = state.productList.filter(
-      (product) => product.isSale === true
-    );
-    return saleArr.filter((product) => product.typeProduct === "Túi");
-  },
-  productListSaleShoe(state) {
-    const saleArr = state.productList.filter(
-      (product) => product.isSale === true
-    );
-    return saleArr.filter((product) => product.typeProduct === "Giày");
-  },
 };
 
 const mutations = {

@@ -19,7 +19,7 @@
           <div style="width: 100%"></div>
         </menu-extend>
         <div class="product-router-item">
-          <div class="fea-list row" v-if="getSale?.length">
+          <div class="row" v-if="getSale?.length">
             <div
               class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-12"
               v-for="_product in getSale"
@@ -65,7 +65,7 @@ import error from "../../public/image/error.svg";
 import Paginate from "vuejs-paginate-next";
 import FeaturedItem from "../components/FeaturedItem.vue";
 import { useStore } from "vuex";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import SidebarSale from "@/components/Sidebar.vue";
 import MenuExtend from "@/components/MenuExtend.vue";
 import { useRoute } from "vue-router";
@@ -83,6 +83,8 @@ export default {
     const isLoading = ref(true);
     const currentPage = ref(1);
     const perPage = ref(9);
+    const items = ref([]);
+    const img_svg = ref(error);
     const route_sale = ref([
       { route: "Tất cả", to: "/sale/all" },
       { route: "Quần áo", to: "/sale/clothes" },
@@ -138,6 +140,11 @@ export default {
     const productListSale = computed(
       () => store.getters["products/productListSale"]
     );
+    onMounted(() => {
+      productListSale.value.map((item) => {
+        items.value.push(item);
+      });
+    });
     const getSale = computed(() => {
       let start = (currentPage.value - 1) * perPage.value;
       let end = currentPage.value * perPage.value;
@@ -167,19 +174,9 @@ export default {
       getPaginationCount,
       clickCallback,
       typePackages,
+      items,
+      img_svg,
     };
-  },
-  data() {
-    return {
-      items: [],
-      img_svg: error,
-    };
-  },
-
-  created() {
-    this.productListSale.map((item) => {
-      this.items.push(item);
-    });
   },
 };
 </script>

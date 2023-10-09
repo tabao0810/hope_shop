@@ -27,7 +27,7 @@
         </menu-extend>
 
         <div class="product-router-item">
-          <div class="fea-list row">
+          <div class="row">
             <div
               class="col-lg-4 col-md-6 col-sm-6 col-xs-6 col-6"
               v-for="_product in getProducts"
@@ -67,7 +67,7 @@
 import Paginate from "vuejs-paginate-next";
 import FeaturedItem from "@/components/FeaturedItem.vue";
 import { useStore } from "vuex";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import SidebarProduct from "@/components/Sidebar.vue";
 import { useRoute } from "vue-router";
 import { typePackages } from "@/utils/type-product";
@@ -86,6 +86,7 @@ export default {
     const currentPage = ref(1);
     const perPage = ref(9);
     const priceSort = ref("");
+    const items = ref([]);
     const route_products = ref([
       { route: "Tất cả", to: "/products/all" },
       { route: "Quần áo", to: "/products/clothes" },
@@ -145,6 +146,11 @@ export default {
       }
     });
     const listProducts = computed(() => store.state.products.productList);
+    onMounted(() => {
+      listProducts.value.map((item) => {
+        items.value.push(item);
+      });
+    });
     const getProducts = computed(() => {
       let start = (currentPage.value - 1) * perPage.value;
       let end = currentPage.value * perPage.value;
@@ -179,6 +185,7 @@ export default {
       productListSortDesc,
       isLoading,
       EndTimeLoading,
+      items,
       getProducts,
       currentPage,
       perPage,
@@ -189,16 +196,6 @@ export default {
       route_products,
       image_products,
     };
-  },
-  data() {
-    return {
-      items: [],
-    };
-  },
-  created() {
-    this.listProducts.map((item) => {
-      this.items.push(item);
-    });
   },
 };
 </script>

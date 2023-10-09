@@ -1,148 +1,50 @@
 <template>
-  <div class="container my-wishlist">
-    <div class="row">
-      <div class="col-lg-12">
-        <h2 class="wishlist_heading">Sản phẩm ưa thích</h2>
-        <hr />
-        <div v-if="wishlist.length > 0">
-          <div
-            class="single_product_list"
-            v-for="featured in getItems"
-            :key="featured.id"
-          >
-            <div class="row">
-              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="product_blog_image">
-                  <div class="product_blog_image">
-                    <a href=""
-                      ><img
-                        :src="featured.image"
-                        :alt="featured.name"
-                        @click.prevent="handleToDetail(featured._id)"
-                    /></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <div class="blog_product_details">
-                  <h2 class="blog_heading">
-                    <a href="" @click.prevent="handleToDetail(featured._id)">{{
-                      featured.name
-                    }}</a>
-                  </h2>
-                  <!-- <div class="product_rating">
-                    <span class="spr-badge"
-                      ><span class="spr-starrating spr-badge-starrating"
-                        ><i
-                          class="fa fa-star"
-                          style="color: #e7f20e"
-                          aria-hidden="true"
-                        ></i
-                        ><i
-                          class="fa fa-star"
-                          style="color: #e7f20e"
-                          aria-hidden="true"
-                        ></i
-                        ><i
-                          class="fa fa-star"
-                          style="color: #e7f20e"
-                          aria-hidden="true"
-                        ></i
-                        ><i
-                          class="fa fa-star"
-                          style="color: #e7f20e"
-                          aria-hidden="true"
-                        ></i
-                        ><i
-                          class="fa fa-star"
-                          style="color: #e7f20e"
-                          aria-hidden="true"
-                        ></i></span
-                      ><span class="spr-badge-caption ml-2">No reviews</span>
-                    </span>
-                  </div> -->
-
-                  <div class="pricing_rate">
-                    <p class="rating_dollor">
-                      <span class="rating_value_two">{{
-                        FormatSale(featured)
-                      }}</span>
-                      <span class="visually-hidden"
-                        >translation missing:
-                        en.cart.general.regular_price</span
-                      >
-                      <span
-                        class="rating_value_one"
-                        v-if="featured.isSale === true"
-                        >{{ FormatWish(featured) }}</span
-                      >
-                    </p>
-
-                    <div>
-                      <pre class="blog_texts">
-                        {{ featured.description }}
-                      </pre>
-                      <a
-                        class="learn_more"
-                        href=""
-                        @click.prevent="handleToDetail(featured._id)"
-                        >Xem thêm</a
-                      >
-                    </div>
-                  </div>
-                  <div class="product_button">
-                    <div class="cart_details">
-                      <button
-                        title="Add to cart"
-                        class="add_cart"
-                        type="submit"
-                        name="add"
-                        value=""
-                        @click="handleBuy(featured)"
-                        :disabled="featured.quantity === 0"
-                      >
-                        Add to cart
-                      </button>
-                    </div>
-                    <div class="cart_details">
-                      <a @click="handleDeleteWish(featured._id)"
-                        ><i class="fa fa-trash"></i
-                      ></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr />
-          <div class="pagination shop_paginatin">
-            <paginate
-              v-if="getPaginationCount > 1"
-              :page-count="getPaginationCount"
-              :page-range="2"
-              :margin-pages="2"
-              :click-handler="clickCallback"
-              :prev-text="'←'"
-              :next-text="'→'"
-              :container-class="'pagination'"
-              :page-class="'page-item'"
-              :page-link-class="'page-link'"
-              :prev-class="'page-item'"
-              :prev-link-class="'page-link'"
-              :next-class="'page-item'"
-              :next-link-class="'page-link'"
-              :hide-prev-next="true"
-            >
-            </paginate>
-          </div>
-        </div>
-
-        <div class="wishlist_empty" v-else>
-          <h3 class="wishlist_empty-text">Empty Your Wishlist!!</h3>
-          <img :src="img_svg" alt="" />
-          <img src="" alt="" />
+  <div class="container">
+    <div class="row" v-if="wishlist.length > 0">
+      <div class="blog__icon col-12">
+        <div class="blog__icon-link">
+          <router-link to="/" class="blog__icon-text">home</router-link>
+          <span class="blog__icon-text-active">FAVORITE</span>
         </div>
       </div>
+
+      <div
+        class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6"
+        v-for="_product in getItems"
+        :key="_product.id"
+      >
+        <featured-item
+          :productDetail="_product"
+          :Loading="false"
+          :wish="true"
+        />
+      </div>
+      <hr />
+      <div class="pagination shop_paginatin">
+        <paginate
+          v-if="getPaginationCount > 1"
+          :page-count="getPaginationCount"
+          :page-range="2"
+          :margin-pages="2"
+          :click-handler="clickCallback"
+          :prev-text="'←'"
+          :next-text="'→'"
+          :container-class="'pagination'"
+          :page-class="'page-item'"
+          :page-link-class="'page-link'"
+          :prev-class="'page-item'"
+          :prev-link-class="'page-link'"
+          :next-class="'page-item'"
+          :next-link-class="'page-link'"
+          :hide-prev-next="true"
+        >
+        </paginate>
+      </div>
+    </div>
+    <div class="wishlist_empty" v-else>
+      <h3 class="wishlist_empty-text">Empty Your Wishlist!!</h3>
+      <img :src="img_svg" alt="" />
+      <img src="" alt="" />
     </div>
   </div>
 </template>
@@ -150,108 +52,65 @@
 <script>
 import wishlistSVG from "../../public/image/wishlist.gif";
 import Paginate from "vuejs-paginate-next";
+import FeaturedItem from "@/components/FeaturedItem.vue";
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 export default {
+  components: {
+    Paginate,
+    FeaturedItem,
+  },
   setup() {
     const store = useStore();
+    const items = ref([]);
+    const currentPage = ref(1);
+    const perPage = ref(6);
+    const img_svg = ref(wishlistSVG);
     const wishlist = computed(() => store.state.user.userWishes);
+    onMounted(() => {
+      wishlist.value.map((item) => {
+        items.value.push(item);
+      });
+    });
+    const getItems = computed(() => {
+      let start = (currentPage.value - 1) * perPage.value;
+      let end = currentPage.value * perPage.value;
+      return wishlist.value.slice(start, end);
+    });
+    const getPaginationCount = computed(() => {
+      return Math.ceil(wishlist.value.length / perPage.value);
+    });
     const handleDeleteWish = (data) => {
       store.dispatch("user/removeWishAction", data);
     };
     const handleBuy = (data) => {
       store.dispatch("user/addCartAction", data);
     };
+    const clickCallback = (pagenum) => {
+      currentPage.value = Number(pagenum);
+      window.scrollTo({
+        top: 100,
+        left: 100,
+        behavior: "smooth",
+      });
+    };
     return {
       wishlist,
+      items,
+      currentPage,
+      perPage,
+      img_svg,
+      getItems,
+      getPaginationCount,
       handleDeleteWish,
       handleBuy,
+      clickCallback,
     };
-  },
-  data() {
-    return {
-      items: [],
-      currentPage: 1,
-      perPage: 4,
-      img_svg: wishlistSVG,
-    };
-  },
-  components: {
-    Paginate,
-  },
-  computed: {
-    getItems() {
-      let start = (this.currentPage - 1) * this.perPage;
-      let end = this.currentPage * this.perPage;
-      return this.wishlist.slice(start, end);
-    },
-    getPaginationCount() {
-      return Math.ceil(this.wishlist.length / this.perPage);
-    },
-  },
-  created() {
-    this.wishlist.map((item) => {
-      this.items.push(item);
-    });
-  },
-  methods: {
-    FormatSale(featured) {
-      if (featured.isSale === true) {
-        let x = featured.price - featured.price * (featured.sale / 100);
-        return (x = x.toLocaleString("vi", {
-          style: "currency",
-          currency: "VND",
-        }));
-      } else {
-        let x = featured.price;
-        return (x = x.toLocaleString("vi", {
-          style: "currency",
-          currency: "VND",
-        }));
-      }
-    },
-    FormatWish(x) {
-      return (x = x.price.toLocaleString("vi", {
-        style: "currency",
-        currency: "VND",
-      }));
-    },
-    clickCallback(pagenum) {
-      this.currentPage = Number(pagenum);
-      window.scrollTo({
-        top: 100,
-        left: 100,
-        behavior: "smooth",
-      });
-    },
-    handleToDetail(a) {
-      this.$router.push(`/product-detail/${a}`);
-      window.scrollTo({
-        top: 100,
-        left: 100,
-        behavior: "smooth",
-      });
-    },
   },
 };
 </script>
 
 <style>
-.my-wishlist {
-  margin-top: 30px;
-}
-.wishlist_heading {
-  color: #555;
-  font-size: 28px;
-  margin-bottom: 30px;
-  font-weight: bold;
-  text-align: left;
-}
-.wishlist_empty-text {
-  color: #ff343b;
-  text-align: left;
-  font-size: 16px;
-}
 .page-link {
   z-index: 1;
   color: #666;
@@ -278,4 +137,3 @@ export default {
   margin: 10px 0;
 }
 </style>
-<style scoped></style>

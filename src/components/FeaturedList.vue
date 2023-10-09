@@ -5,19 +5,19 @@
         <h1 class="featured__heading">Nổi bật</h1>
       </div>
     </div>
-    <div class="fea-list">
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-12"
-            v-for="featuredItem in featuredList"
-            :key="featuredItem.id"
-          >
-            <featured-item :productDetail="featuredItem" :Loading="loading" />
-          </div>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-lg-3 col-md-6 col-sm-12 col-xs-12 col-12"
+          v-for="featuredItem in featuredList"
+          :key="featuredItem.id"
+        >
+          <featured-item :productDetail="featuredItem" :Loading="loading" />
         </div>
       </div>
     </div>
+
     <div class="container col-12 mt-3">
       <button class="btn btn-loadmore mt-4 mb-5" @click="handleToShop">
         <span> Xem thêm...</span>

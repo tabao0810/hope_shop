@@ -153,7 +153,7 @@
       <h1 class="blog__heading">Sản phẩm tương tự</h1>
       <div class="product-slide">
         <swiper
-          :slidesPerView="4"
+          :slidesPerView="setCount"
           :spaceBetween="20"
           :slidesPerGroup="1"
           :loop="true"
@@ -195,7 +195,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { computed, onMounted, ref, watch } from "vue";
 import ImageSkeleton from "@/components/loading/ImageSkeleton.vue";
 import FeaturedItem from "@/components/FeaturedItem.vue";
@@ -208,6 +208,7 @@ export default {
   },
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const store = useStore();
     const isLoading = ref(true);
     const EndTimeLoading = () => {
@@ -237,6 +238,9 @@ export default {
     const handleWishList = (data) => {
       store.dispatch("user/addWishListAction", data);
     };
+    const handleBuy = (pro) => {
+      store.dispatch("user/addCartAction", { data: pro, router });
+    };
     return {
       modules: [Pagination, Navigation],
       productDetail,
@@ -245,6 +249,7 @@ export default {
       handleWishList,
       EndTimeLoading,
       FormatPrice,
+      handleBuy,
     };
   },
   components: {
@@ -265,12 +270,6 @@ export default {
         count = 2;
       }
       return count;
-    },
-  },
-  methods: {
-    handleBuy(pro) {
-      this.$store.dispatch("user/addCartAction", pro);
-      this.$router.push("/my-cart");
     },
   },
 };

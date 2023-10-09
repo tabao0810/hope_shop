@@ -68,21 +68,23 @@ const props = defineProps({
       text-transform: uppercase;
       color: #666;
       text-decoration: none;
-      position: relative;
       transition: all linear 0.3s;
+      display: flex;
+      align-items: flex-end;
+      line-height: 24px;
       span {
         padding: 0px 4px;
       }
       &:hover {
         color: red;
-        left: 16px;
+        transform: translateX(16px);
         font-weight: 600;
         transition: all linear 0.3s;
       }
     }
     .active {
       color: red;
-      left: 16px;
+      transform: translateX(16px);
       font-weight: 600;
       transition: all linear 0.3s;
     }

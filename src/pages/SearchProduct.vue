@@ -49,7 +49,7 @@
 <script>
 import Paginate from "vuejs-paginate-next";
 import { useStore } from "vuex";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import FeaturedItem from "@/components/FeaturedItem.vue";
 import LoadingPage from "@/components/loading/LoadingPage.vue";
@@ -69,13 +69,18 @@ export default {
     const EndTimeLoading = () => {
       isLoading.value = false;
     };
-
-    store.dispatch("products/searchNameAction", {
-      route: route.params.title,
-      loading: EndTimeLoading,
+    onMounted(async () => {
+      await store.dispatch("products/searchNameAction", {
+        route: route.params.title,
+        loading: EndTimeLoading,
+      });
+      await productList.value.map((item) => {
+        items.value.push(item);
+      });
     });
 
     watch(route, (to) => {
+      isLoading.value = true;
       store.dispatch("products/searchNameAction", {
         route: to.params.title,
         loading: EndTimeLoading,
@@ -109,12 +114,6 @@ export default {
       getPaginationCountSearch,
       getSearch,
     };
-  },
-
-  created() {
-    this.productList.map((item) => {
-      this.items.push(item);
-    });
   },
 };
 </script>

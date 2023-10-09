@@ -200,10 +200,11 @@ const actions = {
   },
 
   // Thêm sản phẩm vào giỏ hàng
-  addCartAction(context, payload) {
+  addCartAction(context, { data, router }) {
     // const newCart = {...payload, amount:1}
-    context.commit("addCartMutation", payload);
+    context.commit("addCartMutation", data);
     context.dispatch("updateUser");
+    router.push("/my-cart");
   },
 
   // Xóa sản phẩm khỏi giỏ hàng

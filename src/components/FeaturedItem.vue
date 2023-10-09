@@ -22,8 +22,11 @@
     </div>
     <div class="product_feature">
       <div class="product_feature-detail">
-        <button @click="handleWishList(productDetail)">
+        <button @click="handleWishList(productDetail)" v-if="!wish">
           <i class="fa fa-heart"></i>
+        </button>
+        <button @click="handleDeleteWish(productDetail._id)" v-else>
+          <i class="fa fa-heart" style="color: red"></i>
         </button>
       </div>
       <div class="product_feature-detail">
@@ -88,6 +91,10 @@ export default {
     Loading: {
       type: Boolean,
     },
+    wish: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     LoadingImageSkeleton,
@@ -100,11 +107,15 @@ export default {
     const handleWishList = (data) => {
       store.dispatch("user/addWishListAction", data);
     };
+    const handleDeleteWish = (data) => {
+      store.dispatch("user/removeWishAction", data);
+    };
     return {
       handleBuy,
       handleWishList,
       FormatPrice,
       typePackages,
+      handleDeleteWish,
     };
   },
 };
