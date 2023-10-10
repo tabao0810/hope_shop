@@ -71,7 +71,7 @@ $color-primary: #ff343b;
     background-color: transparent;
     color: white;
     border: none;
-    i{
+    i {
       font-size: 22px;
     }
   }
@@ -80,7 +80,7 @@ $color-primary: #ff343b;
   background-color: #282828;
   position: fixed;
   left: -100vw;
-  top:62px;
+  top: 62px;
   width: 100vw;
   height: calc(100vh - 62px);
   transition: 1s;
@@ -99,7 +99,7 @@ $color-primary: #ff343b;
     li {
       width: 100%;
       a {
-       display: block;
+        display: block;
         width: 100%;
         padding: 8px;
         color: white;
@@ -107,14 +107,15 @@ $color-primary: #ff343b;
     }
   }
 }
-.navbar-pc{
+.navbar-pc {
   @include mobile {
-      display: none;
-    }
-}.navbar__contact-account-mobile{
+    display: none;
+  }
+}
+.navbar__contact-account-mobile {
   @include mobile {
-      display: none;
-    }
+    display: none;
+  }
 }
 // Product item
 .single_product {
@@ -435,6 +436,20 @@ $color-primary: #ff343b;
         text-decoration: underline;
         font-weight: 600;
       }
+    }
+  }
+}
+
+// sale
+.sale-items {
+    @include tablet {
+        &:last-child {
+          display: none;
+        }
+      }
+  @include mobile {
+    &:last-child,&:first-child {
+      display: none;
     }
   }
 }

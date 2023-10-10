@@ -7,9 +7,9 @@
         Các sản phẩm bắt nhịp quốc tế, thời thượng không nên bỏ lỡ
       </h5>
       <div class="col-xs-12 col-sm-12 col-12">
-        <div class="pro-list row">
+        <div class="row">
           <div
-            class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12"
+            class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12 sale-items"
             v-for="sale in saleList"
             :key="sale.id"
           >

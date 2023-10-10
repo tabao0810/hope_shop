@@ -1,7 +1,7 @@
 <template>
   <div class="slide-sale container mt-3 col-12">
     <swiper
-      :slidesPerView="setCount"
+      :slidesPerView="countSwiper"
       :spaceBetween="10"
       :slidesPerGroup="1"
       :loop="true"
@@ -45,6 +45,7 @@ import { Pagination, Navigation } from "swiper";
 
 import { useStore } from "vuex";
 import { computed } from "vue";
+import { useCount } from "@/composables/countSwiper";
 
 export default {
   components: {
@@ -53,38 +54,14 @@ export default {
   },
   setup() {
     const store = useStore();
+    const { countSwiper } = useCount(screen.width);
     store.dispatch("brands/getAllBrandAction");
     const listBrand = computed(() => store.state.brands.listBrand);
     return {
       modules: [Pagination, Navigation],
       listBrand,
+      countSwiper,
     };
-  },
-  computed: {
-    setCount() {
-      let x = screen.width;
-      let count;
-      if (x < 719) {
-        count = 2;
-      } else if (x > 1024) {
-        count = 6;
-      } else {
-        count = 4;
-      }
-      return count;
-    },
-    setNavigation() {
-      let x = screen.width;
-      let y = this.isNavigation;
-      if (x < 719) {
-        y = false;
-      } else if (x > 1024) {
-        y = true;
-      } else {
-        y = false;
-      }
-      return y;
-    },
   },
 };
 </script>

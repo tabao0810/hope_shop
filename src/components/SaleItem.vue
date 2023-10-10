@@ -9,7 +9,7 @@
     />
     <div class="card__title text-center">
       <div>
-        <a href="" @click="handleToSale">FLASH SALE</a>
+        <router-link to="/sale/all">FLASH SALE</router-link>
       </div>
     </div>
     <figcaption>
@@ -24,16 +24,6 @@ export default {
   props: {
     saleItem: {
       type: Object,
-    },
-  },
-  methods: {
-    handleToSale() {
-      this.$router.push("/sale/all");
-      window.scrollTo({
-        top: 100,
-        left: 100,
-        behavior: "smooth",
-      });
     },
   },
 };

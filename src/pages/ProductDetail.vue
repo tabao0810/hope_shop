@@ -19,7 +19,7 @@
           v-else
         />
       </div>
-      <div class="product-detail col-lg-7">
+      <div class="product-detail col-lg-7 mt-lg-0 mt-3">
         <h2 class="border-bottom">
           {{ productDetail.name }}
         </h2>
@@ -153,7 +153,7 @@
       <h1 class="blog__heading">Sản phẩm tương tự</h1>
       <div class="product-slide">
         <swiper
-          :slidesPerView="setCount"
+          :slidesPerView="countSwiper"
           :spaceBetween="20"
           :slidesPerGroup="1"
           :loop="true"
@@ -200,16 +200,21 @@ import { computed, onMounted, ref, watch } from "vue";
 import ImageSkeleton from "@/components/loading/ImageSkeleton.vue";
 import FeaturedItem from "@/components/FeaturedItem.vue";
 import { FormatPrice } from "@/utils/constant";
+import { useCount } from "@/composables/countSwiper";
+
 export default {
-  data() {
-    return {
-      img_svg: theReview,
-    };
+  components: {
+    Swiper,
+    SwiperSlide,
+    ImageSkeleton,
+    FeaturedItem,
   },
   setup() {
     const route = useRoute();
     const router = useRouter();
     const store = useStore();
+    const img_svg = ref(theReview);
+    const { countSwiper } = useCount(screen.width);
     const isLoading = ref(true);
     const EndTimeLoading = () => {
       isLoading.value = false;
@@ -250,27 +255,9 @@ export default {
       EndTimeLoading,
       FormatPrice,
       handleBuy,
+      countSwiper,
+      img_svg,
     };
-  },
-  components: {
-    Swiper,
-    SwiperSlide,
-    ImageSkeleton,
-    FeaturedItem,
-  },
-  computed: {
-    setCount() {
-      let x = screen.width;
-      let count;
-      if (x < 719) {
-        count = 1;
-      } else if (x > 1024) {
-        count = 4;
-      } else {
-        count = 2;
-      }
-      return count;
-    },
   },
 };
 </script>

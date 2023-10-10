@@ -66,37 +66,24 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import { useStore } from "vuex";
 import { computed, ref } from "vue";
 export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   setup() {
     const store = useStore();
     const isLoading = ref(true);
     const EndTimeLoading = () => {
       isLoading.value = false;
     };
-    const setNavigation = computed(() => {
-      let x = screen.width;
-      let y = this.isNavigation;
-      if (x < 719) {
-        y = false;
-      } else if (x > 1024) {
-        y = true;
-      } else {
-        y = false;
-      }
-      return y;
-    });
     store.dispatch("banners/getAllBannerAction", { loading: EndTimeLoading });
     const listBanner = computed(() => store.state.banners.listBanner);
     return {
       listBanner,
-      setNavigation,
       isLoading,
       EndTimeLoading,
       modules: [Autoplay, Pagination, Navigation, EffectCreative],
     };
-  },
-  components: {
-    Swiper,
-    SwiperSlide,
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="blog-list container col-12">
     <swiper
-      :slidesPerView="setCount"
+      :slidesPerView="countSwiper"
       :spaceBetween="20"
       :slidesPerGroup="1"
       :loop="true"
@@ -43,6 +43,8 @@ import { Pagination, Navigation } from "swiper";
 import BlogItem from "./BlogItem.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
+import { useCount } from "@/composables/countSwiper";
+
 export default {
   data() {
     return {
@@ -56,38 +58,14 @@ export default {
   },
   setup() {
     const store = useStore();
+    const { countSwiper } = useCount(screen.width);
     store.dispatch("blogs/getAllBlogAction");
     const blogList = computed(() => store.state.blogs.blogList);
     return {
       modules: [Pagination, Navigation],
       blogList,
+      countSwiper,
     };
-  },
-  computed: {
-    setCount() {
-      let x = screen.width;
-      let count;
-      if (x < 719) {
-        count = 1;
-      } else if (x > 1024) {
-        count = 4;
-      } else {
-        count = 2;
-      }
-      return count;
-    },
-    setNavigation() {
-      let x = screen.width;
-      let y = this.isNavigation;
-      if (x < 719) {
-        y = false;
-      } else if (x > 1024) {
-        y = true;
-      } else {
-        y = false;
-      }
-      return y;
-    },
   },
 };
 </script>

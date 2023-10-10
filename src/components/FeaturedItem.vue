@@ -55,21 +55,12 @@
         <p>
           <span v-if="productDetail.isSale">
             <span class="product_price">
-              {{
-                FormatPrice(
-                  Number(
-                    productDetail.price -
-                      (productDetail.price * productDetail.sale) / 100
-                  )
-                )
-              }}
+              {{ oldPrice }}
             </span>
-            <span class="product_price_sale">
-              {{ FormatPrice(productDetail.price) }}</span
-            >
+            <span class="product_price_sale"> {{ newPrice }}</span>
           </span>
           <span class="product_price" v-else>
-            {{ FormatPrice(productDetail.price) }}
+            {{ newPrice }}
           </span>
         </p>
       </div>
@@ -79,9 +70,9 @@
 
 <script>
 import { useStore } from "vuex";
-import { FormatPrice } from "@/utils/constant";
 import LoadingImageSkeleton from "@/components/loading/ImageSkeleton.vue";
 import { typePackages } from "@/utils/type-product";
+import { usePrice } from "@/composables/price";
 
 export default {
   props: {
@@ -99,8 +90,12 @@ export default {
   components: {
     LoadingImageSkeleton,
   },
-  setup() {
+  setup(props) {
     const store = useStore();
+    const { newPrice, oldPrice } = usePrice(
+      props.productDetail.price,
+      props.productDetail.sale
+    );
     const handleBuy = (data) => {
       store.dispatch("user/addCartAction", data);
     };
@@ -113,9 +108,10 @@ export default {
     return {
       handleBuy,
       handleWishList,
-      FormatPrice,
       typePackages,
       handleDeleteWish,
+      newPrice,
+      oldPrice,
     };
   },
 };

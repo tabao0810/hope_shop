@@ -3,8 +3,7 @@
     <div class="navbar__contact-account">
       <a href="" @click.prevent="" class="mr-3 header__btn account__btn">
         <span v-if="userInfo._id"
-          ><i class="far fa-user-circle mr-1"></i>Hi,
-          {{ userInfo.lastName }}</span
+          ><i class="far fa-user-circle mr-1"></i> {{ userInfo.lastName }}</span
         >
         <span v-else
           ><i class="fa fa-key"></i
