@@ -12,7 +12,7 @@
           </div>
         </div>
         <div
-          class="col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12"
+          class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-12"
           v-for="_product in getSearch"
           :key="_product.id"
         >
@@ -65,20 +65,19 @@ export default {
     const isLoading = ref(true);
     const items = ref([]);
     const currentPage = ref(1);
-    const perPage = ref(6);
+    const perPage = ref(8);
     const EndTimeLoading = () => {
       isLoading.value = false;
     };
+    store.dispatch("products/searchNameAction", {
+      route: route.params.title,
+      loading: EndTimeLoading,
+    });
     onMounted(async () => {
-      await store.dispatch("products/searchNameAction", {
-        route: route.params.title,
-        loading: EndTimeLoading,
-      });
       await productList.value.map((item) => {
         items.value.push(item);
       });
     });
-
     watch(route, (to) => {
       isLoading.value = true;
       store.dispatch("products/searchNameAction", {
@@ -124,5 +123,6 @@ export default {
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
+  border-top: 1px solid #cccc;
 }
 </style>

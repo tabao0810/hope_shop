@@ -46,11 +46,6 @@ import { computed } from "vue";
 import { useCount } from "@/composables/countSwiper";
 
 export default {
-  data() {
-    return {
-      isNavigation: true,
-    };
-  },
   components: {
     BlogItem,
     Swiper,
