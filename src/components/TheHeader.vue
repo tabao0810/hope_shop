@@ -4,10 +4,7 @@
       <!-- Header mobile -->
       <div class="navbar-mobile">
         <div class="navbar-mobile-left">
-          <button @click="toggleMenu = !toggleMenu">
-            <i class="fas fa-bars" v-if="!toggleMenu"></i>
-            <i class="fas fa-times" v-else></i>
-          </button>
+          <navbar-menu v-model:status="toggleMenu"></navbar-menu>
           <div class="nav-menu-extend" :class="{ active: toggleMenu }">
             <ul>
               <li v-for="(item, index) in routeMenu" :key="index">
@@ -37,7 +34,7 @@
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1024px-H%26M-Logo.svg.png"
               alt=""
               loading="lazy"
-              style="width: 50px"
+              style="width: 52px"
             />
           </router-link>
         </div>
@@ -108,10 +105,12 @@ import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { ref, computed, watch } from "vue";
 import TheCart from "./TheCart.vue";
+import NavbarMenu from "./icons/NavbarMenu.vue";
 
 export default {
   components: {
     TheCart,
+    NavbarMenu,
   },
   setup() {
     const store = useStore();

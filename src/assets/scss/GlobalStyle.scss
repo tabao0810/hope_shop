@@ -64,17 +64,9 @@ $color-primary: #ff343b;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
-}
-.navbar-mobile-left {
-  button {
-    background-color: transparent;
-    color: white;
-    border: none;
-    i {
-      font-size: 22px;
-    }
-  }
+
 }
 .nav-menu-extend {
   background-color: #282828;
