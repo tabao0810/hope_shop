@@ -21,6 +21,7 @@
               "Không có phụ nữ xấu, chỉ có phụ nữ không biết làm đẹp "- Trích
               câu danh ngôn nổi tiếng của LaBruyere để thay lời của Juno - những
               người góp phần tôn vinh, khơi dậy vẻ đẹp phụ nữ Việt Nam.
+              Hello
             </p>
             <ul class="about_hope_details">
               <li>
